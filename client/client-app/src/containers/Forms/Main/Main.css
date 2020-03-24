@@ -1,0 +1,59 @@
+
+#bootstrap-overwrite form {
+    text-align: right;
+    direction: rtl;
+}
+
+#bootstrap-overwrite .custom-control-inline {
+    margin-right: 0;
+    vertical-align: middle;
+    height: 100%;
+}
+
+#bootstrap-overwrite .custom-control-label {
+    vertical-align: middle;
+
+}
+
+#bootstrap-overwrite .margin-top-50 {
+    margin-top: 50px;
+}
+
+#bootstrap-overwrite .margin-bottom-50 {
+    margin-bottom: 50px;
+}
+
+#bootstrap-overwrite .margin-top-5 {
+    margin-top: 5px;
+}
+
+#bootstrap-overwrite .margin-bottom-5 {
+    margin-bottom: 5px;
+}
+
+#bootstrap-overwrite .add-btn{
+    padding: 0;
+}
+
+#bootstrap-overwrite .remove-btn {
+
+    background-color: #944317;
+    padding: 0;
+    border-radius: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+
+#bootstrap-overwrite .control-btn {
+    width: 25px;
+    height: 25px;
+
+}
+
+#bootstrap-overwrite .tiny-control-btn {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+}

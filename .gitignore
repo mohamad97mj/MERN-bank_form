@@ -1,0 +1,6 @@
+/client/client-app/node_modules
+/client/client-app/README.md
+/client/client-app/package-lock.json
+/server/node_modules
+/server/package-lock.json
+

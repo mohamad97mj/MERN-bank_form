@@ -1,0 +1,46 @@
+.Input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    direction: rtl;
+    position: relative;
+
+}
+
+.Label {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 8px;
+    width: 150px;
+    text-align: right;
+}
+
+.InputElement {
+    outline: none;
+    border: 1px solid #ccc;
+    background-color: white;
+    font: inherit;
+    padding: 6px 10px;
+    /*display: inline;*/
+    /*width: 400px;*/
+    width: 100%;
+    box-sizing: border-box;
+    left: 0;
+
+}
+
+.InputElement:focus {
+    outline: none;
+    background-color: #ccc;
+}
+
+.Invalid {
+    border: 1px solid red;
+    background-color: #FDA49A;
+}
+
+/*.Inline {*/
+/*    display: flex;*/
+/*    flex-flow: row wrap;*/
+/*    align-items: center;*/
+/*}*/

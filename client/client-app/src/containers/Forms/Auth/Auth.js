@@ -26,6 +26,11 @@ class Auth extends Component {
         loading: false,
     };
 
+    componentDidMount() {
+        this.props.onSetAuthRedirectPath();
+    }
+
+
     onChangeHandler = e => {
         this.setState({[e.target.id]: e.target.value});
     };
@@ -112,16 +117,24 @@ class Auth extends Component {
             form = <Spinner/>;
         }
 
+        let errorMessage = null;
+
+        if (this.props.error) {
+            errorMessage = (
+                <p>{this.props.error.message}</p>
+            );
+        }
+
         let authRedirect = null;
-        if (this.props.isAuthenticated){
-            authRedirect = <Redirect to="/profile"/>
+        if (this.props.isAuthenticated) {
+            authRedirect = <Redirect to={this.props.authRedirectPath}/>
         }
 
         return (
 
             <div>
-
                 {authRedirect}
+                {errorMessage}
                 <h4>نام کاربری و گذرواژه خود را وارد کنید </h4>
                 <div>
                     {form}
@@ -136,12 +149,19 @@ class Auth extends Component {
 const mapStateToProps = state => {
     return {
         isAuthenticated: state.auth.token !== null,
+        authRedirectPath: state.auth.authRedirectPath,
+        loading: state.auth.loading,
+        error: state.auth.error,
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (userData, history) => {dispatch(actions.auth(userData, history))}
+        onAuth: (userData, history) => {
+            dispatch(actions.auth(userData, history))
+        },
+        onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath("/profile"))
+
     }
 };
 

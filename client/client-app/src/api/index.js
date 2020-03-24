@@ -20,7 +20,11 @@
 
 
 export {
-    auth, register
+    auth,
+    register,
+    logout,
+    setAuthRedirectPath,
+    authCheckState
 } from '../store/actions/auth';
 
 export {

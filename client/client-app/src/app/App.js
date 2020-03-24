@@ -1,31 +1,74 @@
 import React, { Component } from 'react';
 import styles from './App.module.css';
 import Layout from '../hoc/Layout/Layout';
-import { Route } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import Home from '../containers/Home/Home';
 import Profile from "../containers/Forms/Profile/Profile";
 import Main from "../containers/Forms/Main/Main";
 import Auth from "../containers/Forms/Auth/Auth"
 import Register from "../containers/Forms/Auth/Register";
+import { connect } from 'react-redux';
+import * as actions from '../api/index';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 class App extends Component {
 
+    componentDidMount () {
+        this.props.onTryAutoSignup();
+    }
+
     render() {
+
+        let routes = (
+            <Switch>
+                <Route path="/profile" exact component={Profile}/>
+                <Route path="/form" exact component={Main}/>
+                <Route path="/login" exact component = {Auth} />
+                <Route path="/signin" exact component = {Register} />
+                <Route path="/" exact component = {Home} />
+                <Redirect to="/" />
+            </Switch>
+        );
+
+        // if ( this.props.isAuthenticated ) {
+        //     alert("is authenticated" + this.props.isAuthenticated);
+        //     routes = (
+        //         <Switch>
+        //             <Route path="/profile" exact component={Profile}/>
+        //             <Route path="/form" exact component={Main}/>
+        //             {/*<Route path="/logout" component={Logout} />*/}
+        //             <Route path="/" exact component={Home}/>
+        //             <Redirect to="/"/>
+        //         </Switch>
+        //     );
+        // }
+
+
         return (
 
             <div className={styles.App} id="bootstrap-overwrite">
                 <Layout>
-                    <Route path="/login" exact component = {Auth} />
-                    <Route path="/signin" exact component = {Register} />
-                    <Route path="/profile" exact component = {Profile} />
-                    <Route path="/form" exact component = {Main} />
-                    <Route path="/" exact component = {Home} />
+                    {routes}
                 </Layout>
             </div>
         );
     }
 }
 
-export default App;
+
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.auth.token !== null
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onTryAutoSignup: () => dispatch( actions.authCheckState() )
+    };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

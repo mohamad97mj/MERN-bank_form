@@ -67,7 +67,6 @@ class Register extends Component {
         event.preventDefault();
         const usernameValue = this.state.username;
         const passwordValue = this.state.password;
-        alert("username value is " + usernameValue);
 
         const newUser = {
           username : usernameValue,

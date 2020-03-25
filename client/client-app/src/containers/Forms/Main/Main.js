@@ -41,7 +41,7 @@ class Main extends Component {
     moneyScales = ["1000", "10000", "100000", "1000000", "10000000"];
 
     disableOriginBanksInputHandler = (event) => {
-        // alert('disableOriginBanksInputHandler' + " called");
+
 
         this.setState({disableOriginBanksInput: event.target.checked});
         if (event.target.checked) {
@@ -69,7 +69,6 @@ class Main extends Component {
 
     removeOriginBankInput = (value) => {
         const id = "origin-input-" + value;
-        // alert(id);
         $("#" + id).remove();
         // const newOriginBanksInput = this.state.originBanksInput.filter(item => item !== value);
         // this.setState({originBanksInput: newOriginBanksInput});
@@ -85,14 +84,14 @@ class Main extends Component {
 
     removeDestinationBankInput = (value) => {
         const id = "destination-input-" + value;
-        // alert(id);
+
         $("#" + id).remove();
         // const newDestinationBanksInput = this.state.destinationBanksInput.filter(item => item !== value);
         // this.setState({destinationBanksInput: newDestinationBanksInput});
     };
 
     addRemittanceContainer = () => {
-        // alert("entered addRemittanceContainer");
+
         const newRemittanceContainersCounter = this.state.remittanceContainersCounter + 1;
         this.setState({remittanceContainersCounter: newRemittanceContainersCounter});
         const newRemittanceContainers = [...this.state.remittanceContainers, newRemittanceContainersCounter];
@@ -101,7 +100,7 @@ class Main extends Component {
 
     removeRemittanceContainer = (value) => {
         const id = "remittance-" + value;
-        // alert(id);
+
         $("#" + id).remove();
         // const newRemittanceContainers = this.state.remittanceContainers.filter(item => item !== value);
         // this.setState({remittanceContainers: newRemittanceContainers});
@@ -116,7 +115,7 @@ class Main extends Component {
 
     removeCustomerContainer = (value) => {
         const id = "customer-" + value;
-        // alert(id);
+
         $("#" + id).remove();
 
         // const newCustomerContainers = this.state.customerContainers.filter(item => item !== value);
@@ -158,12 +157,12 @@ class Main extends Component {
     render() {
 
         // const tempOriginBanksInput = this.originBanksInput;
-        console.log("rendered " + this.state.remittanceContainers);
+
         let remittanceContainers =
             (
                 this.state.remittanceContainers.map((value) => {
-                    // alert(value);
-                    // console.log("object created");
+
+
                     return (
                         <Form.Group className={styles.MainFormContent + " margin-bottom-5"} id={"remittance-" + value}>
 

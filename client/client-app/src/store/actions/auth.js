@@ -48,7 +48,6 @@ export const auth = (userData, history) => dispatch => {
     axios
         .post("/login", userData)
         .then(res => {
-            alert("entered auth");
             const {token} = res.data;
             localStorage.setItem("jwtTokenTeams", JSON.stringify(token));
             // Set token to Auth header
@@ -64,7 +63,7 @@ export const auth = (userData, history) => dispatch => {
                 username : userData.username,
             };
 
-            alert("entered before getProfile");
+
             dispatch(getProfile(newUserData, history));
 
         })

@@ -39,8 +39,8 @@ class Profile extends Component {
 
         if (this.props.profileData !== null){
             this.props.onGetProfile({username : this.props.myUsername});
-            alert(this.props.profileData.nationalCode);
-            alert(this.props.profileData.registerNumber);
+
+
             this.updateFields();
         }
     };

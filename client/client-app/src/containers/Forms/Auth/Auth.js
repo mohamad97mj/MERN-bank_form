@@ -82,8 +82,6 @@ class Auth extends Component {
 
     render() {
 
-        // alert("isAuthenticated is : " + this.props.isAuthenticated);
-
         let form = (
             <Form onSubmit={this.loginHandler}>
                 <Form.Group className={styles.LoginForm}>

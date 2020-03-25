@@ -33,7 +33,6 @@ class App extends Component {
         );
 
         // if ( this.props.isAuthenticated ) {
-        //     alert("is authenticated" + this.props.isAuthenticated);
         //     routes = (
         //         <Switch>
         //             <Route path="/profile" exact component={Profile}/>

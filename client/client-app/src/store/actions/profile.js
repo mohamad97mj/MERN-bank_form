@@ -25,15 +25,15 @@ export const getProfileFail = (error) => {
 };
 
 export const getProfile = (userData) => dispatch => {
-    alert("entered getProfile");
+
     dispatch(getProfileStart);
-    // const username = userData.username;
-    // alert("username in getProfile is : " + username);
+
+
     axios.post(`/profile`, userData)
         // ;
         .then(res => {
             const profile = res.data.data;
-            console.log("hereeeeeeee" +  res.data.data.nationalCode);
+
             dispatch(getProfileSuccess(profile));
         })
         .catch(err => {

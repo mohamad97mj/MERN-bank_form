@@ -10,10 +10,11 @@ export const authStart = () => {
     };
 };
 
-export const authSuccess = (authData) => {
+export const authSuccess = (user) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
-        authData: authData
+        user: user,
+
     };
 };
 
@@ -27,8 +28,9 @@ export const authFail = (error) => {
 
 export const logout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('expirationDate');
     localStorage.removeItem('userId');
+    localStorage.removeItem("jwtTokenTeams");
+
     return {
         type: actionTypes.AUTH_LOGOUT
     };
@@ -48,7 +50,10 @@ export const auth = (userData, history) => dispatch => {
     axios
         .post("/login", userData)
         .then(res => {
+
             const {token} = res.data;
+            localStorage.setItem('token', token.idToken);
+            localStorage.setItem('userId', token.localId);
             localStorage.setItem("jwtTokenTeams", JSON.stringify(token));
             // Set token to Auth header
             setAuthToken(token);
@@ -59,12 +64,11 @@ export const auth = (userData, history) => dispatch => {
 
             dispatch(authSuccess(decoded));
 
-            const newUserData = {
+            const tempUserData = {
                 username : userData.username,
             };
 
-
-            dispatch(getProfile(newUserData, history));
+            dispatch(getProfile(tempUserData, history));
 
         })
         .catch(err =>

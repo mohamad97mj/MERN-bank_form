@@ -4,50 +4,79 @@ import styles from './Toolbar.module.css';
 import './Toolbar.css';
 import Nav from "react-bootstrap/Nav";
 import Logo from '../../Logo/Loog';
+import Aux from '../../../hoc/Aux/Aux';
+import Auth from "../../../containers/Forms/Auth/Auth";
+import {NavLink} from "react-router-dom";
 
-const toolbar = ( props ) => (
+const toolbar = (props) => (
 
     <header>
-        <div className={styles.Toolbar} >
+        <div className={styles.Toolbar}>
 
-            <Nav className="" activeKey="/home">
-
+            <Nav>
                 <Nav.Item>
-                    <Nav.Link eventKey="1" href="/">
-                        <Logo />
+                    <Nav.Link exact as={NavLink} to="/">
+                        <Logo/>
                     </Nav.Link>
                 </Nav.Item>
 
-                <Nav.Item>
-                    <Nav.Link eventKey="1" href="/">
-                        صفحه نخست
-                    </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="2" href="/login">
-                        ورود
-                    </Nav.Link>
-                </Nav.Item>
+                {!props.isAuth ?
 
-                <Nav.Item>
-                    <Nav.Link eventKey="3" href="/signin">
-                        ثبت نام
-                    </Nav.Link>
-                </Nav.Item>
+                    <Aux>
 
-                <Nav.Item>
-                    <Nav.Link eventKey="4" href="/form">
-                        فرم
-                    </Nav.Link>
-                </Nav.Item><Nav.Item>
-                    <Nav.Link eventKey="5" disabled>
-                        درباره ما
-                    </Nav.Link>
-                </Nav.Item>
+
+                        <Nav.Item>
+                            <Nav.Link exact as={NavLink} to="/">
+                                صفحه نخست
+
+                            </Nav.Link>
+                        </Nav.Item>
+
+                        <Nav.Item>
+                            <Nav.Link exact as={NavLink} to="/login">
+                                ورود
+                            </Nav.Link>
+                        </Nav.Item>
+
+
+                        <Nav.Item>
+                            <Nav.Link exact as={NavLink} to="/about" disabled>
+                                درباره ما
+                            </Nav.Link>
+                        </Nav.Item>
+                    </Aux> :
+
+                    <Aux>
+
+                        <Nav.Item>
+                            < Nav.Link exact as={NavLink} to="/form">
+                                فرم
+                            </Nav.Link>
+                        </Nav.Item>
+
+
+                        <Nav.Item>
+                            <Nav.Link exact as={NavLink} to="/logout">
+                                خروج
+                            </Nav.Link>
+                        </Nav.Item>
+                    </Aux>
+                }
+
             </Nav>
-
         </div>
     </header>
 );
+
+{/*<Nav.Item>*/
+}
+{/*    <Nav.Link eventKey="3" href="/signin">*/
+}
+{/*        ثبت نام*/
+}
+{/*    </Nav.Link>*/
+}
+{/*</Nav.Item>*/
+}
 
 export default toolbar;

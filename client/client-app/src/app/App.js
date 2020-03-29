@@ -11,19 +11,22 @@ import { connect } from 'react-redux';
 import * as actions from '../api/index';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Logout from "../containers/Forms/Auth/Logout/Logout";
 
 
 class App extends Component {
 
     componentDidMount () {
-        this.props.onTryAutoSignup();
+        // this.props.onTryAutoSignup();
     }
 
     render() {
 
+        // alert(this.props.isAuthenticated);
+
         let routes = (
             <Switch>
-                <Route path="/profile" exact component={Profile}/>
+                {/*<Route path="/profile" exact component={Profile}/>*/}
                 <Route path="/form" exact component={Main}/>
                 <Route path="/login" exact component = {Auth} />
                 <Route path="/signin" exact component = {Register} />
@@ -32,17 +35,19 @@ class App extends Component {
             </Switch>
         );
 
-        // if ( this.props.isAuthenticated ) {
-        //     routes = (
-        //         <Switch>
-        //             <Route path="/profile" exact component={Profile}/>
-        //             <Route path="/form" exact component={Main}/>
-        //             {/*<Route path="/logout" component={Logout} />*/}
-        //             <Route path="/" exact component={Home}/>
-        //             <Redirect to="/"/>
-        //         </Switch>
-        //     );
-        // }
+        if ( this.props.isAuthenticated ) {
+
+            routes = (
+                <Switch>
+                    <Route path="/login" exact component = {Auth} />
+                    <Route path="/profile" exact component={Profile}/>
+                    <Route path="/form" exact component={Main}/>
+                    <Route path="/logout" exact component={Logout}/>
+                    <Route path="/" exact component={Home}/>
+                    <Redirect to="/"/>
+                </Switch>
+            );
+        }
 
 
         return (
@@ -59,7 +64,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
     return {
-        isAuthenticated: state.auth.token !== null
+        isAuthenticated: state.auth.user !== null
     };
 };
 

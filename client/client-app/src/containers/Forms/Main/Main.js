@@ -451,7 +451,7 @@ class Main extends Component {
                 <div className={styles.MainForm}>
                     {form}
                 </div>
-                <Button className="margin-top-5">ارسال</Button>
+                <Button className="margin-top-5" disabled="true">ارسال</Button>
             </div>
         );
     }

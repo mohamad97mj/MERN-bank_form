@@ -20,17 +20,7 @@ class Profile extends Component {
         super(props);
 
         this.state = {
-            name: "",
-            nationalCode: "",
-            state: "",
-            city: "",
-            address: "",
-            postalCode: "",
-            telephone: "",
-            lastLicenseNumber: "",
-            lastLicenseValidityDate: "",
-            manager: "",
-            registerNumber: "",
+            editable : false,
         }
     }
 
@@ -116,7 +106,7 @@ class Profile extends Component {
                         نام و نام خانوادگی
                     </Form.Label>
                     <Col sm="8">
-                        <Form.Control id="name" />
+                        <Form.Control id="name" disabled={!this.state.editable}/>
                     </Col>
 
                 </Form.Group>
@@ -126,7 +116,7 @@ class Profile extends Component {
                         کد ملی
                     </Form.Label>
                     <Col sm="8">
-                        <Form.Control id="national-code" />
+                        <Form.Control id="national-code" disabled={!this.state.editable}/>
                     </Col>
 
                 </Form.Group>
@@ -139,7 +129,7 @@ class Profile extends Component {
 
 
                     <Col sm="4">
-                        <Form.Control id="state" />
+                        <Form.Control id="state" disabled={!this.state.editable}/>
                         {/*<Form.Control as="select" runat="server" id="state" onChange={this.onChangeHandler.bind(this)}>*/}
 
                         {/*    <option value=""></option>*/}
@@ -184,7 +174,7 @@ class Profile extends Component {
                     </Form.Label>
 
                     <Col sm="4">
-                        <Form.Control id="city"/>
+                        <Form.Control id="city" disabled={!this.state.editable}/>
                         {/*<Form.Control as="select" id="city"></Form.Control>*/}
                     </Col>
 
@@ -199,7 +189,7 @@ class Profile extends Component {
                         آدرس
                     </Form.Label>
                     <Col sm="10">
-                        <Form.Control id="address" as="textarea"/>
+                        <Form.Control id="address" as="textarea" disabled={!this.state.editable}/>
                     </Col>
 
                 </Form.Group>
@@ -209,7 +199,7 @@ class Profile extends Component {
                         کد پستی
                     </Form.Label>
                     <Col sm="4">
-                        <Form.Control id="postal-code" />
+                        <Form.Control id="postal-code" disabled={!this.state.editable} />
                     </Col>
 
                     <Col sm="1"></Col>
@@ -217,7 +207,7 @@ class Profile extends Component {
                         تلفن
                     </Form.Label>
                     <Col sm="4">
-                        <Form.Control id="telephone" />
+                        <Form.Control id="telephone" disabled={!this.state.editable}/>
                     </Col>
 
                 </Form.Group>
@@ -227,7 +217,7 @@ class Profile extends Component {
                         شماره آخرین مجوز
                     </Form.Label>
                     <Col sm="7">
-                        <Form.Control id="last-license-number"/>
+                        <Form.Control id="last-license-number" disabled={!this.state.editable}/>
                     </Col>
 
                 </Form.Group>
@@ -237,7 +227,7 @@ class Profile extends Component {
                         تاریخ اعتبار آخرین مجوز
                     </Form.Label>
                     <Col sm="6">
-                        <Form.Control id="last-license-validity-date" />
+                        <Form.Control id="last-license-validity-date" disabled={!this.state.editable}/>
                     </Col>
 
                 </Form.Group>
@@ -247,7 +237,7 @@ class Profile extends Component {
                         شماره ثبت
                     </Form.Label>
                     <Col sm="7">
-                        <Form.Control id="register-number" />
+                        <Form.Control id="register-number" disabled={!this.state.editable}/>
                     </Col>
 
                 </Form.Group>
@@ -257,7 +247,7 @@ class Profile extends Component {
                         مدیر
                     </Form.Label>
                     <Col sm="8">
-                        <Form.Control id="manager" />
+                        <Form.Control id="manager" disabled={!this.state.editable}/>
                     </Col>
 
                 </Form.Group>
@@ -274,7 +264,7 @@ class Profile extends Component {
                 <div className={styles.ProfileForm}>
                     {form}
                 </div>
-                <Button className="margin-top-5" disabled="true">ویرایش</Button>
+                <Button className="margin-top-5" disabled={!this.state.editable}>ویرایش</Button>
 
             </div>
 

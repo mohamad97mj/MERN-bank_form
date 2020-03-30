@@ -26,8 +26,7 @@ class App extends Component {
 
         let routes = (
             <Switch>
-                {/*<Route path="/profile" exact component={Profile}/>*/}
-                <Route path="/form" exact component={Main}/>
+                <Route path="/profile" exact component={Profile}/>
                 <Route path="/login" exact component = {Auth} />
                 <Route path="/signin" exact component = {Register} />
                 <Route path="/" exact component = {Home} />

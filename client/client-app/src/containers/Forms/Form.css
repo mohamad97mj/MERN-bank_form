@@ -1,0 +1,126 @@
+.form-content {
+    padding: 10px;
+    margin: auto;
+    border: 1px solid #EDAFB8;
+    box-sizing: border-box;
+    position: relative;
+    background-color: white;
+    border-radius: .25rem;
+
+}
+
+.form-inner-content {
+
+    background-color: #F4EFF0;
+    padding: 10px;
+    border-radius: .25rem;
+
+
+}
+
+.form-container {
+    margin: auto;
+    padding: 35px;
+    border-radius: .25rem;
+
+    /*background-color: #cccccc;*/
+    /*border: black 1px solid;*/
+}
+
+#bootstrap-overwrite .custom-control-inline {
+    margin-right: 0;
+    vertical-align: middle;
+    height: 100%;
+}
+
+#bootstrap-overwrite .custom-control-label {
+    vertical-align: middle;
+
+}
+
+#bootstrap-overwrite .margin-top-50 {
+    margin-top: 50px;
+}
+
+#bootstrap-overwrite .margin-bottom-50 {
+    margin-bottom: 50px;
+}
+
+#bootstrap-overwrite .margin-top-5 {
+    margin-top: 5px;
+}
+
+#bootstrap-overwrite .margin-bottom-5 {
+    margin-bottom: 5px;
+}
+
+#bootstrap-overwrite .padding-bottom-5 {
+    padding-bottom: 5px;
+}
+
+#bootstrap-overwrite .add-btn{
+    padding: 0;
+    background-color: #ADF2A4;
+    color: black;
+    border: none;
+    font-size: x-large;
+    /*margin-top: 2px;*/
+    /*margin-bottom: 2px;*/
+}
+
+#bootstrap-overwrite .submit-btn{
+    /*padding: 3px 10px 3px 10px;*/
+    background-color: #3C153B;
+    color: #F4EFF0;
+    border: none;
+    /*line-height: 42px;*/
+    font-size: x-large;
+    margin-top: 20px;
+    /*margin-bottom: 2px;*/
+}
+
+#bootstrap-overwrite .remove-btn {
+
+    background-color: #EF626C;
+    padding: 0;
+    font-size: x-large;
+    /*border-radius: 0;*/
+    border: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+
+#bootstrap-overwrite .control-btn {
+    width: 25px;
+    height: 25px;
+    font-size: xx-large;
+    line-height: 25px;
+
+}
+
+#bootstrap-overwrite .tiny-control-btn {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+}
+
+#bootstrap-overwrite .custom-control-input:checked~.custom-control-label::before {
+    /*color: #fff;*/
+    /*border-color: #007bff;*/
+    background-color: black;
+}
+
+
+#bootstrap-overwrite form {
+    text-align: right;
+    direction: rtl;
+}
+
+
+.my-form {
+    padding: 20px;
+    border-radius: .25rem;
+    margin: auto;
+}

@@ -1,10 +1,10 @@
 
 .nav-item a {
-    color: #E5BEED;
+    color: #F4EFF0;
     line-height: 40px;
 }
 .nav-item a:hover {
-    color: white;
+    color: #EF626C;
 }
 
 #bootstrap-overwrite .active {

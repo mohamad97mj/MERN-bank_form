@@ -10,6 +10,7 @@ import Button from "react-bootstrap/Button";
 import {connect} from 'react-redux';
 import * as actions from '../../../api/index';
 import "./Auth.css";
+import '../Form.css';
 import {Redirect} from "react-router-dom";
 
 class Auth extends Component {
@@ -82,8 +83,8 @@ class Auth extends Component {
 
         let form = (
             <Form onSubmit={this.loginHandler}>
-                <Form.Group className={styles.LoginForm}>
-                    <Form.Group as={Row}>
+                <Form.Group className="form-content" style={{marginBottom: "0"}}>
+                    <Form.Group as={Row} noGutters="true">
                         <Form.Label column sm="3">
                             نام کاربری
                         </Form.Label>
@@ -92,7 +93,7 @@ class Auth extends Component {
                         </Col>
 
                     </Form.Group>
-                    <Form.Group as={Row}>
+                    <Form.Group as={Row} noGutters="true" style={{marginBottom: "0"}}>
                         <Form.Label column sm="3">
                             گذرواژه
                         </Form.Label>
@@ -103,7 +104,7 @@ class Auth extends Component {
                     </Form.Group>
                 </Form.Group>
                 <Form.Group className={styles.CenterContent}>
-                    <Button type="submit" className="center margin-top-5">ورود</Button>
+                    <Button type="submit" className="center margin-top-5 submit-btn">ورود</Button>
                 </Form.Group>
 
 
@@ -133,7 +134,7 @@ class Auth extends Component {
                 {authRedirect}
                 {errorMessage}
                 <h4>نام کاربری و گذرواژه خود را وارد کنید </h4>
-                <div>
+                <div className={styles.LoginForm}>
                     {form}
                 </div>
             </div>

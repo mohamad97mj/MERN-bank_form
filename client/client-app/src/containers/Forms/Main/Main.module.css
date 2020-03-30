@@ -1,28 +1,7 @@
-.MainFormContent {
-    padding: 10px;
-    margin: auto;
-    /*border: 1px solid #eee;*/
-    background-color: white;
-    box-sizing: border-box;
-    position: relative;
-
-}
-
-.MainFormContainer {
-    margin: auto;
-    padding: 20px;
-    background-color: #cccccc;
-}
-
-
 .MainForm {
-    padding: 20px;
-    margin: 30px auto auto;
-    width: 860px;
-    border: 1px solid black;
-    background-color: white;
-}
+    width: 1300px;
 
+}
 
 
 

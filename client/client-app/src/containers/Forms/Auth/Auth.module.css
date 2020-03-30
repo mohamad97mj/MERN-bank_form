@@ -1,10 +1,8 @@
 
 .LoginForm {
-    padding: 20px;
+    padding: 10px;
     margin: 30px auto auto;
     width: 500px;
-    border: 1px solid black;
-    background-color: white;
 }
 
 .CenterContent {

@@ -108,7 +108,6 @@
 #bootstrap-overwrite .custom-control-input:checked~.custom-control-label::before {
     /*color: #fff;*/
     /*border-color: #007bff;*/
-    background-color: black;
 }
 
 
@@ -119,7 +118,8 @@
 
 
 .my-form {
-    padding: 20px;
+    /*padding: 20px;*/
     border-radius: .25rem;
-    margin: auto;
+    margin: 30px auto auto;
+
 }

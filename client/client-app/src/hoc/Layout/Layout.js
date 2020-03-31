@@ -1,8 +1,8 @@
-import React , {Component} from "react";
+import React, {Component} from "react";
 import styles from "./Layout.module.css";
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar'
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 
 import Aux from '../Aux/Aux';
@@ -14,24 +14,31 @@ class Layout extends Component {
     };
 
     sideDrawerClosedHandler = () => {
-        this.setState( { showSideDrawer: false } );
+        this.setState({showSideDrawer: false});
     };
 
     sideDrawerToggleHandler = () => {
-        this.setState( ( prevState ) => {
-            return { showSideDrawer: !prevState.showSideDrawer };
-        } );
+        this.setState((prevState) => {
+            return {showSideDrawer: !prevState.showSideDrawer};
+        });
     };
 
-    render () {
+    render() {
 
         return (
             <Aux>
-                <Toolbar isAuth={this.props.isAuthenticated} drawerToggleClicked={this.sideDrawerToggleHandler} />
+                <Toolbar isAuth={this.props.isAuthenticated} drawerToggleClicked={this.sideDrawerToggleHandler}/>
                 <SideDrawer
                     open={this.state.showSideDrawer}
-                    closed={this.sideDrawerClosedHandler} />
-                <main className={styles.Content}>
+                    closed={this.sideDrawerClosedHandler}/>
+                <main
+                    style={{
+                        position: "absolute",
+                        top: "59px",
+                        bottom: "0",
+                        left: "0",
+                        right: "0",
+                    }}>
                     {this.props.children}
                 </main>
             </Aux>
@@ -45,4 +52,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect( mapStateToProps )( Layout );
+export default connect(mapStateToProps)(Layout);

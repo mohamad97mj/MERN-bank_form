@@ -1,5 +1,7 @@
 body {
-  margin: 0;
+  position: relative;
+  height: 100%;
+  margin: 20px;
   font-family: 'Amiri', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +12,15 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.my-html{
+  height: 100%;
+
+}
+
+.my-body {
+  height: 100%;
+  position: relative;
+  /*background-color: blue;*/
 }

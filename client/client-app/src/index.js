@@ -18,7 +18,7 @@ const app = (
     </Provider>
 );
 
-
+window.location.reload(true);
 ReactDOM.render(app, document.getElementById('root'));
 
 

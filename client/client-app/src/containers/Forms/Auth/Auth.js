@@ -130,11 +130,11 @@ class Auth extends Component {
 
         return (
 
-            <div>
+            <div className="mt-5">
                 {authRedirect}
                 {errorMessage}
                 <h4>نام کاربری و گذرواژه خود را وارد کنید </h4>
-                <div className={styles.LoginForm}>
+                <div className="login-form my-form">
                     {form}
                 </div>
             </div>

@@ -2,3 +2,7 @@
     margin: auto;
     text-align: center;
 }
+
+.login-form {
+    width: 500px;
+}

@@ -24,8 +24,6 @@ class Main extends Component {
 
     state = {
 
-        customerContainersCounter: 1,
-        customerContainers: [1],
         formIsValid: false,
         loading: null,
         //..................................
@@ -34,7 +32,7 @@ class Main extends Component {
             {
                 type: "",
                 amount: "",
-            }
+            },
         ],
 
         remittanceContents: [
@@ -182,16 +180,20 @@ class Main extends Component {
     };
 
     removeRemittanceHandler = (index) => {
+
         const remittanceContentsCopy = this.clone(this.state.remittanceContents);
 
-        remittanceContentsCopy.splice(index, 1);
+        if (remittanceContentsCopy.length > 1) {
 
-        this.setState({
-            remittanceContents: remittanceContentsCopy,
-        });
+            remittanceContentsCopy.splice(index, 1);
+
+            this.setState({
+                remittanceContents: remittanceContentsCopy,
+            });
+        }
     };
 
-    //..................................................................................................................
+    //.................................................................................
 
     disableBanksNameHandler = (event, rn, cn1, bn) => {
 
@@ -256,14 +258,19 @@ class Main extends Component {
 
     removeRemittanceBankHandler = (rn, cn, bn) => {
 
+
         const remittanceContentsCopy = this.clone(this.state.remittanceContents);
-        remittanceContentsCopy[rn][cn].splice(bn, 1);
-        this.setState({
-            remittanceContents: remittanceContentsCopy,
-        });
+
+        if (remittanceContentsCopy[rn][cn].length > 1) {
+
+            remittanceContentsCopy[rn][cn].splice(bn, 1);
+            this.setState({
+                remittanceContents: remittanceContentsCopy,
+            });
+        }
     };
 
-    //..................................................................................................................
+    //..................................................................................
 
     remittancePartnerNameOnChangeHandler = (event, rn, cn, pn) => {
         const remittanceContentsCopy = this.clone(this.state.remittanceContents);
@@ -301,11 +308,15 @@ class Main extends Component {
     };
 
     removeRemittancePartnerHandler = (rn, cn, pn) => {
+
         const remittanceContentsCopy = this.clone(this.state.remittanceContents);
-        remittanceContentsCopy[rn][cn].splice(pn, 1);
-        this.setState({
-            remittanceContents: remittanceContentsCopy,
-        });
+
+        if (remittanceContentsCopy[rn][cn].length > 1) {
+            remittanceContentsCopy[rn][cn].splice(pn, 1);
+            this.setState({
+                remittanceContents: remittanceContentsCopy,
+            });
+        }
     };
 
     addRemittancePartnerCountryHandler = (rn, cn, pn) => {
@@ -326,9 +337,53 @@ class Main extends Component {
     removeRemittancePartnerCountryHandler = (rn, cn, pn, con) => {
 
         const remittanceContentsCopy = this.clone(this.state.remittanceContents);
-        remittanceContentsCopy[rn][cn][pn].countries.splice(con, 1);
+        if (remittanceContentsCopy[rn][cn][pn].countries.length > 1) {
+
+            remittanceContentsCopy[rn][cn][pn].countries.splice(con, 1);
+            this.setState({
+                remittanceContents: remittanceContentsCopy,
+            });
+        }
+    };
+
+    //..................................................................................................................
+
+    addCustomerHandler = () => {
+
+        const customerContentsCopy = this.clone(this.state.customerContents);
+        customerContentsCopy.push(
+            {
+                type: "",
+                amount: "",
+            },
+        );
+
+
         this.setState({
-            remittanceContents: remittanceContentsCopy,
+            customerContents: customerContentsCopy,
+        });
+    };
+
+    removeCustomerHandler = (index) => {
+
+        const customerContentsCopy = this.clone(this.state.customerContents);
+        if (customerContentsCopy.length > 1) {
+
+            customerContentsCopy.splice(index, 1);
+
+            this.setState({
+                customerContents: customerContentsCopy,
+            });
+        }
+    };
+
+    customerOnChangeHandler = (event, cun, cn) => {
+
+        const customerContentsCopy = this.clone(this.state.customerContents);
+        customerContentsCopy[cun][cn] = event.target.value;
+
+        this.setState({
+            customerContents: customerContentsCopy,
         });
     };
 
@@ -831,14 +886,14 @@ class Main extends Component {
 
 
         let customerContainers = (
-            this.state.customerContainers.map((value) => {
+            this.state.customerContents.map((cc, ci) => {
                 return (
-                    <Form.Group className="form-content margin-bottom-5" id={"customer-" + value}
+                    <Form.Group className="form-content margin-bottom-5" id={"customer-" + ci}
                                 style={{padding: "5px 45px 5px 45px"}}>
 
                         <Form.Group>
                             <Button className="remove-btn control-btn"
-                                    onClick={() => this.removeCustomerContainer(value)}>×</Button>
+                                    onClick={() => this.removeCustomerHandler(ci)}>×</Button>
                         </Form.Group>
 
                         <Form.Group as={Row}>
@@ -849,7 +904,9 @@ class Main extends Component {
                             </Form.Label>
 
                             <Col sm="3">
-                                <Form.Control as="select">
+                                <Form.Control as="select"
+                                              value={cc.type}
+                                              onChange={(e) => this.customerOnChangeHandler(e, ci, "type")}>
                                     <option key="i" value="importer">وارد کننده</option>
                                     <option key="e" value="exporter">صادر کننده</option>
                                 </Form.Control>
@@ -863,7 +920,10 @@ class Main extends Component {
                             </Form.Label>
 
                             <Col sm="2">
-                                <Form.Control as="select">
+                                <Form.Control as="select"
+                                              value={cc.amount}
+                                              onChange={(e) => this.customerOnChangeHandler(e, ci, "amount")}>
+
                                     {this.moneyScales.map(option => (
                                         <option key={option} value={option}>
                                             {option}
@@ -897,7 +957,7 @@ class Main extends Component {
                 <Form.Group className="form-inner-content">
                     {customerContainers}
                     <Button className="add-btn control-btn margin" variant="primary"
-                            onClick={this.addCustomerContainer}>+</Button>
+                            onClick={this.addCustomerHandler}>+</Button>
                 </Form.Group>
 
                 <Form.Group className="form-inner-content">
@@ -929,12 +989,12 @@ class Main extends Component {
             form = <Spinner/>;
         }
         return (
-            <div className="margin-bottom-50">
+            <div className="mt-5 mb-5">
                 <h4 className={styles.TextCenter}>فرم زیر را کامل کنید</h4>
-                <div className={styles.MainForm + " my-form"}>
+                <div className="main-form my-form">
                     {form}
                 </div>
-                <Button className="margin-top-5" disabled="true" className="submit-btn">ارسال</Button>
+                <Button disabled="true" className="submit-btn">ارسال</Button>
             </div>
         );
     }

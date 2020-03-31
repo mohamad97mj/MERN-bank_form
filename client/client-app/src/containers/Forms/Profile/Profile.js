@@ -343,7 +343,7 @@ class Profile extends Component {
             form = <Spinner/>;
         }
         return (
-            <div>
+            <div className="mt-5">
                 <h4>اطلاعات شخصی </h4>
                 <div className={styles.ProfileForm + " form-inner-content my-form"}>
                     {form}

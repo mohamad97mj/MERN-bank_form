@@ -21,7 +21,6 @@ class App extends Component {
     }
 
     render() {
-
         // alert(this.props.isAuthenticated);
 
         let routes = (

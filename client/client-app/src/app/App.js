@@ -29,7 +29,7 @@ class App extends Component {
                 <Route path="/login" exact component={Auth}/>
                 <Route path="/form" exact component={Main}/>
                 <Route path="/signin" exact component={Register}/>
-                <Route path="/" exact component={Home}/>
+                <Route path="/" exact component={Auth}/>
                 <Redirect to="/"/>
             </Switch>
         );
@@ -42,7 +42,7 @@ class App extends Component {
                     <Route path="/profile" exact component={Profile}/>
                     <Route path="/form" exact component={Main}/>
                     <Route path="/logout" exact component={Logout}/>
-                    <Route path="/" exact component={Home}/>
+                    <Route path="/" exact component={Auth}/>
                     <Redirect to="/"/>
                 </Switch>
             );

@@ -26,10 +26,10 @@ const toolbar = (props) => (
 
 
                         <Nav.Item>
-                            <Nav.Link exact as={NavLink} to="/">
-                                صفحه نخست
+                            {/*<Nav.Link exact as={NavLink} to="/">*/}
+                            {/*    صفحه نخست*/}
 
-                            </Nav.Link>
+                            {/*</Nav.Link>*/}
                         </Nav.Item>
 
                         <Nav.Item>

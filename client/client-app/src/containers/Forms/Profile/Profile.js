@@ -239,7 +239,7 @@ class Profile extends Component {
                                 آدرس
                             </Form.Label>
                             <Col sm="10">
-                                <Form.Control id="address" as="textarea" disabled={!this.state.editable}/>
+                                <Form.Control id="address" as="textarea" rows="3" disabled={!this.state.editable}/>
                             </Col>
 
                         </Col>

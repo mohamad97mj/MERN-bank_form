@@ -30,6 +30,12 @@ class Main extends Component {
         loading: null,
         //..................................
 
+        customerContents: [
+            {
+                type: "",
+                amount: "",
+            }
+        ],
 
         remittanceContents: [
             {
@@ -857,8 +863,16 @@ class Main extends Component {
                             </Form.Label>
 
                             <Col sm="2">
-                                <Form.Control/>
+                                <Form.Control as="select">
+                                    {this.moneyScales.map(option => (
+                                        <option key={option} value={option}>
+                                            {option}
+                                        </option>
+                                    ))}
+                                </Form.Control>
+
                             </Col>
+
                             <Col sm="1"></Col>
 
                         </Form.Group>

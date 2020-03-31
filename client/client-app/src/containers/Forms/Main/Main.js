@@ -43,6 +43,18 @@ class Main extends Component {
                         name: "",
                         minimumAmount: "",
                         maximumAmount: "",
+                        negotiationLevel: ""
+                    }
+                ],
+                originPartners: [
+                    {
+                        name: "",
+                        countries: [
+                            {
+                                name: "",
+                                amount: "",
+                            }
+                        ]
                     }
                 ],
 
@@ -56,12 +68,29 @@ class Main extends Component {
                         name: "",
                         minimumAmount: "",
                         maximumAmount: "",
+                        negotiationLevel: ""
+
+                    }
+                ],
+                destinationPartners: [
+                    {
+                        name: "",
+                        countries: [
+                            {
+                                name: "",
+                                amount: "",
+                            }
+                        ]
                     }
                 ],
             },
         ],
 
     };
+
+    countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua &amp; Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia &amp; Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Cayman Islands", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cruise Ship", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Kyrgyz Republic", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre &amp; Miquelon", "Samoa", "San Marino", "Satellite", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St Kitts &amp; Nevis", "St Lucia", "St Vincent", "St. Lucia", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad &amp; Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks &amp; Caicos", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
+    negotiationLevels = ["سطح قدرت مذاکره", "رییس شعبه", "مدیران ارشد", "هیئت مدیره"];
+    moneyScales = ["1000", "10000", "100000", "1000000", "10000000", "100000000", "1000000000", "10000000000"];
 
 
     remittanceOnChangeHandler = (event, rn, cn) => {
@@ -91,26 +120,50 @@ class Main extends Component {
                 originCountry: "",
                 originConnectionCheck: true,
                 // originNameCheck: false,
-                originBanksCounter: 1,
                 originBanks: [
                     {
                         nameCheck: false,
                         name: "",
                         minimumAmount: "",
                         maximumAmount: "",
+                        negotiationLevel: ""
+
+                    }
+                ],
+                originPartners: [
+                    {
+                        name: "",
+                        countries: [
+                            {
+                                name: "",
+                                amount: "",
+                            }
+                        ]
                     }
                 ],
 
                 destinationCountry: "",
                 destinationConnectionCheck: true,
                 destinationNameCheck: false,
-                destinationBanksCounter: 1,
                 destinationBanks: [
                     {
                         nameCheck: false,
                         name: "",
                         minimumAmount: "",
                         maximumAmount: "",
+                        negotiationLevel: ""
+
+                    }
+                ],
+                destinationPartners: [
+                    {
+                        name: "",
+                        countries: [
+                            {
+                                name: "",
+                                amount: "",
+                            }
+                        ]
                     }
                 ],
             },
@@ -132,9 +185,7 @@ class Main extends Component {
         });
     };
 
-
-    countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua &amp; Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia &amp; Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Cayman Islands", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cruise Ship", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Kyrgyz Republic", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre &amp; Miquelon", "Samoa", "San Marino", "Satellite", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St Kitts &amp; Nevis", "St Lucia", "St Vincent", "St. Lucia", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad &amp; Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks &amp; Caicos", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
-    moneyScales = ["1000", "10000", "100000", "1000000", "10000000"];
+    //..................................................................................................................
 
     disableBanksNameHandler = (event, rn, cn1, bn) => {
 
@@ -152,7 +203,7 @@ class Main extends Component {
 
     };
 
-    disableBanksHandler = (event, rn, cn1, cn2) => {
+    disableRemittanceBanksHandler = (event, rn, cn1, cn2) => {
 
         const remittanceContentsCopy = this.clone(this.state.remittanceContents);
 
@@ -176,37 +227,100 @@ class Main extends Component {
 
             remittanceContentsCopy[rn][cn2] = true;
         }
-
         this.setState({
             remittanceContents: remittanceContentsCopy,
         });
 
     };
 
-    addBankHandler = (rn, cn1) => {
+    addRemittanceBankHandler = (rn, cn) => {
 
         const remittanceContentsCopy = this.clone(this.state.remittanceContents);
-
-        remittanceContentsCopy[rn][cn1].push(
+        remittanceContentsCopy[rn][cn].push(
             {
                 name: "",
                 minimumAmount: "",
                 maximumAmount: "",
             }
         );
-
-
         this.setState({
             remittanceContents: remittanceContentsCopy,
         });
     };
 
-    removeBankHandler = (rn, cn1, bn) => {
+    removeRemittanceBankHandler = (rn, cn, bn) => {
+
+        const remittanceContentsCopy = this.clone(this.state.remittanceContents);
+        remittanceContentsCopy[rn][cn].splice(bn, 1);
+        this.setState({
+            remittanceContents: remittanceContentsCopy,
+        });
+    };
+
+    //..................................................................................................................
+
+    remittancePartnerNameOnChangeHandler = (event, rn, cn, pn) => {
+        const remittanceContentsCopy = this.clone(this.state.remittanceContents);
+        remittanceContentsCopy[rn][cn][pn].name = event.target.value;
+        this.setState({
+            remittanceContents: remittanceContentsCopy,
+        });
+    };
+
+    remittancePartnerCountryOnChangeHandler = (event, rn, cn, pn, con, cn2) => {
+        const remittanceContentsCopy = this.clone(this.state.remittanceContents);
+        remittanceContentsCopy[rn][cn][pn].countries[con][cn2] = event.target.value;
+        this.setState({
+            remittanceContents: remittanceContentsCopy,
+        });
+    };
+
+    addRemittancePartnerHandler = (rn, cn) => {
+        const remittanceContentsCopy = this.clone(this.state.remittanceContents);
+        remittanceContentsCopy[rn][cn].push(
+            {
+                name: "",
+                countries: [
+                    {
+                        name: "",
+                        amount: "",
+                    }
+                ]
+            }
+        );
+        this.setState({
+            remittanceContents: remittanceContentsCopy,
+        });
+
+    };
+
+    removeRemittancePartnerHandler = (rn, cn, pn) => {
+        const remittanceContentsCopy = this.clone(this.state.remittanceContents);
+        remittanceContentsCopy[rn][cn].splice(pn, 1);
+        this.setState({
+            remittanceContents: remittanceContentsCopy,
+        });
+    };
+
+    addRemittancePartnerCountryHandler = (rn, cn, pn) => {
 
         const remittanceContentsCopy = this.clone(this.state.remittanceContents);
 
-        remittanceContentsCopy[rn][cn1].splice(bn, 1);
+        remittanceContentsCopy[rn][cn][pn].countries.push(
+            {
+                name: "",
+                amount: "",
+            }
+        );
+        this.setState({
+            remittanceContents: remittanceContentsCopy,
+        });
+    };
 
+    removeRemittancePartnerCountryHandler = (rn, cn, pn, con) => {
+
+        const remittanceContentsCopy = this.clone(this.state.remittanceContents);
+        remittanceContentsCopy[rn][cn][pn].countries.splice(con, 1);
         this.setState({
             remittanceContents: remittanceContentsCopy,
         });
@@ -230,8 +344,8 @@ class Main extends Component {
 
                             <Form.Group>
                                 <Form.Group as={Row} noGutters="true" style={{marginRight: "15px"}}>
-                                    <Form.Label column sm="2">کشور مبدأ حواله</Form.Label>
-                                    <Col sm="3">
+                                    <Form.Label column sm="1">کشور مبدأ حواله :</Form.Label>
+                                    <Col sm="2">
                                         <Form.Control as="select"
                                                       id={"rc-" + ri + "-origin-country"}
                                                       onChange={(e) => this.remittanceOnChangeHandler(e, ri, "originCountry")}
@@ -257,7 +371,7 @@ class Main extends Component {
                                                 type="radio"
                                                 id={"rc-" + ri + "-origin-connection-check-1"}
                                                 label="آیا در کشور مبداء با بانکی ارتباط دارید؟ بله"
-                                                onChange={(e) => this.disableBanksHandler(e, ri, "originBanks", "originConnectionCheck")}
+                                                onChange={(e) => this.disableRemittanceBanksHandler(e, ri, "originBanks", "originConnectionCheck")}
                                             />
                                             <pre>    </pre>
                                             <Form.Check
@@ -267,7 +381,7 @@ class Main extends Component {
                                                 type="radio"
                                                 id={"rc-" + ri + "-origin-connection-check-2"}
                                                 label="خیر"
-                                                onChange={(e) => this.disableBanksHandler(e, ri, "originBanks", "originConnectionCheck")}
+                                                onChange={(e) => this.disableRemittanceBanksHandler(e, ri, "originBanks", "originConnectionCheck")}
                                             />
                                         </ToggleButtonGroup>
 
@@ -275,7 +389,7 @@ class Main extends Component {
 
                                 </Form.Group>
 
-                                <Form.Group as={Row} noGutters="true" style={{marginBottom: "0"}}>
+                                <Form.Group as={Row} noGutters="true" className="mb-0 ">
 
                                     {rc.originBanks.map((b, bi) => {
                                         return (
@@ -285,7 +399,7 @@ class Main extends Component {
 
                                                 <Col as={Row} sm="11" className="form-inner-content"
                                                      style={{marginRight: "15px"}}>
-                                                    <Col sm="4">
+                                                    <Col sm="3">
                                                         <Form.Control
                                                             value={b.name}
                                                             disabled={b.nameCheck || !rc.originConnectionCheck}
@@ -295,12 +409,13 @@ class Main extends Component {
                                                         />
                                                     </Col>
 
-                                                    <Col sm="4" as={Row}>
+                                                    <Col sm="2" as={Row} noGutters="true">
 
-                                                        <Form.Label column sm="6">
-                                                            &nbsp;&nbsp;&nbsp;
-                                                            عدم افشای نام بانک</Form.Label>
-                                                        <Col sm="6">
+                                                        <Form.Label column sm="9">
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                                            عدم افشای نام بانک
+                                                        </Form.Label>
+                                                        <Col sm="1">
 
                                                             <ToggleButtonGroup type="checkbox" className="mb-2"
                                                                                defaultValue={b.nameCheck}>
@@ -322,7 +437,7 @@ class Main extends Component {
                                                     <Col sm="2">
                                                         <Form.Control
                                                             value={b.minimumAmount}
-                                                            placeholder="حداقل مقدار حواله"
+                                                            placeholder="حداقل مقدار حواله ماهانه"
                                                             onChange={(e) => this.remittanceBankOnChangeHandler(e, ri, "originBanks", bi, "minimumAmount")}
                                                             disabled={!rc.originConnectionCheck}
 
@@ -332,20 +447,34 @@ class Main extends Component {
                                                     <Col sm="2">
                                                         <Form.Control
                                                             value={b.maximumAmount}
-                                                            placeholder="حداکثر مقدار حواله"
+                                                            placeholder="حداکثر مقدار حواله ماهانه"
                                                             onChange={(e) => this.remittanceBankOnChangeHandler(e, ri, "originBanks", bi, "maximumAmount")}
                                                             disabled={!rc.originConnectionCheck}
 
                                                         />
                                                     </Col>
 
+                                                    <Col sm="2">
+                                                        <Form.Control as="select"
+                                                                      onChange={(e) => this.remittanceBankOnChangeHandler(e, ri, "originBanks", bi, "negotiationLevel")}
+                                                                      value={b.negotiationLevel}>
+                                                            {this.negotiationLevels.map(option => (
+                                                                <option key={option} value={option}>
+                                                                    {option}
+                                                                </option>
+                                                            ))}
+                                                        </Form.Control>
+                                                    </Col>
+
+
                                                 </Col>
 
                                                 <Col sm="1">
                                                     <Button className="remove-btn tiny-control-btn"
 
-                                                            onClick={() => this.removeBankHandler(ri, "originBanks", bi)}
+                                                            onClick={() => this.removeRemittanceBankHandler(ri, "originBanks", bi)}
                                                             disabled={!rc.originConnectionCheck}>
+                                                        >
                                                         ×</Button>
                                                 </Col>
                                             </Col>
@@ -357,7 +486,96 @@ class Main extends Component {
                                 <Button variant="primary" className="add-btn tiny-control-btn"
                                         style={{marginRight: "15px"}}
                                         disabled={rc.originNameCheck}
-                                        onClick={() => this.addBankHandler(ri, "originBanks")}>+</Button>
+                                        onClick={() => this.addRemittanceBankHandler(ri, "originBanks")}>+</Button>
+
+
+                                <Form.Group as={Row} className="mb-0 mt-4" noGutters="true">
+
+                                    {rc.originPartners.map((p, pi) => {
+                                        return (
+                                            <Col as={Row} sm="12"
+                                                 noGutters="true"
+                                                 style={{marginBottom: "5px"}}
+                                                 id={"rc" + ri + "-origin-partner-" + pi}>
+
+                                                <Col as={Row} sm="11" className="form-inner-content"
+                                                     style={{marginRight: "15px"}}>
+                                                    <Col sm="4">
+                                                        <Form.Control
+                                                            value={p.name}
+                                                            placeholder="نام شریک اقتصادی در کشور مبداء"
+                                                            className="margin-bottom-5 origin-bank-input"
+                                                            onChange={(e) => this.remittancePartnerNameOnChangeHandler(e, ri, "originPartners", pi)}
+                                                        />
+                                                    </Col>
+
+                                                    <Col sm="8" as={Row} noGutters="true">
+                                                        {p.countries.map((c, ci) => {
+                                                            return (
+                                                                <Col as={Row} noGutters="true" sm="12">
+                                                                    <Col as={Row} noGutterrs="true" sm="11"
+                                                                         style={{marginRight: "15px"}}
+                                                                         className="form-content mb-1">
+                                                                        <Col sm="8" as={Row} noGutters="true">
+                                                                            <Form.Label column sm="5">کشور طرف
+                                                                                معامله :</Form.Label>
+                                                                            <Col sm="7">
+                                                                                <Form.Control as="select"
+                                                                                              id={"rc-" + ri + "-origin-partner-" + pi + "-country-" + ci}
+                                                                                              onChange={(e) => this.remittancePartnerCountryOnChangeHandler(e, ri, "originPartners", pi, ci, "name")}
+                                                                                              value={c.name}>
+                                                                                    {this.countries.map(option => (
+                                                                                        <option key={option}
+                                                                                                value={option}>
+                                                                                            {option}
+                                                                                        </option>
+                                                                                    ))}
+                                                                                </Form.Control>
+                                                                            </Col>
+                                                                        </Col>
+
+                                                                        <Col sm="4">
+                                                                            <Form.Control
+                                                                                value={c.amount}
+                                                                                placeholder="حجم معامله"
+                                                                                onChange={(e) => this.remittancePartnerCountryOnChangeHandler(e, ri, "originPartners", pi, ci, "amount")}
+                                                                            />
+                                                                        </Col>
+                                                                    </Col>
+                                                                    <Col sm="1">
+                                                                        <Button className="remove-btn tiny-control-btn"
+
+                                                                                onClick={() => this.removeRemittancePartnerCountryHandler(ri, "originPartners", pi, ci)}>
+                                                                            ×</Button>
+                                                                    </Col>
+                                                                </Col>
+
+                                                            );
+                                                        })}
+
+                                                        <Button variant="primary"
+                                                                className="add-btn tiny-control-btn mr-3"
+                                                                onClick={() => this.addRemittancePartnerCountryHandler(ri, "originPartners", pi)}>+</Button>
+                                                    </Col>
+
+                                                </Col>
+
+                                                <Col sm="1">
+                                                    <Button className="remove-btn tiny-control-btn"
+
+                                                            onClick={() => this.removeRemittancePartnerHandler(ri, "originPartners", pi)}>
+                                                        ×</Button>
+                                                </Col>
+                                            </Col>
+
+                                        );
+                                    })}
+
+                                </Form.Group>
+
+                                <Button variant="primary" className="add-btn tiny-control-btn"
+                                        style={{marginRight: "15px"}}
+                                        onClick={() => this.addRemittancePartnerHandler(ri, "originPartners")}>+</Button>
 
 
                             </Form.Group>
@@ -366,8 +584,8 @@ class Main extends Component {
                             <Form.Group className="margin-top-50">
 
                                 <Form.Group as={Row} noGutters="true" style={{marginRight: "15px"}}>
-                                    <Form.Label column sm="2">کشور مقصد حواله</Form.Label>
-                                    <Col sm="3">
+                                    <Form.Label column sm="1">کشور مقصد حواله:</Form.Label>
+                                    <Col sm="2">
                                         <Form.Control as="select"
                                                       id={"rc-" + ri + "-destination-country"}
                                                       value={rc.destinationCountry}
@@ -395,7 +613,7 @@ class Main extends Component {
                                                 type="radio"
                                                 id={"rc-" + ri + "-destination-connection-check-1"}
                                                 label="آیا در کشور مقصد با بانکی ارتباط دارید؟ بله"
-                                                onChange={(e) => this.disableBanksHandler(e, ri, "destinationBanks", "destinationConnectionCheck")}
+                                                onChange={(e) => this.disableRemittanceBanksHandler(e, ri, "destinationBanks", "destinationConnectionCheck")}
 
                                             />
                                             <pre>    </pre>
@@ -407,7 +625,7 @@ class Main extends Component {
                                                 type="radio"
                                                 id={"rc-" + ri + "-destination-connection-check-2"}
                                                 label="خیر"
-                                                onChange={(e) => this.disableBanksHandler(e, ri, "destinationBanks", "destinationConnectionCheck")}
+                                                onChange={(e) => this.disableRemittanceBanksHandler(e, ri, "destinationBanks", "destinationConnectionCheck")}
 
                                             />
 
@@ -427,7 +645,7 @@ class Main extends Component {
                                                 <Col as={Row} sm="11" className="form-inner-content"
                                                      style={{marginRight: "15px"}}>
 
-                                                    <Col sm="4">
+                                                    <Col sm="3">
                                                         <Form.Control
                                                             value={b.name}
                                                             disabled={b.nameCheck || !rc.destinationConnectionCheck}
@@ -437,14 +655,14 @@ class Main extends Component {
                                                         />
                                                     </Col>
 
-                                                    <Col sm="4" as={Row}>
+                                                    <Col sm="2" as={Row} noGutters="true">
 
-                                                        <Form.Label column sm="6">
-                                                            &nbsp;&nbsp;&nbsp;
+                                                        <Form.Label column sm="9">
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;
                                                             عدم افشای نام بانک
                                                         </Form.Label>
 
-                                                        <Col sm="6">
+                                                        <Col sm="1">
                                                             <ToggleButtonGroup type="checkbox" className="mb-2"
                                                                                defaultValue={rc.destinationNameCheck}>
                                                                 <Form.Check
@@ -464,7 +682,7 @@ class Main extends Component {
                                                     <Col sm="2">
                                                         <Form.Control
                                                             value={b.minimumAmount}
-                                                            placeholder="حداقل مقدار حواله"
+                                                            placeholder="حداقل مقدار حواله ماهانه"
                                                             onChange={(e) => this.remittanceBankOnChangeHandler(e, ri, "destinationBanks", bi, "minimumAmount")}
                                                             disabled={!rc.destinationConnectionCheck}
                                                         />
@@ -473,17 +691,29 @@ class Main extends Component {
                                                     <Col sm="2">
                                                         <Form.Control
                                                             value={b.maximumAmount}
-                                                            placeholder="حداکثر مقدار حواله"
+                                                            placeholder="حداکثر مقدار حواله ماهانه"
                                                             onChange={(e) => this.remittanceBankOnChangeHandler(e, ri, "destinationBanks", bi, "maximumAmount")}
                                                             disabled={!rc.destinationConnectionCheck}
                                                         />
                                                     </Col>
 
+                                                    <Col sm="2">
+
+                                                        <Form.Control as="select"
+                                                                      onChange={(e) => this.remittanceBankOnChangeHandler(e, ri, "destinationBanks", bi, "negotiationLevel")}
+                                                                      value={b.negotiationLevel}>
+                                                            {this.negotiationLevels.map(option => (
+                                                                <option key={option} value={option}>
+                                                                    {option}
+                                                                </option>
+                                                            ))}
+                                                        </Form.Control>
+                                                    </Col>
                                                 </Col>
 
                                                 <Col sm="1">
                                                     <Button className="remove-btn tiny-control-btn"
-                                                            onClick={() => this.removeBankHandler(ri, "destinationBanks", bi)}
+                                                            onClick={() => this.removeRemittanceBankHandler(ri, "destinationBanks", bi)}
                                                             disabled={!rc.destinationConnectionCheck}>
                                                         ×</Button>
                                                 </Col>
@@ -496,7 +726,94 @@ class Main extends Component {
                                 <Button variant="primary" className="add-btn tiny-control-btn"
                                         style={{marginRight: "15px"}}
                                         disabled={rc.destinationNameCheck}
-                                        onClick={() => this.addBankHandler(ri, "destinationBanks")}>+</Button>
+                                        onClick={() => this.addRemittanceBankHandler(ri, "destinationBanks")}>+</Button>
+
+                                <Form.Group as={Row} className="mb-0 mt-4" noGutters="true">
+
+                                    {rc.destinationPartners.map((p, pi) => {
+                                        return (
+                                            <Col as={Row} sm="12"
+                                                 noGutters="true"
+                                                 style={{marginBottom: "5px"}}
+                                                 id={"rc" + ri + "-destination-partner-" + pi}>
+
+                                                <Col as={Row} sm="11" className="form-inner-content"
+                                                     style={{marginRight: "15px"}}>
+                                                    <Col sm="4">
+                                                        <Form.Control
+                                                            value={p.name}
+                                                            placeholder="نام شریک اقتصادی در کشور مقصد"
+                                                            className="margin-bottom-5 origin-bank-input"
+                                                            onChange={(e) => this.remittancePartnerNameOnChangeHandler(e, ri, "destinationPartners", pi)}
+                                                        />
+                                                    </Col>
+                                                    <Col sm="8" as={Row} noGutters="true">
+                                                        {p.countries.map((c, ci) => {
+                                                            return (
+                                                                <Col as={Row} noGutters="true" sm="12">
+                                                                    <Col as={Row} noGutterrs="true" sm="11"
+                                                                         style={{marginRight: "15px"}}
+                                                                         className="form-content mb-1">
+                                                                        <Col sm="8" as={Row} noGutters="true">
+                                                                            <Form.Label column sm="5">کشور طرف
+                                                                                معامله :</Form.Label>
+                                                                            <Col sm="7">
+                                                                                <Form.Control as="select"
+                                                                                              id={"rc-" + ri + "-destination-partner-" + pi + "-country-" + ci}
+                                                                                              onChange={(e) => this.remittancePartnerCountryOnChangeHandler(e, ri, "destinationPartners", pi, ci, "name")}
+                                                                                              value={c.name}>
+                                                                                    {this.countries.map(option => (
+                                                                                        <option key={option}
+                                                                                                value={option}>
+                                                                                            {option}
+                                                                                        </option>
+                                                                                    ))}
+                                                                                </Form.Control>
+                                                                            </Col>
+                                                                        </Col>
+
+                                                                        <Col sm="4">
+                                                                            <Form.Control
+                                                                                value={c.amount}
+                                                                                placeholder="حجم معامله"
+                                                                                onChange={(e) => this.remittancePartnerCountryOnChangeHandler(e, ri, "destinationPartners", pi, ci, "amount")}
+                                                                            />
+                                                                        </Col>
+                                                                    </Col>
+                                                                    <Col sm="1">
+                                                                        <Button className="remove-btn tiny-control-btn"
+
+                                                                                onClick={() => this.removeRemittancePartnerCountryHandler(ri, "destinationPartners", pi, ci)}>
+                                                                            ×</Button>
+                                                                    </Col>
+                                                                </Col>
+
+                                                            );
+                                                        })}
+
+                                                        <Button variant="primary"
+                                                                className="add-btn tiny-control-btn mr-3"
+                                                                onClick={() => this.addRemittancePartnerCountryHandler(ri, "destinationPartners", pi)}>+</Button>
+                                                    </Col>
+
+                                                </Col>
+
+                                                <Col sm="1">
+                                                    <Button className="remove-btn tiny-control-btn"
+
+                                                            onClick={() => this.removeRemittancePartnerHandler(ri, "destinationPartners", pi)}>
+                                                        ×</Button>
+                                                </Col>
+                                            </Col>
+
+                                        );
+                                    })}
+
+                                </Form.Group>
+
+                                <Button variant="primary" className="add-btn tiny-control-btn"
+                                        style={{marginRight: "15px"}}
+                                        onClick={() => this.addRemittancePartnerHandler(ri, "destinationPartners")}>+</Button>
 
                             </Form.Group>
 
@@ -510,18 +827,19 @@ class Main extends Component {
         let customerContainers = (
             this.state.customerContainers.map((value) => {
                 return (
-                    <Form.Group className="form-content margin-bottom-5" id={"customer-" + value}>
+                    <Form.Group className="form-content margin-bottom-5" id={"customer-" + value}
+                                style={{padding: "5px 45px 5px 45px"}}>
 
                         <Form.Group>
                             <Button className="remove-btn control-btn"
                                     onClick={() => this.removeCustomerContainer(value)}>×</Button>
                         </Form.Group>
 
-                        <Form.Group as={Row} noGutters="true">
+                        <Form.Group as={Row}>
 
                             <Form.Label column sm="2">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                نوع مشتری
+                                نوع مشتری :
                             </Form.Label>
 
                             <Col sm="3">
@@ -531,14 +849,17 @@ class Main extends Component {
                                 </Form.Control>
                             </Col>
 
-                            <Form.Label column sm="3">
+                            <Col sm="2"></Col>
+
+                            <Form.Label column sm="2">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                حجم تراکنش سالانه
+                                حجم تراکنش سالانه :
                             </Form.Label>
 
-                            <Col sm="4">
+                            <Col sm="2">
                                 <Form.Control/>
                             </Col>
+                            <Col sm="1"></Col>
 
                         </Form.Group>
                     </Form.Group>
@@ -551,7 +872,7 @@ class Main extends Component {
         let form = (
             <Form>
 
-                <Form.Group className="form-container padding-bottom-5">
+                <Form.Group className="form-inner-content padding-bottom-5">
 
                     {remittanceContainers}
 
@@ -559,20 +880,20 @@ class Main extends Component {
                             onClick={this.addRemittanceHandler}>+</Button>
                 </Form.Group>
 
-                <Form.Group className="form-container">
+                <Form.Group className="form-inner-content">
                     {customerContainers}
                     <Button className="add-btn control-btn margin" variant="primary"
                             onClick={this.addCustomerContainer}>+</Button>
                 </Form.Group>
 
-                <Form.Group className="form-container">
-                    <Form.Group className="form-content margin-bottom-5">
+                <Form.Group className="form-inner-content">
+                    <Form.Group className="form-content margin-bottom-5" style={{padding: "5px 45px 5px 45px"}}>
                         <Form.Group as={Row}>
 
-                            <Form.Label column sm="5">
-                                سرمایه مورد نیاز برای گسترش شبکه (دلار)
+                            <Form.Label column sm="3">
+                                سرمایه مورد نیاز برای گسترش شبکه :
                             </Form.Label>
-                            <Col sm="7">
+                            <Col sm="2">
                                 <Form.Control as="select">
                                     {this.moneyScales.map(option => (
                                         <option key={option} value={option}>
@@ -596,7 +917,7 @@ class Main extends Component {
         return (
             <div className="margin-bottom-50">
                 <h4 className={styles.TextCenter}>فرم زیر را کامل کنید</h4>
-                <div className={styles.MainForm +  " form-inner-content my-form"}>
+                <div className={styles.MainForm + " my-form"}>
                     {form}
                 </div>
                 <Button className="margin-top-5" disabled="true" className="submit-btn">ارسال</Button>

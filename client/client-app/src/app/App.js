@@ -28,6 +28,7 @@ class App extends Component {
             <Switch>
                 <Route path="/profile" exact component={Profile}/>
                 <Route path="/login" exact component = {Auth} />
+                <Route path="/form" exact component={Main}/>
                 <Route path="/signin" exact component = {Register} />
                 <Route path="/" exact component = {Home} />
                 <Redirect to="/" />

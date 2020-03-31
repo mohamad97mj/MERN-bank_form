@@ -48,11 +48,11 @@ const toolbar = (props) => (
 
                     <Aux>
 
-                        {/*<Nav.Item>*/}
-                        {/*    < Nav.Link exact as={NavLink} to="/profile">*/}
-                        {/*        پروفایل*/}
-                        {/*    </Nav.Link>*/}
-                        {/*</Nav.Item>*/}
+                        <Nav.Item>
+                            < Nav.Link exact as={NavLink} to="/profile">
+                                پروفایل
+                            </Nav.Link>
+                        </Nav.Item>
 
                         <Nav.Item>
                             < Nav.Link exact as={NavLink} to="/form">

@@ -2,17 +2,15 @@ import React, {Component} from 'react';
 
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import styles from './Profile.module.css';
-import axios from 'axios';
 import "./Profile.css";
 import $ from "jquery";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
-import * as actions from '../../../api/index';
 import {connect} from 'react-redux';
-import {getProfile} from "../../../api/index";
 import '../Form.css';
+import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 
 
 class Profile extends Component {
@@ -25,30 +23,50 @@ class Profile extends Component {
         }
     }
 
-    componentDidUpdate = (prevProps, prevState, snapshot) => {
+    // componentDidMount() {
+    //     if (this.testStorage() === true) {
+    //         this.hydrateStateWithStorage();
+    //         window.addEventListener(
+    //             "pagehide",
+    //             this.saveStateToStorage.bind(this)
+    //         );
+    //     }
+    // }
+    //
+    // componentWillUnmount() {
+    //     if (this.testStorage() === true) {
+    //         this.saveStateToStorage();
+    //         window.removeEventListener(
+    //             "pagehide",
+    //             this.saveStateToStorage.bind(this)
+    //         );
+    //     }
+    // }
 
-
-        if (this.props.profileData !== null) {
-            this.props.onGetProfile({username: this.props.myUsername});
-
-
+    componentDidMount() {
             this.updateFields();
-        }
+
+    }
+
+    componentDidUpdate = (prevProps, prevState, snapshot) => {
+            this.updateFields();
     };
 
     updateFields = () => {
+        if (this.props.profileData !== null) {
 
-        $("#name").val(this.props.profileData.name);
-        $("#national-code").val(this.props.profileData.nationalCode);
-        $("#state").val(this.props.profileData.state);
-        $("#city").val(this.props.profileData.city);
-        $("#address").val(this.props.profileData.address);
-        $("#postal-code").val(this.props.profileData.postalCode);
-        $("#telephone").val(this.props.profileData.telephone);
-        $("#last-license-number").val(this.props.profileData.lastLicenseNumber);
-        $("#last-license-validity-date").val(this.props.profileData.lastLicenseValidityDate);
-        $("#register-number").val(this.props.profileData.registerNumber);
-        $("#manager").val(this.props.profileData.manager);
+            $("#name").val(this.props.profileData.name);
+            $("#national-code").val(this.props.profileData.nationalCode);
+            $("#state").val(this.props.profileData.state);
+            $("#city").val(this.props.profileData.city);
+            $("#address").val(this.props.profileData.address);
+            $("#postal-code").val(this.props.profileData.postalCode);
+            $("#telephone").val(this.props.profileData.telephone);
+            $("#last-license-number").val(this.props.profileData.lastLicenseNumber);
+            $("#last-license-validity-date").val(this.props.profileData.lastLicenseValidityDate);
+            $("#register-number").val(this.props.profileData.registerNumber);
+            $("#manager").val(this.props.profileData.manager);
+        }
 
     };
 
@@ -228,6 +246,37 @@ class Profile extends Component {
 
 
                     </Form.Group>
+                    <Form.Group as={Row} noGutters="true">
+                        <Col as={Row} sm="5" noGutters="true">
+                            <Form.Label column sm="4">
+                                شماره موبایل
+                            </Form.Label>
+                            <Col sm="5">
+                                <Form.Control id="mobile-number" disabled={!this.state.editable}/>
+                            </Col>
+                        </Col>
+
+                        <Col as={Row} sm="6" noGutters="true">
+                            <Form.Label column sm="8">
+                                امکان دسترسی از طریق شبکه های اجتماعی
+                            </Form.Label>
+                            <Col sm="2">
+                                <Col sm="1">
+                                    <ToggleButtonGroup type="checkbox" className="mb-2"
+                                                       defaultValue={false}>
+                                        <Form.Check
+                                            value={true}
+                                            custom
+                                            type="checkbox"
+                                            label=""
+                                        />
+                                    </ToggleButtonGroup>
+                                </Col>
+                            </Col>
+                        </Col>
+
+                    </Form.Group>
+
                 </Form.Group>
 
                 <Form.Group className="form-content" style={{marginBottom: 0}}>
@@ -308,19 +357,15 @@ class Profile extends Component {
 }
 
 
+
+
 const mapStateToProps = state => {
     return {
-        myUsername: state.profile.username,
         profileData: state.profile.data,
         loading: state.profile.loading,
     }
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onGetProfile: (userData) => dispatch(actions.getProfile(userData))
-    }
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, null)(Profile);
 // export default Profile;

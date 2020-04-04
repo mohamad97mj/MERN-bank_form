@@ -1,12 +1,8 @@
 
-.ProfileForm {
-    margin: 30px auto auto;
-    width: 900px;
-}
 
 
 @media (min-width: 600px) {
     .ContactDataContainer {
-        width: 500px;
+        width: 700px;
     }
 }

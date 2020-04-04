@@ -3,6 +3,7 @@ import axios from '../../my-axios';
 import setAuthToken from "../../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import {getProfile} from "./profile";
+import {getForm} from "./main";
 
 export const authStart = () => {
     return {
@@ -11,6 +12,8 @@ export const authStart = () => {
 };
 
 export const authSuccess = (user) => {
+    // alert("auth success");
+
     return {
         type: actionTypes.AUTH_SUCCESS,
         user: user,
@@ -19,6 +22,8 @@ export const authSuccess = (user) => {
 };
 
 export const authFail = (error) => {
+    alert("authFail");
+
     return {
         type: actionTypes.AUTH_FAIL,
         error: error
@@ -44,31 +49,33 @@ export const checkAuthTimeout = (expirationTime) => {
     };
 };
 
-export const auth = (userData, history) => dispatch => {
+export const auth = (userData) => dispatch => {
 
     dispatch(authStart());
     axios
         .post("/login", userData)
         .then(res => {
-
-            const {token} = res.data;
-            localStorage.setItem('token', token.idToken);
-            localStorage.setItem('userId', token.localId);
-            localStorage.setItem("jwtTokenTeams", JSON.stringify(token));
+            console.log(res.status);
+            // const {token} = res.data;
+            // localStorage.setItem('token', token.idToken);
+            // localStorage.setItem('userId', token.localId);
+            // localStorage.setItem("jwtTokenTeams", JSON.stringify(token));
             // Set token to Auth header
-            setAuthToken(token);
+            // setAuthToken(token);
             // Decode token to get user data
-            const decoded = jwt_decode(token);
+            // const decoded = jwt_decode(token);
             // Set current user
             // dispatch(setCurrentUser(decoded));
 
-            dispatch(authSuccess(decoded));
+            // dispatch(authSuccess(decoded));
+            dispatch(authSuccess(userData));
 
             const tempUserData = {
                 username : userData.username,
             };
 
-            dispatch(getProfile(tempUserData, history));
+            dispatch(getProfile(tempUserData));
+            dispatch(getForm(tempUserData));
 
         })
         .catch(err =>

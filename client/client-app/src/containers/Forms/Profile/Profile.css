@@ -4,3 +4,44 @@
     /*text-align: left;*/
 }
 
+
+.profile-form {
+    margin: 30px auto auto;
+    width: 1100px;
+}
+
+@media (min-width: 768px) and (max-width: 1242px) {
+    .profile-form {
+        width: 720px;
+    }
+
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+    .profile-form {
+        width: 375px;
+    }
+
+}
+
+@media (min-width: 321px) and (max-width: 480px) {
+
+    .profile-form {
+        width: 300px;
+    }
+}
+
+
+@media (min-width: 259px) and (max-width: 320px) {
+    .profile-form {
+        width: 250px;
+    }
+}
+
+@media (max-width: 258px) {
+    .profile-form {
+        width: 200px;
+    }
+}
+

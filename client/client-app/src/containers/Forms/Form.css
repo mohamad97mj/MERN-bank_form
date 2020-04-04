@@ -1,5 +1,5 @@
-.form-content {
-    padding: 10px;
+#bootstrap-overwrite .form-content {
+    padding: 10px 10px 5px 20px;
     margin: auto;
     border: 1px solid #EDAFB8;
     box-sizing: border-box;
@@ -9,16 +9,16 @@
 
 }
 
-.form-inner-content {
+#bootstrap-overwrite .form-inner-content {
 
     background-color: #F4EFF0;
-    padding: 10px;
+    padding: 15px;
     border-radius: .25rem;
 
 
 }
 
-.form-container {
+#bootstrap-overwrite .form-container {
     margin: auto;
     border-radius: .25rem;
 
@@ -85,11 +85,21 @@
     font-size: x-large;
     /*border-radius: 0;*/
     border: none;
+
+
+}
+
+#bootstrap-overwrite .top-right {
     position: absolute;
     right: 0;
     top: 0;
 }
 
+#bootstrap-overwrite .top-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
 
 #bootstrap-overwrite .control-btn {
     width: 25px;
@@ -106,7 +116,8 @@
 }
 
 #bootstrap-overwrite .custom-control-input:checked~.custom-control-label::before {
-    /*color: #fff;*/
+    color: #fff;
+    background-color: black;
     /*border-color: #007bff;*/
 }
 

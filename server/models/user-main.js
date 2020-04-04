@@ -1,13 +1,71 @@
-// const mongoose = require('mongoose')
-// const Schema = mongoose.Schema
-//
-// const Movie = new Schema(
-//     {
-//         name: { type: String, required: true },
-//         time: { type: [String], required: true },
-//         rating: { type: Number, required: false },
-//     },
-//     { timestamps: true },
-// )
-//
-// module.exports = mongoose.model('movies', Movie)
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const FormSchema = new Schema(
+    {
+        username: {type: String},
+        date: {type: String},
+        data: {
+            moneyRequired: String,
+            customerContents: [
+                {
+                    cType: String,
+                    amount: String,
+                },
+            ],
+
+            remittanceContents: [
+                {
+                    originCountry: String,
+                    originConnectionCheck: Boolean,
+                    originBanks: [
+                        {
+                            nameCheck: Boolean,
+                            name: String,
+                            minimumAmount: String,
+                            maximumAmount: String,
+                            negotiationLevel: String
+                        }
+                    ],
+                    originPartners: [
+                        {
+                            name: String,
+                            countries: [
+                                {
+                                    name: String,
+                                    amount: String,
+                                }
+                            ]
+                        }
+                    ],
+
+                    destinationCountry: String,
+                    destinationConnectionCheck: Boolean,
+                    destinationBanks: [
+                        {
+                            nameCheck: Boolean,
+                            name: String,
+                            minimumAmount: String,
+                            maximumAmount: String,
+                            negotiationLevel: String
+
+                        }
+                    ],
+                    destinationPartners: [
+                        {
+                            name: String,
+                            countries: [
+                                {
+                                    name: String,
+                                    amount: String,
+                                }
+                            ]
+                        }
+                    ],
+                },
+            ],
+        },
+    },
+);
+
+module.exports = Form = mongoose.model("forms", FormSchema);

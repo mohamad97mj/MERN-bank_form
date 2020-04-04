@@ -12,6 +12,7 @@ import * as actions from '../../../api/index';
 import "./Auth.css";
 import '../Form.css';
 import {Redirect} from "react-router-dom";
+import Container from "react-bootstrap/Container";
 
 class Auth extends Component {
 
@@ -75,25 +76,24 @@ class Auth extends Component {
             password: this.state.password,
         };
 
-        this.props.onAuth(userData, this.props.history);
+        this.props.onAuth(userData);
 
     };
 
     render() {
 
         let form = (
-            <Form onSubmit={this.loginHandler}>
-                <Form.Group className="form-content" style={{marginBottom: "0"}}>
-                    <Form.Group as={Row} noGutters="true">
+            <Form onSubmit={this.loginHandler} className="login-form my-form" >
+                <Container className="form-content" style={{padding: "15px"}}>
+                    <Row>
                         <Form.Label column sm="3">
                             نام کاربری
                         </Form.Label>
                         <Col sm="9">
                             <Form.Control id="username" onChange={this.onChangeHandler}/>
                         </Col>
-
-                    </Form.Group>
-                    <Form.Group as={Row} noGutters="true" style={{marginBottom: "0"}}>
+                    </Row>
+                    <Row className="mt-2">
                         <Form.Label column sm="3">
                             گذرواژه
                         </Form.Label>
@@ -101,8 +101,8 @@ class Auth extends Component {
                             <Form.Control type="password" id="password" onChange={this.onChangeHandler}/>
                         </Col>
 
-                    </Form.Group>
-                </Form.Group>
+                    </Row>
+                </Container>
                 <Form.Group className={styles.CenterContent}>
                     <Button type="submit" className="center margin-top-5 submit-btn">ورود</Button>
                 </Form.Group>
@@ -134,7 +134,7 @@ class Auth extends Component {
                 {authRedirect}
                 {errorMessage}
                 <h4>نام کاربری و گذرواژه خود را وارد کنید </h4>
-                <div className="login-form my-form">
+                <div>
                     {form}
                 </div>
             </div>
@@ -146,7 +146,7 @@ class Auth extends Component {
 
 const mapStateToProps = state => {
     return {
-        isAuthenticated: state.auth.user !== null,
+        isAuthenticated: state.auth.username !== null,
         authRedirectPath: state.auth.authRedirectPath,
         loading: state.auth.loading,
         error: state.auth.error,
@@ -155,8 +155,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (userData, history) => {
-            dispatch(actions.auth(userData, history))
+        onAuth: (userData) => {
+            dispatch(actions.auth(userData))
         },
         onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath("/profile"))
 

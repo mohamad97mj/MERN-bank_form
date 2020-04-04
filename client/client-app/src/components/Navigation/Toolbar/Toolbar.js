@@ -15,16 +15,16 @@ const toolbar = (props) => (
 
             <Nav>
                 <Nav.Item>
-                    <Nav.Link exact as={NavLink} to="/">
-                        <Logo/>
-                    </Nav.Link>
+                    {/*<Nav.Link exact as={NavLink} to="/">*/}
+                    {/*    <div>*/}
+                            <Logo/>
+                        {/*</div>/!**/}
+                    {/*</Nav.Link>*!/*/}
                 </Nav.Item>
 
                 {!props.isAuth ?
 
                     <Aux>
-
-
                         <Nav.Item>
                             {/*<Nav.Link exact as={NavLink} to="/">*/}
                             {/*    صفحه نخست*/}
@@ -33,14 +33,14 @@ const toolbar = (props) => (
                         </Nav.Item>
 
                         <Nav.Item>
-                            <Nav.Link exact as={NavLink} to="/login">
+                            <Nav.Link id="nav-1" exact as={NavLink} to="/login">
                                 ورود
                             </Nav.Link>
                         </Nav.Item>
 
 
                         <Nav.Item>
-                            <Nav.Link exact as={NavLink} to="/about" disabled>
+                            <Nav.Link id="nav-2" exact as={NavLink} to="/about" disabled>
                                 درباره ما
                             </Nav.Link>
                         </Nav.Item>
@@ -49,20 +49,20 @@ const toolbar = (props) => (
                     <Aux>
 
                         <Nav.Item>
-                            < Nav.Link exact as={NavLink} to="/profile">
+                            < Nav.Link id="nav-3" exact as={NavLink} to="/profile">
                                 پروفایل
                             </Nav.Link>
                         </Nav.Item>
 
                         <Nav.Item>
-                            < Nav.Link exact as={NavLink} to="/form">
+                            < Nav.Link id="nav-4" exact as={NavLink} to="/form">
                                 فرم
                             </Nav.Link>
                         </Nav.Item>
 
 
                         <Nav.Item>
-                            <Nav.Link exact as={NavLink} to="/logout">
+                            <Nav.Link id="nav-5" exact as={NavLink} to="/logout">
                                 خروج
                             </Nav.Link>
                         </Nav.Item>

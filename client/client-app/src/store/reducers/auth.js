@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../utility';
 
 const initialState = {
-    user: null,
+    username: null,
     error: null,
     loading: false,
     authRedirectPath: '/'
@@ -15,9 +15,9 @@ const authStart = ( state, action ) => {
 const authSuccess = (state, action) => {
     return updateObject( state, {
         // user: action.
-        user: action.user,
+        username: action.user.username,
         error: null,
-        loading: false
+        loading: false,
     } );
 };
 
@@ -29,7 +29,7 @@ const authFail = (state, action) => {
 };
 
 const authLogout = (state, action) => {
-    return updateObject(state, { user: null});
+    return updateObject(state, { username: null});
 };
 
 const setAuthRedirectPath = (state, action) => {

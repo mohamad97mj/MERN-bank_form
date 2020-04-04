@@ -31,14 +31,7 @@ class Layout extends Component {
                 <SideDrawer
                     open={this.state.showSideDrawer}
                     closed={this.sideDrawerClosedHandler}/>
-                <main
-                    style={{
-                        position: "absolute",
-                        top: "59px",
-                        bottom: "0",
-                        left: "0",
-                        right: "0",
-                    }}>
+                <main>
                     {this.props.children}
                 </main>
             </Aux>
@@ -48,7 +41,7 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
     return {
-        isAuthenticated: state.auth.user !== null
+        isAuthenticated: state.auth.username !== null
     };
 };
 

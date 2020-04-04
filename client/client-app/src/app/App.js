@@ -25,9 +25,9 @@ class App extends Component {
 
         let routes = (
             <Switch>
-                <Route path="/profile" exact component={Profile}/>
+                {/*<Route path="/profile" exact component={Profile}/>*/}
+                {/*<Route path="/profiles" exact/>*/}
                 <Route path="/login" exact component={Auth}/>
-                <Route path="/form" exact component={Main}/>
                 <Route path="/signin" exact component={Register}/>
                 <Route path="/" exact component={Auth}/>
                 <Redirect to="/"/>
@@ -40,6 +40,7 @@ class App extends Component {
                 <Switch>
                     <Route path="/login" exact component={Auth}/>
                     <Route path="/profile" exact component={Profile}/>
+                    {/*<Route path="/profiles" exact/>*/}
                     <Route path="/form" exact component={Main}/>
                     <Route path="/logout" exact component={Logout}/>
                     <Route path="/" exact component={Auth}/>
@@ -69,7 +70,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
     return {
-        isAuthenticated: state.auth.user !== null
+        isAuthenticated: state.auth.username !== null
     };
 };
 

@@ -13,7 +13,7 @@ const toolbar = (props) => (
     <header>
         <div className={styles.Toolbar}>
 
-            <Nav>
+            <Nav activeKey="/">
                 <Nav.Item>
                     {/*<Nav.Link exact as={NavLink} to="/">*/}
                     {/*    <div>*/}
@@ -33,7 +33,7 @@ const toolbar = (props) => (
                         </Nav.Item>
 
                         <Nav.Item>
-                            <Nav.Link id="nav-1" exact as={NavLink} to="/login">
+                            <Nav.Link id="nav-1" exact as={NavLink} to="/">
                                 ورود
                             </Nav.Link>
                         </Nav.Item>

@@ -12,7 +12,6 @@ export const authStart = () => {
 };
 
 export const authSuccess = (user) => {
-    // alert("auth success");
 
     return {
         type: actionTypes.AUTH_SUCCESS,
@@ -22,7 +21,7 @@ export const authSuccess = (user) => {
 };
 
 export const authFail = (error) => {
-    alert("authFail");
+    alert("authentication Failed");
 
     return {
         type: actionTypes.AUTH_FAIL,

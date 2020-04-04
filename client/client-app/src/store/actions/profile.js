@@ -77,12 +77,11 @@ export const postProfile = (userProfile) => dispatch => {
     axios.post(`/profiles`, tempPostData)
         // ;
         .then(res => {
-            // console.log("data posted success fully");
-            // alert("not here");
+
             // dispatch(postProfileSuccess(userProfile));
         })
         .catch(err => {
-            // alert("but here");
+
             // dispatch(postProfileFail(err));
         });
 

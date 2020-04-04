@@ -21,16 +21,16 @@ class App extends Component {
     }
 
     render() {
-        // alert(this.props.isAuthenticated);
+
 
         let routes = (
             <Switch>
                 {/*<Route path="/profile" exact component={Profile}/>*/}
-                {/*<Route path="/login" exact component={Auth}/>*/}
-                <Route path="/form" exact component={Main}/>
+                <Route path="/login" exact component={Auth}/>
+                {/*<Route path="/form" exact component={Main}/>*/}
                 <Route path="/signin" exact component={Register}/>
                 <Route path="/" exact component={Auth}/>
-                {/*<Redirect to="/"/>*/}
+                <Redirect to="/"/>
             </Switch>
         );
 
@@ -44,7 +44,7 @@ class App extends Component {
                     <Route path="/form" exact component={Main}/>
                     <Route path="/logout" exact component={Logout}/>
                     <Route path="/" exact component={Auth}/>
-                    {/*<Redirect to="/"/>*/}
+                    <Redirect to="/"/>
                 </Switch>
             );
         }

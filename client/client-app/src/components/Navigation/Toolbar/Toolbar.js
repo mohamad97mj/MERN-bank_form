@@ -50,13 +50,13 @@ const toolbar = (props) => (
 
                         <Nav.Item>
                             < Nav.Link id="nav-3" exact as={NavLink} to="/profile">
-                                پروفایل
+                                مشخصات صرافی
                             </Nav.Link>
                         </Nav.Item>
 
                         <Nav.Item>
                             < Nav.Link id="nav-4" exact as={NavLink} to="/form">
-                                فرم
+                                اطلاعات ارتباطات داخلی وخارجی
                             </Nav.Link>
                         </Nav.Item>
 

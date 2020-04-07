@@ -1,18 +1,24 @@
 import React, {Component} from 'react';
-// import Button from '../../../components/UI/Button/Button';
+
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import styles from './Main.module.css';
 import './Main.css';
 import '../Form.css';
+
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
-import $ from "jquery";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+
 import * as actions from "../../../api";
 import {connect} from "react-redux";
+import {Typeahead} from 'react-bootstrap-typeahead';
+import ReactFlagsSelect from 'react-flags-select';
+import FlagIcon from "../../../components/UI/FlagIcon/FlagIcon";
+import 'react-flags-select/css/react-flags-select.css';
+
 
 
 class Main extends Component {
@@ -29,7 +35,7 @@ class Main extends Component {
 
 
     countries =
-        ["Afghanistan", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua &amp; Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia &amp; Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Cayman Islands", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cruise Ship", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Kyrgyz Republic", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre &amp; Miquelon", "Samoa", "San Marino", "Satellite", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St Kitts &amp; Nevis", "St Lucia", "St Vincent", "St. Lucia", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad &amp; Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks &amp; Caicos", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
+        ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua &amp; Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia &amp; Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Cayman Islands", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cruise Ship", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Kyrgyz Republic", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre &amp; Miquelon", "Samoa", "San Marino", "Satellite", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St Kitts &amp; Nevis", "St Lucia", "St Vincent", "St. Lucia", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad &amp; Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks &amp; Caicos", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
     countriesMode2 =
         ["کشور مبداء حواله", "Afghanistan", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua &amp; Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia &amp; Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Cayman Islands", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cruise Ship", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Kyrgyz Republic", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre &amp; Miquelon", "Samoa", "San Marino", "Satellite", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St Kitts &amp; Nevis", "St Lucia", "St Vincent", "St. Lucia", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad &amp; Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks &amp; Caicos", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
     countriesMode21 =
@@ -70,17 +76,39 @@ class Main extends Component {
                                                 <Form.Label className="mode1">کشور مبدأ حواله:</Form.Label>
                                             </Col>
                                             <Col md="7" className="mode1">
-                                                <Form.Control as="select"
-                                                              id={"rc-" + ri + "-origin-country"}
-                                                              onChange={(e) => this.props.onContentLevel1onChangeHandler(e, "remittanceContents", ri, "originCountry")}
-                                                              value={rc.originCountry}
-                                                              disabled={!this.state.editable}>
-                                                    {this.countries.map(option => (
-                                                        <option key={option} value={option}>
-                                                            {option}
-                                                        </option>
-                                                    ))}
-                                                </Form.Control>
+
+                                                {/*<FlagIcon code='it'/>*/}
+                                                {/*<ReactFlagsSelect*/}
+                                                {/*    searchable={true}*/}
+                                                {/*    searchPlaceholder="Search for a country"*/}
+                                                {/*    // onChange={*/}
+                                                {/*    //     event => {*/}
+                                                {/*    //         alert(event)*/}
+                                                {/*    //     }*/}
+                                                {/*    // }*/}
+                                                {/*/>*/}
+
+                                                <Typeahead
+                                                    onChange={(e) => {
+                                                        alert(e);
+                                                        // this.props.onContentLevel1onChangeHandler(e, "remittanceContents", ri, "originCountry");
+                                                    }}
+                                                    options={this.countries.map(c => c.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+                                                        return '&#' + i.charCodeAt(0) + ';';
+                                                    }))}
+                                                />
+
+                                                {/*<Form.Control as="select"*/}
+                                                {/*              id={"rc-" + ri + "-origin-country"}*/}
+                                                {/*              onChange={(e) => this.props.onContentLevel1onChangeHandler(e, "remittanceContents", ri, "originCountry")}*/}
+                                                {/*              value={rc.originCountry}*/}
+                                                {/*              disabled={!this.state.editable}>*/}
+                                                {/*    {this.countries.map(option => (*/}
+                                                {/*        <option key={option} value={option}>*/}
+                                                {/*            {option}*/}
+                                                {/*        </option>*/}
+                                                {/*    ))}*/}
+                                                {/*</Form.Control>*/}
                                             </Col>
 
                                             {/*<Col className="mode2">*/}
@@ -393,17 +421,28 @@ class Main extends Component {
                                                 <Form.Label className="mode1">کشور مقصد حواله:</Form.Label>
                                             </Col>
                                             <Col md="7" className="mode1">
-                                                <Form.Control as="select"
-                                                              disabled={!this.state.editable}
-                                                              id={"rc-" + ri + "-destination-country"}
-                                                              onChange={(e) => this.props.onContentLevel1onChangeHandler(e, "remittanceContents", ri, "destinationCountry")}
-                                                              value={rc.destinationCountry}>
-                                                    {this.countries.map(option => (
-                                                        <option key={option} value={option}>
-                                                            {option}
-                                                        </option>
-                                                    ))}
-                                                </Form.Control>
+
+
+                                                <ReactFlagsSelect
+                                                    // searchable={true}
+                                                    // searchPlaceholder="Search for a country"
+                                                    onSelect={
+                                                        event => {
+                                                            alert(event)
+                                                        }
+                                                    }
+                                                />
+                                                {/*<Form.Control as="select"*/}
+                                                {/*              disabled={!this.state.editable}*/}
+                                                {/*              id={"rc-" + ri + "-destination-country"}*/}
+                                                {/*              onChange={(e) => this.props.onContentLevel1onChangeHandler(e, "remittanceContents", ri, "destinationCountry")}*/}
+                                                {/*              value={rc.destinationCountry}>*/}
+                                                {/*    {this.countries.map(option => (*/}
+                                                {/*        <option key={option} value={option}>*/}
+                                                {/*            {option}*/}
+                                                {/*        </option>*/}
+                                                {/*    ))}*/}
+                                                {/*</Form.Control>*/}
                                             </Col>
 
                                             {/*<Col className="mode2">*/}

@@ -83,16 +83,16 @@ class Register extends Component {
             <Form onSubmit={this.loginHandler}>
                 <Form.Group className={styles.LoginForm}>
                     <Form.Group as={Row}>
-                        <Form.Label column sm="3">
+                        <Form.Label column xs="3">
                             نام کاربری
                         </Form.Label>
-                        <Col sm="9">
+                        <Col xs="9">
                             <Form.Control id="username" onChange={this.onChangeHandler}/>
                         </Col>
 
                     </Form.Group>
                     <Form.Group as={Row}>
-                        <Form.Label column sm="3">
+                        <Form.Label column xs="3">
                             گذرواژه
                         </Form.Label>
                         <Col sm="9">

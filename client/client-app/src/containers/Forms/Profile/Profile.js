@@ -431,16 +431,17 @@ class Profile extends Component {
                         </Grid>
 
                     </form>
-                    <Button variant="contained" disabled={this.state.editable}
-                            style={{marginLeft: "5px"}}
-                            onClick={() => this.setState({editable: true})}>ویرایش</Button>
-                    <Button variant="contained" color="secondary" disabled={!this.state.editable}
+                   <Button variant="contained" color="secondary" disabled={!this.state.editable}
                             onClick={() => {
                                 this.setState({
                                     editable: false,
                                 });
                                 this.props.onPostProfile(this.props.profileData)
                             }}>ارسال</Button>
+                    <Button variant="contained" disabled={this.state.editable}
+                            style={{marginLeft: "5px"}}
+                            onClick={() => this.setState({editable: true})}>ویرایش</Button>
+
 
                 </div>
             );

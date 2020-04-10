@@ -19,7 +19,6 @@ const initialState = {
                         amount: "",
                     },
                 ],
-
                 remittanceContents: [
                     {
                         originCountry: "",
@@ -74,6 +73,7 @@ const initialState = {
                         ],
                     },
                 ],
+                others: "",
             }
         },
     ]
@@ -188,6 +188,7 @@ const addContentHandler = (state, action) => {
                                 {
                                     name: "",
                                     amount: "",
+                                    amountInDollar: "",
                                 }
                             ]
                         }
@@ -214,6 +215,8 @@ const addContentHandler = (state, action) => {
                                 {
                                     name: "",
                                     amount: "",
+                                    amountInDollar: "",
+
                                 }
                             ]
                         }
@@ -309,6 +312,7 @@ const addContentLevel1Handler = (state, action) => {
                                 {
                                     name: "",
                                     amount: "",
+                                    amountInDollar: "",
                                 }
                             ]
                         };

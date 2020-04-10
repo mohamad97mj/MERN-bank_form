@@ -250,7 +250,7 @@ class Main extends Component {
                                                                             marginTop: "-7px",
                                                                         }}
                                                                     >
-                                                                        "نام&nbsp;بانک&nbsp;در&nbsp;کشور&nbsp;مبداء"
+                                                                        نام&nbsp;بانک&nbsp;در&nbsp;کشور&nbsp;مبداء
                                                                     </Typography>
                                                                 }
 
@@ -528,7 +528,7 @@ class Main extends Component {
                                                       }}
                                                       key={"rc-" + ri + "-origin-partner-" + pi} spacing={1}>
 
-                                                    <Grid item md={5} className="textfield-container"
+                                                    <Grid item md={4} className="textfield-container"
                                                           spacing={1}>
                                                         <TextField
                                                             fullWidth
@@ -540,7 +540,7 @@ class Main extends Component {
                                                                         marginTop: "-7px",
                                                                     }}
                                                                 >
-                                                                    "نام شریک&nbsp;اقتصادی&nbsp;در&nbsp;کشور&nbsp;مبداء"
+                                                                    نام شریک&nbsp;اقتصادی&nbsp;در&nbsp;کشور&nbsp;مبداء
                                                                 </Typography>
                                                             }
                                                             variant="outlined"
@@ -565,7 +565,7 @@ class Main extends Component {
                                                         />
                                                     </Grid>
 
-                                                    <Grid item md={7} spacing={1}>
+                                                    <Grid item md={8} spacing={1}>
                                                         {p.countries.map((c, ci) => {
                                                             return (
                                                                 <Grid container item md={12}
@@ -576,7 +576,7 @@ class Main extends Component {
                                                                       }}
                                                                       className="form-content" spacing={1}>
 
-                                                                    <Grid item md={7} spacing={1}
+                                                                    <Grid item md={6} spacing={1}
                                                                           className="textfield-container">
 
                                                                         <Autocomplete
@@ -633,7 +633,7 @@ class Main extends Component {
                                                                             }/>
                                                                     </Grid>
 
-                                                                    <Grid item md={5} className="textfield-container"
+                                                                    <Grid item md={3} className="textfield-container"
                                                                           spacing={1}>
                                                                         <TextField
                                                                             size="small"
@@ -663,6 +663,35 @@ class Main extends Component {
                                                                         />
                                                                     </Grid>
 
+                                                                    <Grid item md={3} className="textfield-container"
+                                                                          spacing={1}>
+                                                                        <TextField
+                                                                            size="small"
+                                                                            label={
+                                                                                <Typography
+                                                                                    style={{
+                                                                                        fontFamily: 'Nika',
+                                                                                        fontSize: "larger",
+                                                                                        marginTop: "-7px",
+                                                                                    }}
+                                                                                >
+                                                                                    معادل&nbsp;دلاری
+                                                                                </Typography>
+                                                                            }
+
+                                                                            disabled={!this.state.editable}
+                                                                            value={c.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                                                            variant="outlined"
+                                                                            InputLabelProps={{
+                                                                                style: {
+                                                                                    // fontWeight: "bold",
+
+                                                                                },
+                                                                                shrink: true,
+                                                                            }}
+                                                                            onChange={(e) => this.props.onContentLevel3onChangeHandler(e, "remittanceContents", ri, "originPartners", pi, "countries", ci, "amountInDollar", true, false)}
+                                                                        />
+                                                                    </Grid>
 
                                                                     <Button
                                                                         className="remove-btn tiny-control-btn top-left"
@@ -1145,7 +1174,7 @@ class Main extends Component {
                                                       }}
                                                       key={"rc-" + ri + "-destination-partner-" + pi} spacing={1}>
 
-                                                    <Grid item md={5} className="textfield-container"
+                                                    <Grid item md={4} className="textfield-container"
                                                           spacing={1}>
                                                         <TextField
                                                             fullWidth
@@ -1182,7 +1211,7 @@ class Main extends Component {
                                                         />
                                                     </Grid>
 
-                                                    <Grid item md={7} spacing={1}>
+                                                    <Grid item md={8} spacing={1}>
                                                         {p.countries.map((c, ci) => {
                                                             return (
                                                                 <Grid container item md={12}
@@ -1193,7 +1222,7 @@ class Main extends Component {
                                                                       }}
                                                                       className="form-content" spacing={1}>
 
-                                                                    <Grid item md={7} spacing={1}
+                                                                    <Grid item md={6} spacing={1}
                                                                           className="textfield-container">
 
                                                                         <Autocomplete
@@ -1250,7 +1279,7 @@ class Main extends Component {
                                                                             }/>
                                                                     </Grid>
 
-                                                                    <Grid item md={5} className="textfield-container"
+                                                                    <Grid item md={3} className="textfield-container"
                                                                           spacing={1}>
                                                                         <TextField
                                                                             size="small"
@@ -1262,7 +1291,7 @@ class Main extends Component {
                                                                                         marginTop: "-7px",
                                                                                     }}
                                                                                 >
-                                                                                    "حجم&nbsp;معامله"
+                                                                                    حجم&nbsp;معامله
                                                                                 </Typography>
                                                                             }
 
@@ -1280,6 +1309,35 @@ class Main extends Component {
                                                                         />
                                                                     </Grid>
 
+                                                                    <Grid item md={3} className="textfield-container"
+                                                                          spacing={1}>
+                                                                        <TextField
+                                                                            size="small"
+                                                                            label={
+                                                                                <Typography
+                                                                                    style={{
+                                                                                        fontFamily: 'Nika',
+                                                                                        fontSize: "larger",
+                                                                                        marginTop: "-7px",
+                                                                                    }}
+                                                                                >
+                                                                                    معادل&nbsp;دلاری
+                                                                                </Typography>
+                                                                            }
+
+                                                                            disabled={!this.state.editable}
+                                                                            value={c.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                                                            variant="outlined"
+                                                                            InputLabelProps={{
+                                                                                style: {
+                                                                                    // fontWeight: "bold",
+
+                                                                                },
+                                                                                shrink: true,
+                                                                            }}
+                                                                            onChange={(e) => this.props.onContentLevel3onChangeHandler(e, "remittanceContents", ri, "destinationPartners", pi, "countries", ci, "amountInDollar", true, false)}
+                                                                        />
+                                                                    </Grid>
 
                                                                     <Button
                                                                         className="remove-btn tiny-control-btn top-left"
@@ -1330,96 +1388,115 @@ class Main extends Component {
 
 
             form = (
-                <form className="main-form my-form" style={{marginBottom: "10px"}}>
+                <div>
+                    <form className="main-form my-form" style={{marginBottom: "10px"}}>
 
-                    <Container className="form-inner-content">
+                        <Container className="form-inner-content">
 
-                        {remittanceContainers}
+                            {remittanceContainers}
 
-                        <Button className="add-btn control-btn margin" variant="primary"
-                                disabled={!this.state.editable}
-                                onClick={() => this.props.onAddContentHandler("remittanceContents")}>+</Button>
-                    </Container>
+                            <Button className="add-btn control-btn margin" variant="primary"
+                                    disabled={!this.state.editable}
+                                    onClick={() => this.props.onAddContentHandler("remittanceContents")}>+</Button>
+                        </Container>
 
-                    {/*<Grid className="form-inner-content">*/}
-                    {/*    {customerContainers}*/}
-                    {/*    <Button className="add-btn control-btn margin" variant="primary"*/}
-                    {/*            onClick={() => this.addContentHandler("customerContents")}>+</Button>*/}
-                    {/*</Grid>*/}
+                        {/*<Grid className="form-inner-content">*/}
+                        {/*    {customerContainers}*/}
+                        {/*    <Button className="add-btn control-btn margin" variant="primary"*/}
+                        {/*            onClick={() => this.addContentHandler("customerContents")}>+</Button>*/}
+                        {/*</Grid>*/}
 
-                    <Container className="form-inner-content">
-                        <Grid container className="form-content margin-bottom-5" style={{padding: "15px"}}>
-                            <Grid item container className="textfield-container" md={5}>
-                                <FormControl variant="outlined" fullWidth size="small">
-                                    <InputLabel
-                                        id="demo-simple-select-outlined-label">
+                        <Container className="form-inner-content" style={{marginTop: "10px"}}>
+                            <Grid container className="form-content margin-bottom-5">
 
-                                        <Typography
-                                            style={{
-                                                fontFamily: 'Nika',
-                                                fontSize: "larger",
-                                                marginTop: "-7px",
-                                            }}>
-                                            سرمایه &nbsp;مورد&nbsp;نیاز&nbsp;برای&nbsp;گسترش&nbsp; شبکه
-                                        </Typography>
+                                <Grid container item spacing={2}>
+                                    <Grid item className="textfield-container" md={6}>
+                                        <FormControl variant="outlined" fullWidth size="small">
+                                            <InputLabel
+                                                id="demo-simple-select-outlined-label">
 
-                                    </InputLabel>
-                                    <Select
+                                                <Typography
+                                                    style={{
+                                                        fontFamily: 'Nika',
+                                                        fontSize: "larger",
+                                                        marginTop: "-7px",
+                                                    }}>
+                                                    سرمایه &nbsp;مورد&nbsp;نیاز&nbsp;برای&nbsp;گسترش&nbsp; شبکه
+                                                </Typography>
 
-                                        labelId="demo-simple-select-outlined-label"
-                                        id="demo-simple-select-outlined"
+                                            </InputLabel>
+                                            <Select
 
-                                        InputProps={{
-                                            style: {
-                                                // fontWeight: "bold",
+                                                labelId="demo-simple-select-outlined-label"
+                                                id="demo-simple-select-outlined"
 
-                                            },
-                                            shrink: true,
-                                        }}
+                                                InputProps={{
+                                                    style: {
+                                                        // fontWeight: "bold",
 
-
-                                        label={
-                                            <Typography
-                                                style={{
-                                                    fontFamily: 'Nika',
-                                                    fontSize: "larger",
-                                                    marginTop: "-7px",
+                                                    },
+                                                    shrink: true,
                                                 }}
-                                            >
-                                                سرمایه &nbsp;مورد&nbsp;نیاز&nbsp;برای&nbsp;گسترش&nbsp; شبکه
 
-                                            </Typography>
-                                        }
-                                        disabled={!this.state.editable}
-                                        value={this.props.formData.moneyRequired}
-                                        onChange={(e) => this.props.onOnChangeHandler(e, "moneyRequired")}>
 
-                                        {this.moneyScales.map(option => (
-                                            <MenuItem key={option} value={option}>
-                                                {option}
-                                            </MenuItem>
-                                        ))}
-                                    </Select>
-                                </FormControl>
+                                                label={
+                                                    <Typography
+                                                        style={{
+                                                            fontFamily: 'Nika',
+                                                            fontSize: "larger",
+                                                            marginTop: "-7px",
+                                                        }}
+                                                    >
+                                                        سرمایه &nbsp;مورد&nbsp;نیاز&nbsp;برای&nbsp;گسترش&nbsp; شبکه
+
+                                                    </Typography>
+                                                }
+                                                disabled={!this.state.editable}
+                                                value={this.props.formData.moneyRequired}
+                                                onChange={(e) => this.props.onOnChangeHandler(e, "moneyRequired")}>
+
+                                                {this.moneyScales.map(option => (
+                                                    <MenuItem key={option} value={option}>
+                                                        {option}
+                                                    </MenuItem>
+                                                ))}
+                                            </Select>
+                                        </FormControl>
+
+                                    </Grid>
+                                    <Grid item className="textfield-container" md={6}>
+                                        <TextField value={this.props.formData.others} id="others"
+                                                   variant="outlined"
+                                                   fullWidth
+                                                   multiline
+                                                   InputLabelProps={{
+                                                       shrink: true,
+                                                   }}
+                                                   InputProps={{
+                                                       style: {direction: "rtl"},
+                                                   }}
+                                                   label={
+                                                       <Typography
+                                                           style={{
+                                                               fontFamily: 'Nika',
+                                                               fontSize: "larger",
+                                                               marginTop: "-7px",
+                                                           }}
+                                                       >
+                                                           سایر&nbsp;توضیحات
+                                                       </Typography>
+                                                   }
+                                                   rowsMax="4"
+                                                   disabled={!this.state.editable}
+                                                   onChange={(e) => this.props.onOnChangeHandler(e, "others")}
+                                        />
+
+                                    </Grid>
+                                </Grid>
 
                             </Grid>
-                        </Grid>
-                    </Container>
-
-                </form>
-            );
-
-        } else {
-            form = <Spinner/>;
-        }
-
-        return (
-
-            <div style={{marginTop: "50px"}}>
-                <h4 className={styles.TextCenter}>فرم زیر را کامل کنید</h4>
-                <div style={{marginBottom: "50px"}}>
-                    {form}
-
+                        </Container>
+                    </form>
                     <Button variant="contained" color="secondary" disabled={!this.state.editable}
                             onClick={() => {
                                 this.setState({
@@ -1432,6 +1509,19 @@ class Main extends Component {
                     <Button variant="contained" disabled={this.state.editable}
                             style={{marginLeft: "5px"}}
                             onClick={() => this.setState({editable: true})}>ویرایش</Button>
+                </div>
+            )
+
+        } else {
+            form = <Spinner/>;
+        }
+
+        return (
+
+            <div style={{marginTop: "50px"}}>
+                <h4 className={styles.TextCenter}>فرم زیر را کامل کنید</h4>
+                <div style={{marginBottom: "50px"}}>
+                    {form}
 
                 </div>
             </div>

@@ -13,7 +13,6 @@ const FormSchema = new Schema(
                     amount: String,
                 },
             ],
-
             remittanceContents: [
                 {
                     originCountry: String,
@@ -36,6 +35,7 @@ const FormSchema = new Schema(
                                 {
                                     name: String,
                                     amount: String,
+                                    amountInDollar: String,
                                 }
                             ]
                         }
@@ -62,12 +62,14 @@ const FormSchema = new Schema(
                                 {
                                     name: String,
                                     amount: String,
+                                    amountInDollar: String,
                                 }
                             ]
                         }
                     ],
                 },
             ],
+            others: String,
         },
     },
 );

@@ -680,7 +680,7 @@ class Main extends Component {
                                                                             }
 
                                                                             disabled={!this.state.editable}
-                                                                            value={c.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                                                            value={c.amountInDollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                                                                             variant="outlined"
                                                                             InputLabelProps={{
                                                                                 style: {
@@ -1326,7 +1326,7 @@ class Main extends Component {
                                                                             }
 
                                                                             disabled={!this.state.editable}
-                                                                            value={c.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                                                            value={c.amountInDollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                                                                             variant="outlined"
                                                                             InputLabelProps={{
                                                                                 style: {

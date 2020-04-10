@@ -41,6 +41,7 @@ const initialState = {
                                     {
                                         name: "",
                                         amount: "",
+                                        amountInDollar: "",
                                     }
                                 ]
                             }
@@ -67,6 +68,7 @@ const initialState = {
                                     {
                                         name: "",
                                         amount: "",
+                                        amountInDollar: "",
                                     }
                                 ]
                             }
@@ -383,6 +385,7 @@ const addContentLevel2Handler = (state, action) => {
                                 {
                                     name: "",
                                     amount: "",
+                                    amountInDollar: "",
                                 };
                             break;
                     }

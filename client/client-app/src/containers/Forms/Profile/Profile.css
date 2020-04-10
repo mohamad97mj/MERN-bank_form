@@ -1,13 +1,12 @@
 
 
 #bootstrap-overwrite label {
-    /*text-align: left;*/
+    /*text-align: right;*/
 }
 
 
 .profile-form {
-    margin: 30px auto auto;
-    width: 1100px;
+    width: 900px;
 }
 
 @media (min-width: 768px) and (max-width: 1242px) {

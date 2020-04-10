@@ -1,5 +1,5 @@
 #bootstrap-overwrite .form-content {
-    padding: 10px 10px 5px 20px;
+    padding: 20px;
     margin: auto;
     border: 1px solid #EDAFB8;
     box-sizing: border-box;
@@ -12,7 +12,7 @@
 #bootstrap-overwrite .form-inner-content {
 
     background-color: #F4EFF0;
-    padding: 15px;
+    padding: 10px;
     border-radius: .25rem;
 
 
@@ -58,13 +58,10 @@
 }
 
 #bootstrap-overwrite .add-btn{
-    padding: 0;
+
     background-color: #ADF2A4;
-    color: black;
-    border: none;
-    font-size: x-large;
-    /*margin-top: 2px;*/
-    /*margin-bottom: 2px;*/
+
+
 }
 
 #bootstrap-overwrite .submit-btn{
@@ -81,11 +78,6 @@
 #bootstrap-overwrite .remove-btn {
 
     background-color: #EF626C;
-    padding: 0;
-    font-size: x-large;
-    /*border-radius: 0;*/
-    border: none;
-
 
 }
 
@@ -102,30 +94,45 @@
 }
 
 #bootstrap-overwrite .control-btn {
-    width: 25px;
-    height: 25px;
+    max-width: 30px;
+    max-height: 30px;
+    min-width: 30px;
+    min-height: 30px;
+    line-height: 30px;
+
+    padding: 0;
+    /*border-radius: 0;*/
+    border: none;
     font-size: xx-large;
-    line-height: 25px;
+
 
 }
 
 #bootstrap-overwrite .tiny-control-btn {
-    width: 15px;
-    height: 15px;
-    line-height: 15px;
-}
 
-#bootstrap-overwrite .custom-control-input:checked~.custom-control-label::before {
-    color: #fff;
-    background-color: black;
-    /*border-color: #007bff;*/
-}
+    max-width: 20px;
+    max-height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    line-height: 20px;
 
+    padding: 0;
+    font-size: large;
+    /*border-radius: 0;*/
+    border: none;
+}
 
 #bootstrap-overwrite form {
     text-align: right;
     direction: rtl;
 }
+
+#bootstrap-overwrite .textfield-container{
+    direction: ltr;
+}
+
+
+
 
 
 .my-form {

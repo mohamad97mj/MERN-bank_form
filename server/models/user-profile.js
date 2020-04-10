@@ -17,7 +17,7 @@ const ProfileSchema = new Schema(
         registerNumber: {type: String, required: true},
         manager: {type: String, required: true},
         mobile: {type: String},
-        socialNetworkAccess: {type: String},
+        socialNetworkAccess: {type: Boolean},
     },
 );
 

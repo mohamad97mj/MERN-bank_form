@@ -71,7 +71,7 @@ export const postForm = (userData, userForm) => dispatch => {
     const date = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + "-" + d.getHours() + "-" + d.getMinutes() + "-" + d.getSeconds();
 
     // dispatch(postFormStart());
-
+    alert('here');
 
     const tempPostData =
         {
@@ -121,14 +121,15 @@ export const removeContentHandler = (control, index) => {
     };
 };
 
-export const contentLevel1onChangeHandler = (event, control, index, control2) => {
+export const contentLevel1onChangeHandler = (event, control, index, control2, autoFlag) => {
 
     return {
         type: actionTypes.CONTENT_LEVEL1_ON_CHANGE_HANDLER,
         event: event,
         control: control,
         index: index,
-        control2: control2
+        control2: control2,
+        autoFlag: autoFlag,
     };
 };
 
@@ -154,7 +155,7 @@ export const removeContentLevel1Handler = (control, index, control2, index2) => 
     };
 };
 
-export const contentLevel2onChangeHandler = (event, control, index, control2, index2, control3) => {
+export const contentLevel2onChangeHandler = (event, control, index, control2, index2, control3, commaFlag) => {
 
     return {
         type: actionTypes.CONTENT_LEVEL2_ON_CHANGE_HANDLER,
@@ -164,6 +165,7 @@ export const contentLevel2onChangeHandler = (event, control, index, control2, in
         control2: control2,
         index2: index2,
         control3: control3,
+        commaFlag: commaFlag,
 
     };
 };
@@ -194,7 +196,7 @@ export const removeContentLevel2Handler = (control, index, control2, index2, con
     };
 };
 
-export const contentLevel3onChangeHandler = (event, control, index, control2, index2, control3, index3, control4) => {
+export const contentLevel3onChangeHandler = (event, control, index, control2, index2, control3, index3, control4, commaFlag, autoFlag) => {
 
     return {
         type: actionTypes.CONTENT_LEVEL3_ON_CHANGE_HANDLER,
@@ -206,6 +208,9 @@ export const contentLevel3onChangeHandler = (event, control, index, control2, in
         control3: control3,
         index3: index3,
         control4: control4,
+        commaFlag: commaFlag,
+        autoFlag: autoFlag,
+
     };
 };
 

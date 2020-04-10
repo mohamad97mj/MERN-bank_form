@@ -23,7 +23,9 @@ const FormSchema = new Schema(
                             nameCheck: Boolean,
                             name: String,
                             minimumAmount: String,
+                            minInDollar: String,
                             maximumAmount: String,
+                            maxInDollar: String,
                             negotiationLevel: String
                         }
                     ],
@@ -46,7 +48,9 @@ const FormSchema = new Schema(
                             nameCheck: Boolean,
                             name: String,
                             minimumAmount: String,
+                            minInDollar: String,
                             maximumAmount: String,
+                            maxInDollar: String,
                             negotiationLevel: String
 
                         }

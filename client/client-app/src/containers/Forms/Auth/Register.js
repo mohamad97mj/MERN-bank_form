@@ -3,13 +3,16 @@ import React, {Component} from 'react';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import styles from './Auth.module.css';
 import axios from 'axios';
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
+// import Form from "react-bootstrap/Form";
+// import Row from "react-bootstrap/Row";
+// import Col from "react-bootstrap/Col";
+// import Button from "react-bootstrap/Button";
 import {connect} from 'react-redux';
 import * as actions from '../../../api/index';
 import "./Auth.css";
+
+import {Grid, Button, Container, Box, TextField, Typography, ButtonGroup} from '@material-ui/core';
+
 
 class Register extends Component {
 
@@ -80,33 +83,33 @@ class Register extends Component {
     render() {
 
         let form = (
-            <Form onSubmit={this.loginHandler}>
-                <Form.Group className={styles.LoginForm}>
-                    <Form.Group as={Row}>
-                        <Form.Label column xs="3">
+            <form onSubmit={this.loginHandler}>
+                <Grid className={styles.LoginForm}>
+                    <Grid >
+                        <Grid column xs="3">
                             نام کاربری
-                        </Form.Label>
-                        <Col xs="9">
-                            <Form.Control id="username" onChange={this.onChangeHandler}/>
-                        </Col>
+                        </Grid>
+                        <Grid xs="9">
+                            <Grid id="username" onChange={this.onChangeHandler}/>
+                        </Grid>
 
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Form.Label column xs="3">
+                    </Grid>
+                    <Grid >
+                        <Grid column xs="3">
                             گذرواژه
-                        </Form.Label>
-                        <Col sm="9">
-                            <Form.Control type="password" id="password" onChange={this.onChangeHandler} />
-                        </Col>
+                        </Grid>
+                        <Grid sm="9">
+                            <Grid type="password" id="password" onChange={this.onChangeHandler} />
+                        </Grid>
 
-                    </Form.Group>
-                </Form.Group>
-                <Form.Group className={styles.CenterContent}>
+                    </Grid>
+                </Grid>
+                <Grid className={styles.CenterContent}>
                     <Button type="submit" className="center margin-top-5">ورود</Button>
-                </Form.Group>
+                </Grid>
 
 
-            </Form>
+            </form>
         );
         if (this.state.loading) {
             form = <Spinner/>;

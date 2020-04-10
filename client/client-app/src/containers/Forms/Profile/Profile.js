@@ -4,15 +4,31 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import styles from './Profile.module.css';
 import "./Profile.css";
 import $ from "jquery";
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/Button";
+// import Form from "react-bootstrap/Form";
+// import Col from "react-bootstrap/Col";
+// import Row from "react-bootstrap/Row";
+// import Button from "react-bootstrap/Button";
+// import ToggleButtonGroup from "react-bootstrap/ButtonGroup";
+// import Container from "react-bootstrap/Container";
+
 import {connect} from 'react-redux';
 import '../Form.css';
-import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import * as actions from "../../../api";
-import Container from "react-bootstrap/Container";
+
+import {
+    Grid,
+    Button,
+    Container,
+    Box,
+    TextField,
+    Typography,
+    ButtonGroup,
+    Checkbox,
+    FormControl,
+    FormLabel,
+    FormControlLabel,
+    FormGroup
+} from '@material-ui/core';
 
 
 class Profile extends Component {
@@ -99,12 +115,7 @@ class Profile extends Component {
 
     checkInputOnChangeHandler = (e, control) => {
 
-        if (e.target.checked) {
-            this.props.onChangeHandler({control: control, value: "true"});
-        } else {
-            this.props.onChangeHandler({control: control, value: "false"})
-        }
-
+        this.props.onChangeHandler({control: control, value: e.target.checked});
     };
 
     render() {
@@ -113,61 +124,75 @@ class Profile extends Component {
 
         if (this.props.profileData !== undefined) {
             form = (
-
-                <div className="mt-5">
+                <div style={{marginTop: "50px"}}>
                     <h4>اطلاعات شخصی </h4>
-                    <Form onSubmit={this.submitHandler} className="profile-form form-inner-content my-form">
-                        <Container fluid className="form-content mb-2">
-                            <Row noGutters={true}>
-                                <Col md="7" as={Row} noGutters={true}>
-                                    <Col md="3">
-                                        <Form.Label>
-                                            نام و نام خانوادگی:
-                                        </Form.Label>
+                    <form onSubmit={this.submitHandler} style={{marginBottom: "10px"}}
+                          className="profile-form form-inner-content my-form">
+                        <Grid container spacing={1}>
+                            <Grid container item md={12} className="form-content" spacing={2}>
+                                <Grid container item spacing={2}>
+                                    <Grid item md={8} className="textfield-container">
+                                        {/*<Grid item md="3">*/}
+                                        {/*    نام و نام خانوادگی:*/}
+                                        {/*</Grid>*/}
+                                        <TextField id="name" value={this.props.profileData.name}
+                                                   disabled={!this.state.editable}
+                                                   variant="outlined"
+                                                   InputLabelProps={{
+                                                       style: {
+                                                           // fontWeight: "bold",
 
-                                    </Col>
-                                    <Col md="8">
-                                        <Form.Control id="name" value={this.props.profileData.name}
-                                                      disabled={!this.state.editable}
-                                                      onChange={(e) => this.inputOnChangeHandler(e, "name")}/>
-                                    </Col>
-                                </Col>
+                                                       },
+                                                       shrink: true,
+                                                   }}
+                                                   InputProps={{
+                                                       style: {
+                                                           direction: "rtl",
+                                                       },
+                                                   }}
+                                                   label="نام و نام خانوادگی"
+                                                   fullWidth
+                                                   onChange={(e) => this.inputOnChangeHandler(e, "name")}/>
+                                    </Grid>
 
-                                <Col md="1"/>
+                                    <Grid item md={4} className="textfield-container">
 
-                                <Col md="4" as={Row} noGutters={true}>
-                                    <Col md="3">
-                                        <Form.Label>
-                                            کد ملی:
-                                        </Form.Label>
-                                    </Col>
+                                        <TextField id="national-code"
+                                                   label="کد ملی"
+                                                   variant="outlined"
+                                                   fullWidth
+                                                   InputLabelProps={{
+                                                       shrink: true,
+                                                   }}
+                                                   InputProps={{
+                                                       style: {direction: "rtl"},
+                                                   }}
+                                                   onChange={(e) => this.inputOnChangeHandler(e, "nationalCode")}
+                                                   value={this.props.profileData.nationalCode}
+                                                   disabled={!this.state.editable}/>
+                                    </Grid>
 
-                                    <Col md="7">
-                                        <Form.Control id="national-code"
-                                                      onChange={(e) => this.inputOnChangeHandler(e, "nationalCode")}
-                                                      value={this.props.profileData.nationalCode}
-                                                      disabled={!this.state.editable}/>
-                                    </Col>
-                                </Col>
+                                </Grid>
+                            </Grid>
 
-                            </Row>
-                        </Container>
-
-                        <Container fluid className="form-content mb-2">
-                            <Row noGutters={true}>
-
-                                <Col as={Row} md="3" noGutters={true}>
-                                    <Col as={Row} md="12" noGutters={true}>
-                                        <Col md="5">
-                                            <Form.Label>
-                                                استان:
-                                            </Form.Label>
-                                        </Col>
-                                        <Col md="7">
-                                            <Form.Control id="state" value={this.props.profileData.state}
-                                                          disabled={!this.state.editable}
-                                                          onChange={(e) => this.inputOnChangeHandler(e, "state")}/>
-                                            {/*<Form.Control as="select" runat="server" id="state" onChange={this.onChangeHandler.bind(this)}>*/}
+                            <Grid container item md={12} className="form-content" spacing={2}>
+                                <Grid container item md={12} spacing={2}>
+                                    <Grid container item md={3} spacing={2}>
+                                        <Grid item style={{marginBottom: "5px"}}
+                                              className="textfield-container">
+                                            <TextField id="state" value={this.props.profileData.state}
+                                                       label="استان"
+                                                       variant="outlined"
+                                                       fullWidth
+                                                       InputLabelProps={{
+                                                           shrink: true,
+                                                       }}
+                                                       InputProps={{
+                                                           style: {direction: "rtl"},
+                                                       }}
+                                                       disabled={!this.state.editable}
+                                                       onChange={(e) => this.inputOnChangeHandler(e, "state")}/>
+                                            {/*<Grid as="select" runat="server" id="state" onChange={this.onChangeHandler.bind(this)}>*/}
 
                                             {/*    <option value=""></option>*/}
                                             {/*    <option value="  ,آذرشهر ,اسکو ,اهر ,بستان‌آباد ,بناب ,تبریز ,جلفا ,چاراویماق ,سراب ,شبستر ,عجب‌شیر ,کلیبر ,مراغه ,مرند ,ملکان ,میانه ,ورزقان ,هریس ,هشترود">آذربایجان شرقی</option>*/}
@@ -201,200 +226,215 @@ class Profile extends Component {
                                             {/*    <option value="  ,اسدآباد ,بهار ,تویسرکان ,رزن ,کبودرآهنگ ,ملایر ,نهاوند ,همدان">همدان</option>*/}
                                             {/*    <option value="  ,ابرکوه ,اردکان ,بافق ,تفت ,خاتم ,صدوق ,طبس ,مهریز ,مِیبُد ,یزد">یزد</option>*/}
 
-                                            {/*</Form.Control>*/}
-                                        </Col>
-                                    </Col>
+                                            {/*</Grid>*/}
+                                        </Grid>
 
-
-                                    <Col as={Row} md="12" noGutters={true}>
-
-                                        <Col md="5">
-                                            <Form.Label>
-                                                کد پستی:
-                                            </Form.Label>
-
-                                        </Col>
-                                        <Col md="7">
-                                            <Form.Control value={this.props.profileData.postalCode} id="postal-code"
-                                                          disabled={!this.state.editable}
-                                                          onChange={(e) => this.inputOnChangeHandler(e, "postalCode")}
+                                        <Grid item className="textfield-container">
+                                            <TextField value={this.props.profileData.postalCode} id="postal-code"
+                                                       label="کد پستی"
+                                                       variant="outlined"
+                                                       fullWidth
+                                                       InputLabelProps={{
+                                                           shrink: true,
+                                                       }}
+                                                       InputProps={{
+                                                           style: {direction: "rtl"},
+                                                       }}
+                                                       disabled={!this.state.editable}
+                                                       onChange={(e) => this.inputOnChangeHandler(e, "postalCode")}
 
                                             />
-                                        </Col>
-                                    </Col>
-                                </Col>
-                                <Col as={Row} md="1" noGutters={true}></Col>
-                                <Col as={Row} md="3" noGutters={true}>
-                                    <Col as={Row} md="12" noGutters={true}>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid container item md={3} spacing={2}>
+                                        <Grid item md={12} className="textfield-container">
 
-                                        <Col md="3">
-                                            <Form.Label>
-                                                شهر:
-                                            </Form.Label>
-
-                                        </Col>
-
-                                        <Col md="8">
-                                            <Form.Control value={this.props.profileData.city} id="city"
-                                                          disabled={!this.state.editable}
-                                                          onChange={(e) => this.inputOnChangeHandler(e, "city")}
+                                            <TextField value={this.props.profileData.city} id="city"
+                                                       label="شهر"
+                                                       variant="outlined"
+                                                       fullWidth
+                                                       InputLabelProps={{
+                                                           shrink: true,
+                                                       }}
+                                                       InputProps={{
+                                                           style: {direction: "rtl"},
+                                                       }}
+                                                       disabled={!this.state.editable}
+                                                       onChange={(e) => this.inputOnChangeHandler(e, "city")}
                                             />
 
-                                            {/*<Form.Control as="select" id="city"></Form.Control>*/}
-                                        </Col>
-
-                                    </Col>
-
-                                    <Col as={Row} md="12" noGutters={true}>
-
-                                        <Col md="3">
-                                            <Form.Label>
-                                                تلفن:
-                                            </Form.Label>
-
-                                        </Col>
-                                        <Col md="8">
-                                            <Form.Control value={this.props.profileData.telephone} id="telephone"
-                                                          disabled={!this.state.editable}
-                                                          onChange={(e) => this.inputOnChangeHandler(e, "telephone")}/>
-
-                                        </Col>
-
-                                    </Col>
-                                </Col>
+                                            {/*<Grid as="select" id="city"></Grid>*/}
 
 
-                                <Col as={Row} md="5" noGutters={true}>
-                                    <Col md="2">
-                                        <Form.Label>
-                                            آدرس:
-                                        </Form.Label>
+                                        </Grid>
 
-                                    </Col>
-                                    <Col md="10">
-                                        <Form.Control value={this.props.profileData.address} id="address" as="textarea"
-                                                      rows="3" disabled={!this.state.editable}
-                                                      onChange={(e) => this.inputOnChangeHandler(e, "address")}
+                                        <Grid item md={12} className="textfield-container">
+
+                                            <TextField value={this.props.profileData.telephone} id="telephone"
+                                                       label="تلفن"
+                                                       variant="outlined"
+                                                       fullWidth
+                                                       InputLabelProps={{
+                                                           shrink: true,
+                                                       }}
+                                                       InputProps={{
+                                                           style: {direction: "rtl"},
+                                                       }}
+                                                       disabled={!this.state.editable}
+                                                       onChange={(e) => this.inputOnChangeHandler(e, "telephone")}/>
+
+                                        </Grid>
+
+                                    </Grid>
+                                    <Grid container item md={6} className="textfield-container">
+
+                                        <TextField value={this.props.profileData.address} id="address"
+                                                   variant="outlined"
+                                                   fullWidth
+                                                   multiline
+                                                   InputLabelProps={{
+                                                       shrink: true,
+                                                   }}
+                                                   InputProps={{
+                                                       style: {direction: "rtl"},
+                                                   }}
+                                                   label="آدرس"
+                                                   rowsMax="4"
+                                                   disabled={!this.state.editable}
+                                                   onChange={(e) => this.inputOnChangeHandler(e, "address")}
                                         />
-                                    </Col>
 
-                                </Col>
+                                    </Grid>
 
-                            </Row>
-                            <Row noGutters={true}>
-                                <Col as={Row} md="3" noGutters={true}>
-                                    <Col md="5">
-                                        <Form.Label>
-                                            شماره موبایل:
-                                        </Form.Label>
-
-                                    </Col>
-                                    <Col md="7">
-                                        <Form.Control id="mobile" value={this.props.profileData.mobile}
-                                                      disabled={!this.state.editable}
-                                                      onChange={(e) => this.inputOnChangeHandler(e, "mobile")}
+                                </Grid>
+                                <Grid container item spacing={2}>
+                                    <Grid item md={3} className="textfield-container">
+                                        <TextField id="mobile" value={this.props.profileData.mobile}
+                                                   label="شماره موبایل"
+                                                   variant="outlined"
+                                                   fullWidth
+                                                   InputLabelProps={{
+                                                       shrink: true,
+                                                   }}
+                                                   InputProps={{
+                                                       style: {direction: "rtl"},
+                                                   }}
+                                                   disabled={!this.state.editable}
+                                                   onChange={(e) => this.inputOnChangeHandler(e, "mobile")}
                                         />
-                                    </Col>
+                                    </Grid>
 
-                                </Col>
-                                <Col md="2"/>
-                                <Col as={Row} md="7" noGutters={true}>
+                                    <Grid container item spacing={2} md={7}>
 
-                                    <Col md="10">
-                                        <ToggleButtonGroup type="checkbox" className="mb-2"
-                                                           defaultValue={this.props.profileData.socialNetworkAccess}>
-                                            <Form.Check
-                                                disabled={!this.state.editable}
-                                                value={true}
-                                                custom
-                                                type="checkbox"
-                                                label="امکان دسترسی از طریق شبکه های اجتماعی"
-                                                name="social-check"
-                                                id="social-check"
-                                                onChange={(e) => this.checkInputOnChangeHandler(e, "socialNetworkAccess")}
-                                            />
-                                        </ToggleButtonGroup>
+                                        <ButtonGroup fullWidth>
 
-                                    </Col>
+                                            <FormControl fullWidth
+                                                         component="fieldset"
+                                                         color="secondary"
+                                            >
+                                                <FormGroup>
+                                                    <FormControlLabel
+                                                        control={<Checkbox
+                                                            checked={this.props.profileData.socialNetworkAccess}
+                                                            onChange={(e) => this.checkInputOnChangeHandler(e, "socialNetworkAccess")}
+                                                            name="social-network-check"
+                                                            id="social-check"
+                                                            disabled={!this.state.editable}
 
-                                </Col>
-
-
-                            </Row>
-                        </Container>
-
-                        <Container fluid className="form-content" style={{marginBottom: 0}}>
-                            <Row noGutters={true} className="mb-1">
-                                <Col sm="4" as={Row} noGutters={true}>
-                                    <Col md="5">
-                                        <Form.Label>
-                                            شماره آخرین مجوز:
-                                        </Form.Label>
-
-                                    </Col>
-                                    <Col md="5">
-                                        <Form.Control value={this.props.profileData.lastLicenseNumber}
-                                                      id="last-license-number" disabled={!this.state.editable}
-                                                      onChange={(e) => this.inputOnChangeHandler(e, "lastLicenseNumber")}/>
-
-                                    </Col>
-
-                                </Col>
+                                                        />}
+                                                        label="امکان دسترسی از طریق شبکه های اجتماعی"
+                                                    />
+                                                </FormGroup>
+                                            </FormControl>
+                                        </ButtonGroup>
 
 
-                                <Col md="5" as={Row} noGutters={true}>
-
-                                    <Col md="5">
-                                        <Form.Label>
-                                            تاریخ اعتبار آخرین مجوز:
-                                        </Form.Label>
-
-                                    </Col>
-                                    <Col md="5">
-                                        <Form.Control value={this.props.profileData.lastLicenseValidityDate}
-                                                      id="last-license-validity-date" disabled={!this.state.editable}
-                                                      onChange={(e) => this.inputOnChangeHandler(e, "lastLicenseValidityDate")}/>
-                                    </Col>
-
-                                </Col>
-
-                                <Col md="3" as={Row} noGutters={true}>
-                                    <Col md="5">
-                                        <Form.Label>
-                                            شماره ثبت:
-                                        </Form.Label>
-
-                                    </Col>
-                                    <Col md="7">
-                                        <Form.Control value={this.props.profileData.registerNumber} id="register-number"
-                                                      disabled={!this.state.editable}
-                                                      onChange={(e) => this.inputOnChangeHandler(e, "registerNumber")}/>
-                                    </Col>
+                                    </Grid>
 
 
-                                </Col>
+                                </Grid>
+                            </Grid>
 
-                            </Row>
-                            <Row noGutters={true}>
-                                <Col md="8" as={Row} noGutters={true}>
-                                    <Col md="1">
-                                        <Form.Label>
-                                            مدیر:
-                                        </Form.Label>
+                            <Grid container item md={12} className="form-content" spacing={2}>
+                                <Grid container item spacing={2}>
+                                    <Grid item sm={4} className="textfield-container">
+                                        <TextField value={this.props.profileData.lastLicenseNumber}
+                                                   label="شماره آخرین مجوز"
+                                                   variant="outlined"
+                                                   fullWidth
+                                                   InputLabelProps={{
+                                                       shrink: true,
+                                                   }}
+                                                   InputProps={{
+                                                       style: {direction: "rtl"},
+                                                   }}
+                                                   id="last-license-number" disabled={!this.state.editable}
+                                                   onChange={(e) => this.inputOnChangeHandler(e, "lastLicenseNumber")}/>
 
-                                    </Col>
-                                    <Col md="6">
-                                        <Form.Control id="manager" value={this.props.profileData.manager}
-                                                      disabled={!this.state.editable}
-                                                      onChange={(e) => this.inputOnChangeHandler(e, "manager")}/>
-                                    </Col>
-                                </Col>
-                            </Row>
-                        </Container>
-                    </Form>
-                    <Button className="mt-5 submit-btn" disabled={this.state.editable}
+
+                                    </Grid>
+
+
+                                    <Grid item md={4} className="textfield-container">
+
+                                        <TextField value={this.props.profileData.lastLicenseValidityDate}
+                                                   label="تاریخ اعتبار آخرین مجوز"
+                                                   InputLabelProps={{
+                                                       shrink: true,
+                                                   }}
+                                                   InputProps={{
+                                                       style: {direction: "rtl"},
+                                                   }}
+                                                   variant="outlined"
+                                                   fullWidth
+                                                   id="last-license-validity-date" disabled={!this.state.editable}
+                                                   onChange={(e) => this.inputOnChangeHandler(e, "lastLicenseValidityDate")}/>
+
+                                    </Grid>
+
+                                    <Grid item md={4} className="textfield-container">
+                                        <TextField value={this.props.profileData.registerNumber}
+                                                   label="شماره ثبت"
+                                                   id="register-number"
+                                                   variant="outlined"
+                                                   fullWidth
+                                                   InputLabelProps={{
+                                                       shrink: true,
+                                                   }}
+                                                   InputProps={{
+                                                       style: {direction: "rtl"},
+                                                   }}
+                                                   disabled={!this.state.editable}
+                                                   onChange={(e) => this.inputOnChangeHandler(e, "registerNumber")}/>
+                                    </Grid>
+
+                                </Grid>
+                                <Grid container item spacing={2}>
+                                    <Grid item md={6} className="textfield-container">
+
+                                        <TextField id="manager" value={this.props.profileData.manager}
+                                                   label="مدیر"
+                                                   variant="outlined"
+                                                   fullWidth
+                                                   InputLabelProps={{
+                                                       shrink: true,
+                                                   }}
+                                                   InputProps={{
+                                                       style: {direction: "rtl"},
+                                                   }}
+                                                   disabled={!this.state.editable}
+                                                   onChange={(e) => this.inputOnChangeHandler(e, "manager")}/>
+
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+
+                    </form>
+                    <Button variant="contained" disabled={this.state.editable}
+                            style={{marginLeft: "5px"}}
                             onClick={() => this.setState({editable: true})}>ویرایش</Button>
-                    <Button className="mt-5 ml-2  submit-btn" disabled={!this.state.editable}
+                    <Button variant="contained" color="secondary" disabled={!this.state.editable}
                             onClick={() => {
                                 this.setState({
                                     editable: false,

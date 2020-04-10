@@ -9,7 +9,7 @@ const initialState = {
     counter: 0,
     data: [
         {
-            date: "",
+            date: "init",
             username: "",
             data: {
                 moneyRequired: "",
@@ -29,7 +29,9 @@ const initialState = {
                                 nameCheck: false,
                                 name: "",
                                 minimumAmount: "",
+                                minInDollar: "",
                                 maximumAmount: "",
+                                maxInDollar: "",
                                 negotiationLevel: ""
                             }
                         ],
@@ -52,7 +54,9 @@ const initialState = {
                                 nameCheck: false,
                                 name: "",
                                 minimumAmount: "",
+                                minInDollar: "",
                                 maximumAmount: "",
+                                maxInDollar: "",
                                 negotiationLevel: ""
 
                             }
@@ -170,7 +174,9 @@ const addContentHandler = (state, action) => {
                             nameCheck: false,
                             name: "",
                             minimumAmount: "",
+                            minInDollar: "",
                             maximumAmount: "",
+                            maxInDollar: "",
                             negotiationLevel: ""
 
                         }
@@ -194,7 +200,9 @@ const addContentHandler = (state, action) => {
                             nameCheck: false,
                             name: "",
                             minimumAmount: "",
+                            minInDollar: "",
                             maximumAmount: "",
+                            maxInDollar: "",
                             negotiationLevel: ""
 
                         }
@@ -251,8 +259,17 @@ const removeContentHandler = (state, action) => {
 };
 
 const contentLevel1onChangeHandler = (state, action) => {
+
+    let value = null;
+    if (action.autoFlag){
+        value = action.event;
+    }
+    else {
+        value = action.event.target.value;
+    }
+
     const stateDataCopy = clone(state.data);
-    stateDataCopy[stateDataCopy.length - 1].data[action.control][action.index][action.control2] = action.event.target.value;
+    stateDataCopy[stateDataCopy.length - 1].data[action.control][action.index][action.control2] = value;
 
     return updateObject(state, {
         counter: state.counter + 1,
@@ -276,7 +293,9 @@ const addContentLevel1Handler = (state, action) => {
                             nameCheck: false,
                             name: "",
                             minimumAmount: "",
+                            minInDollar: "",
                             maximumAmount: "",
+                            maxInDollar: "",
                             negotiationLevel: ""
                         };
                     break;
@@ -330,8 +349,13 @@ const removeContentLevel1Handler = (state, action) => {
 
 const contentLevel2onChangeHandler = (state, action) => {
 
+    let value = action.event.target.value;
+    if (action.commaFlag) {
+        value = removeCommas(value);
+    }
+
     const stateDataCopy = clone(state.data);
-    stateDataCopy[stateDataCopy.length - 1].data[action.control][action.index][action.control2][action.index2][action.control3] = action.event.target.value;
+    stateDataCopy[stateDataCopy.length - 1].data[action.control][action.index][action.control2][action.index2][action.control3] = value;
 
     return updateObject(state, {
         counter: state.counter + 1,
@@ -378,7 +402,6 @@ const removeContentLevel2Handler = (state, action) => {
     if (stateDataCopy[stateDataCopy.length - 1].data[action.control][action.index][action.control2][action.index2][action.control3].length > 1) {
 
         stateDataCopy[stateDataCopy.length - 1].data[action.control][action.index][action.control2][action.index2][action.control3].splice(action.index3, 1);
-
     }
 
     return updateObject(state, {
@@ -390,8 +413,19 @@ const removeContentLevel2Handler = (state, action) => {
 
 const contentLevel3onChangeHandler = (state, action) => {
     const stateDataCopy = clone(state.data);
+    let value = null;
 
-    stateDataCopy[stateDataCopy.length - 1].data[action.control][action.index][action.control2][action.index2][action.control3][action.index3][action.control4] = action.event.target.value;
+    if (action.autoFlag) {
+        value = action.event;
+    }
+    else {
+        value = action.event.target.value;
+        if (action.commaFlag) {
+            value = removeCommas(value);
+        }
+    }
+
+    stateDataCopy[stateDataCopy.length - 1].data[action.control][action.index][action.control2][action.index2][action.control3][action.index3][action.control4] = value;
 
     return updateObject(state, {
         counter: state.counter + 1,
@@ -428,11 +462,14 @@ const disableRemittanceBanksHandler = (state, action) => {
                     nameCheck: false,
                     name: "",
                     minimumAmount: "",
+                    minInDollar: "",
                     maximumAmount: "",
+                    maxInDollar: "",
+                    negotiationLevel: ""
+
                 }
 
-            ]
-        ;
+            ];
 
         stateDataCopy[stateDataCopy.length - 1].data.remittanceContents[action.index][action.control2] = false;
 
@@ -444,6 +481,12 @@ const disableRemittanceBanksHandler = (state, action) => {
         counter: state.counter + 1,
         data: stateDataCopy,
     });
+};
+
+const removeCommas = (s) => {
+    // alert("entered comma");
+    s = s.replace(/,/g, '');
+    return s;
 };
 
 

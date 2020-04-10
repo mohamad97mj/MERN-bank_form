@@ -5,20 +5,40 @@ import styles from './Main.module.css';
 import './Main.css';
 import '../Form.css';
 
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
+import {
+    Grid,
+    Button,
+    Container,
+    Box,
+    TextField,
+    Typography,
+    ButtonGroup,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
+    FormLabel,
+    FormControlLabel,
+    Radio,
+    RadioGroup, FormGroup, Checkbox
+} from '@material-ui/core';
+import {Autocomplete} from '@material-ui/lab';
+
+
+// import Form from "react-bootstrap/Form";
+// import Col from "react-bootstrap/Col";
+// import Row from "react-bootstrap/Row";
+// import ButtonGroup from "react-bootstrap/ButtonGroup";
+// import Button from "react-bootstrap/Button";
+// import Container from "react-bootstrap/Container";
+// import {Typeahead} from 'react-bootstrap-typeahead';
 
 import * as actions from "../../../api";
 import {connect} from "react-redux";
-import {Typeahead} from 'react-bootstrap-typeahead';
+
 import ReactFlagsSelect from 'react-flags-select';
 import FlagIcon from "../../../components/UI/FlagIcon/FlagIcon";
 import 'react-flags-select/css/react-flags-select.css';
-
 
 
 class Main extends Component {
@@ -33,21 +53,27 @@ class Main extends Component {
         editable: false,
     };
 
+    handleRadioChange = (event) => {
+        // setValue(event.target.value);
+        // setHelperText(' ');
+        // setError(false);
+    };
 
-    countries =
-        ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua &amp; Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia &amp; Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Cayman Islands", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cruise Ship", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Kyrgyz Republic", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre &amp; Miquelon", "Samoa", "San Marino", "Satellite", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St Kitts &amp; Nevis", "St Lucia", "St Vincent", "St. Lucia", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad &amp; Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks &amp; Caicos", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
-    countriesMode2 =
-        ["کشور مبداء حواله", "Afghanistan", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua &amp; Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia &amp; Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Cayman Islands", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cruise Ship", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Kyrgyz Republic", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre &amp; Miquelon", "Samoa", "San Marino", "Satellite", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St Kitts &amp; Nevis", "St Lucia", "St Vincent", "St. Lucia", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad &amp; Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks &amp; Caicos", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
-    countriesMode21 =
-        ["کشور مقصد حواله", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua &amp; Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia &amp; Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Cayman Islands", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cruise Ship", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Kyrgyz Republic", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre &amp; Miquelon", "Samoa", "San Marino", "Satellite", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St Kitts &amp; Nevis", "St Lucia", "St Vincent", "St. Lucia", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad &amp; Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks &amp; Caicos", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
-    countriesMode22 =
-        ["کشور طرف معامله", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua &amp; Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia &amp; Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Cayman Islands", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cruise Ship", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Kyrgyz Republic", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre &amp; Miquelon", "Samoa", "San Marino", "Satellite", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St Kitts &amp; Nevis", "St Lucia", "St Vincent", "St. Lucia", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad &amp; Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks &amp; Caicos", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
-    negotiationLevels = ["رییس شعبه", "مدیران ارشد", "هیئت مدیره"];
-    negotiationLevelsMode2 = ["انتخاب سطح قدرت مذاکره", "رییس شعبه", "مدیران ارشد", "هیئت مدیره"];
-    moneyScales = ["1000", "10000", "100000", "1000000", "10000000", "100000000", "1000000000", "10000000000"];
+    countries = ["Afghanistan", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua &amp; Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia &amp; Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Cayman Islands", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cruise Ship", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Kyrgyz Republic", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre &amp; Miquelon", "Samoa", "San Marino", "Satellite", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St Kitts &amp; Nevis", "St Lucia", "St Vincent", "St. Lucia", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad &amp; Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks &amp; Caicos", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
+    listedCountries = this.countries;
+
+    negotiationLevels = ["در سطح رییس شعبه", "در سطح مدیران ارشد", "در سطح هیئت مدیره"];
+
+    moneyScales = ["1,000", "10,000", "100,000", "1,000,000", "10,000,000", "100,000,000", "1,000,000,000", "10,000,000,000"];
 
 
     //..................................................................................
+
+    componentDidMount() {
+        this.setState({
+            editable: this.state.editable || this.props.isNew,
+        })
+    }
 
     render() {
 
@@ -60,761 +86,1253 @@ class Main extends Component {
                     this.props.formData.remittanceContents.map((rc, ri) => {
 
                         return (
-                            <Container fluid className="form-content margin-bottom-5" key={"rc-" + ri}>
+                            <Grid container className="form-content margin-bottom-5" key={"rc-" + ri}>
+                                <Grid container item>
 
-                                <Form.Group>
                                     <Button className="remove-btn control-btn top-right"
                                             disabled={!this.state.editable}
                                             onClick={() => this.props.onRemoveContentHandler("remittanceContents", ri)}>×</Button>
-                                </Form.Group>
 
+                                    <Grid container item xs={12} spacing={1}
+                                          style={{marginTop: "25px", marginBottom: "15px"}}>
+                                        <Grid container item xs={12} spacing={1}>
+                                            <Grid item xs={4} className="textfield-container" spacing={1}>
 
-                                <Container fluid>
-                                    <Form.Group as={Row}>
-                                        <Col md="6" className="mb-2" as={Row} noGutters={true}>
-                                            <Col md="4">
-                                                <Form.Label className="mode1">کشور مبدأ حواله:</Form.Label>
-                                            </Col>
-                                            <Col md="7" className="mode1">
+                                                <Autocomplete
+                                                    id={"rc-" + ri + "-origin-country"}
+                                                    value={rc.originCountry}
+                                                    debug
+                                                    // disableCloseOnSelect
+                                                    clearOnEscape
+                                                    // disableClearable
+                                                    includeInputInList
+                                                    autoComplete
+                                                    disableListWrap
+                                                    openOnFocus
+                                                    autoHighlight
+                                                    autoSelect
+                                                    blurOnSelect
 
-                                                {/*<FlagIcon code='it'/>*/}
-                                                {/*<ReactFlagsSelect*/}
-                                                {/*    searchable={true}*/}
-                                                {/*    searchPlaceholder="Search for a country"*/}
-                                                {/*    // onChange={*/}
-                                                {/*    //     event => {*/}
-                                                {/*    //         alert(event)*/}
-                                                {/*    //     }*/}
-                                                {/*    // }*/}
-                                                {/*/>*/}
-
-                                                <Typeahead
-                                                    onChange={(e) => {
-                                                        alert(e);
-                                                        // this.props.onContentLevel1onChangeHandler(e, "remittanceContents", ri, "originCountry");
+                                                    groupBy={(option) => option[0]}
+                                                    disabled={!this.state.editable}
+                                                    onChange={(e, selected) => {
+                                                        if (selected !== null) {
+                                                            this.props.onContentLevel1onChangeHandler(selected, "remittanceContents", ri, "originCountry", true);
+                                                        }
                                                     }}
-                                                    options={this.countries.map(c => c.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
-                                                        return '&#' + i.charCodeAt(0) + ';';
-                                                    }))}
-                                                />
 
-                                                {/*<Form.Control as="select"*/}
-                                                {/*              id={"rc-" + ri + "-origin-country"}*/}
-                                                {/*              onChange={(e) => this.props.onContentLevel1onChangeHandler(e, "remittanceContents", ri, "originCountry")}*/}
-                                                {/*              value={rc.originCountry}*/}
-                                                {/*              disabled={!this.state.editable}>*/}
-                                                {/*    {this.countries.map(option => (*/}
-                                                {/*        <option key={option} value={option}>*/}
-                                                {/*            {option}*/}
-                                                {/*        </option>*/}
-                                                {/*    ))}*/}
-                                                {/*</Form.Control>*/}
-                                            </Col>
+                                                    options={this.listedCountries.sort((a, b) => -b[0].localeCompare(a[0]))}
+                                                    renderInput={(params) => <TextField {...params}
+                                                                                        fullWidth
+                                                                                        InputLabelProps={{
+                                                                                            style: {
+                                                                                                // fontWeight: "bold",
 
-                                            {/*<Col className="mode2">*/}
-                                            {/*    <Form.Control as="select"*/}
-                                            {/*                  id={"rc-" + ri + "-origin-country"}*/}
-                                            {/*                  onChange={(e) => this.contentLevel1onChangeHandler(e, "remittanceContents", ri, "originCountry")}*/}
-                                            {/*                  value={rc.originCountry}>*/}
-                                            {/*        {this.countriesMode2.map(option => (*/}
-                                            {/*            <option key={option} value={option}>*/}
-                                            {/*                {option}*/}
-                                            {/*            </option>*/}
-                                            {/*        ))}*/}
-                                            {/*    </Form.Control>*/}
-                                            {/*</Col>*/}
+                                                                                            },
+                                                                                            shrink: true,
+                                                                                        }}
+                                                        // InputProps={{
+                                                        //     style: {
+                                                        //         fontFamily: 'Nika',
+                                                        //         direction: "rtl",
+                                                        //     },
+                                                        // }}
+                                                                                        label={
+                                                                                            <Typography
+                                                                                                style={{
+                                                                                                    fontFamily: 'Nika',
+                                                                                                    fontSize: "larger",
+                                                                                                    marginTop: "-7px",
+                                                                                                }}
+                                                                                            >
+                                                                                                کشور&nbsp;مبداء&nbsp;حواله
+                                                                                            </Typography>
 
-                                        </Col>
-                                        <Col md="6">
-                                            <Form.Label for="xyz" style={{verticalAlign: " top"}}>آیا در کشور مبداء با
-                                                بانکی
-                                                ارتباط دارید؟</Form.Label>
-                                            <ToggleButtonGroup type="radio" className="mb-2" id="xyz"
-                                                               defaultValue={rc.originConnectionCheck}
-                                                               name={"rc-" + ri + "-origin-connection-check"}
-                                                               style={{height: "100%"}}>
-                                                <Form.Check
-                                                    disabled={!this.state.editable}
-                                                    value={true}
-                                                    inline
-                                                    custom
-                                                    type="radio"
-                                                    id={"rc-" + ri + "-origin-connection-check-1"}
-                                                    label="بله"
-                                                    onChange={(e) => this.props.onDisableRemittanceBanksHandler(e, ri, "originBanks", "originConnectionCheck")}
-                                                />
-                                                <spam>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</spam>
-                                                <Form.Check
-                                                    disabled={!this.state.editable}
-                                                    value={false}
-                                                    inline
-                                                    custom
-                                                    type="radio"
-                                                    id={"rc-" + ri + "-origin-connection-check-2"}
-                                                    label="خیر"
-                                                    onChange={(e) => this.props.onDisableRemittanceBanksHandler(e, ri, "originBanks", "originConnectionCheck")}
-                                                />
-                                            </ToggleButtonGroup>
-                                        </Col>
-                                    </Form.Group>
-                                </Container>
+                                                                                        }
+                                                                                        variant="outlined"/>
+                                                    }/>
 
-                                <Container fluid className="mb-0">
 
-                                    {rc.originBanks.map((b, bi) => {
-                                        return (
-                                            <Row key={"rc-" + ri + "-origin-bank-" + bi}
-                                                 style={{marginBottom: "5px", position: "relative"}}
-                                                 className="form-inner-content">
+                                            </Grid>
+                                            <Grid container item md={8} spacing={1}>
+                                                <RadioGroup row name="origin-connection"
+                                                            value={rc.originConnectionCheck}
+                                                            onChange={
+                                                                // (e) => alert("goodbye")
+                                                                (e) => this.props.onDisableRemittanceBanksHandler(e, ri, "originBanks", "originConnectionCheck")
+                                                            }>
 
-                                                <Col md="12" as={Row} noGutters={true}>
-                                                    <Col md="7" className="mb-2" as={Row}
-                                                         noGutters={true}>
-                                                        <Col md="4">
-                                                            <Form.Label className="mode1">نام بانک در کشور
-                                                                مبداء:</Form.Label>
-                                                        </Col>
-                                                        <Col md="8" className="mode1">
-                                                            <Form.Control
+                                                    <FormControlLabel
+                                                        disabled={!this.state.editable}
+                                                        value={true}
+                                                        control={<Radio
+                                                            // value={true}
+                                                            // checked={true}
+                                                            id={"rc-" + ri + "-origin-connection-check-1"}
+
+                                                        />}
+                                                        style={{direction: "ltr"}}
+                                                        label={
+                                                            <Typography
+                                                                style={{
+                                                                    fontFamily: 'Nika',
+                                                                    fontSize: "large",
+                                                                    marginTop: "-7px",
+                                                                }}
+                                                            >
+                                                                "آیا&nbsp;در&nbsp;کشور&nbsp;مبداء&nbsp;با&nbsp;بانکی&nbsp;ارتباط&nbsp;دارید؟&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;بله"
+                                                            </Typography>
+                                                        }
+
+
+                                                    />
+                                                    <FormControlLabel
+                                                        disabled={!this.state.editable}
+                                                        value={false}
+                                                        control={<Radio
+                                                            // value={false}
+                                                            // checked={false}
+                                                            id={"rc-" + ri + "-origin-connection-check-2"}
+                                                        />}
+
+                                                        style={{direction: "ltr"}}
+                                                        label={
+                                                            <Typography
+                                                                style={{
+                                                                    fontFamily: 'Nika',
+                                                                    fontSize: "large",
+                                                                    marginTop: "-7px",
+                                                                }}
+                                                            >
+                                                                خیر
+                                                            </Typography>
+                                                        }
+
+                                                    />
+                                                </RadioGroup>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+
+                                    <Grid container item md={12}>
+
+                                        {rc.originBanks.map((b, bi) => {
+                                            return (
+                                                <Grid container item key={"rc-" + ri + "-origin-bank-" + bi}
+                                                      style={{marginTop: "10px", position: "relative"}}
+                                                      className="form-inner-content" spacing={1}>
+
+                                                    <Grid container item lg={12} spacing={2}>
+                                                        <Grid item lg={4} className="textfield-container">
+                                                            <TextField
                                                                 value={b.name}
+                                                                variant="outlined"
+                                                                size="small"
+                                                                InputLabelProps={{
+                                                                    style: {
+                                                                        // fontWeight: "bold",
+
+                                                                    },
+                                                                    shrink: true,
+                                                                }}
+                                                                InputProps={{
+                                                                    style: {
+                                                                        fontFamily: 'Nika',
+                                                                        fontSize: "large",
+                                                                        direction: "rtl",
+                                                                    },
+                                                                }}
+                                                                label={
+                                                                    <Typography
+                                                                        style={{
+                                                                            fontFamily: 'Nika',
+                                                                            fontSize: "larger",
+                                                                            marginTop: "-7px",
+                                                                        }}
+                                                                    >
+                                                                        "نام&nbsp;بانک&nbsp;در&nbsp;کشور&nbsp;مبداء"
+                                                                    </Typography>
+                                                                }
+
+                                                                fullWidth
                                                                 disabled={b.nameCheck || !rc.originConnectionCheck || !this.state.editable}
                                                                 className="margin-bottom-5 origin-bank-input"
                                                                 onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "originBanks", bi, "name")}/>
 
-                                                        </Col>
-                                                        {/*<Col className="mode2" style={{paddingRight: "0"}}>*/}
-                                                        {/*    <Form.Control*/}
-                                                        {/*        value={b.name}*/}
-                                                        {/*        disabled={b.nameCheck || !rc.originConnectionCheck}*/}
-                                                        {/*        className="margin-bottom-5 origin-bank-input"*/}
-                                                        {/*        onChange={(e) => this.contentLevel2onChangeHandler(e, "remittanceContents", ri, "originBanks", bi, "name")}*/}
-                                                        {/*        placeholder="نام بانک در کشور مبداء:"/>*/}
+                                                        </Grid>
 
-                                                        {/*</Col>*/}
+                                                        <Grid item lg={3} className="">
 
-                                                    </Col>
-                                                    <Col md="4" className="mb-2" style={{marginRight: "10px"}}>
-                                                        <ToggleButtonGroup type="checkbox"
-                                                                           defaultValue={b.nameCheck}>
-                                                            <Form.Check
-                                                                disabled={!rc.originConnectionCheck || !this.state.editable}
-                                                                value={true}
-                                                                custom
-                                                                type="checkbox"
-                                                                name={"rc-" + ri + "-origin-name-check-" + bi}
-                                                                id={"rc-" + ri + "-origin-name-check-" + bi}
-                                                                label="عدم افشای نام بانک"
-                                                                onChange={(e) => this.props.onDisableRemittanceBanksNameHandler(e, ri, "originBanks", bi)}
-                                                            />
-                                                        </ToggleButtonGroup>
-                                                    </Col>
+                                                            <ButtonGroup fullWidth>
+                                                                <FormControl fullWidth component="fieldset"
+                                                                             size="small">
+                                                                    <FormGroup>
+                                                                        <FormControlLabel
+                                                                            style={{
+                                                                                margin: "auto",
+                                                                            }}
 
+                                                                            InputProps={{
+                                                                                style: {
+                                                                                    fontFamily: 'Nika',
+                                                                                    fontSize: "large",
+                                                                                    direction: "rtl",
+                                                                                },
+                                                                            }}
 
-                                                </Col>
-                                                <Col md="12" as={Row} noGutters={true}>
+                                                                            control={<Checkbox
+                                                                                checked={b.nameCheck}
+                                                                                onChange={(e) => this.props.onDisableRemittanceBanksNameHandler(e, ri, "originBanks", bi)}
+                                                                                name={"rc-" + ri + "-origin-name-check-" + bi}
+                                                                                id={"rc-" + ri + "-origin-name-check-" + bi}
+                                                                                disabled={!rc.originConnectionCheck || !this.state.editable}
 
-                                                    <Col md="4" className="mb-2" as={Row}
-                                                         noGutters={true}>
-                                                        <Col md="5">
-                                                            <Form.Label className="mode1">سطح قدرت مذاکره:</Form.Label>
-                                                        </Col>
-                                                        <Col md="7" className="mode1">
-                                                            <Form.Control as="select"
-                                                                          onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "originBanks", bi, "negotiationLevel")}
-                                                                          value={b.negotiationLevel}
-                                                                          disabled={!rc.originConnectionCheck || !this.state.editable}>
-                                                                {this.negotiationLevels.map(option => (
-                                                                    <option key={option} value={option}>
-                                                                        {option}
-                                                                    </option>
-                                                                ))}
-                                                            </Form.Control>
-                                                        </Col>
-                                                        {/*<Col className="mode2" style={{paddingRight: "0"}}>*/}
-                                                        {/*    <Form.Control as="select"*/}
-                                                        {/*                  onChange={(e) => this.contentLevel2onChangeHandler(e, "remittanceContents", ri, "originBanks", bi, "negotiationLevel")}*/}
-                                                        {/*                  value={b.negotiationLevel}*/}
-                                                        {/*                  disabled={!rc.originConnectionCheck}>*/}
-                                                        {/*        {this.negotiationLevelsMode2.map(option => (*/}
-                                                        {/*            <option key={option} value={option}>*/}
-                                                        {/*                {option}*/}
-                                                        {/*            </option>*/}
-                                                        {/*        ))}*/}
-                                                        {/*    </Form.Control>*/}
-                                                        {/*</Col>*/}
-                                                    </Col>
+                                                                            />}
+                                                                            label={
+                                                                                <Typography
+                                                                                    style={{
+                                                                                        fontFamily: 'Nika',
+                                                                                        fontSize: "large",
+                                                                                        marginTop: "-7px",
+                                                                                    }}
+                                                                                >
+                                                                                    عدم&nbsp;افشای&nbsp;نام&nbsp;بانک
+                                                                                </Typography>
+                                                                            }
+                                                                        />
+                                                                    </FormGroup>
+                                                                </FormControl>
+                                                            </ButtonGroup>
 
-                                                    <Col md="4" className="mb-2" as={Row} noGutters={true}>
-                                                        <Col md="7">
-                                                            <Form.Label>
-                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                حداقل مقدار حواله ماهانه:
-                                                            </Form.Label>
-                                                        </Col>
+                                                        </Grid>
 
-                                                        <Col md="5">
-                                                            <Form.Control
-                                                                value={b.minimumAmount}
-                                                                onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "originBanks", bi, "minimumAmount")}
-                                                                disabled={!rc.originConnectionCheck || !this.state.editable}/>
-                                                        </Col>
-                                                    </Col>
-                                                    <Col md="4" as={Row} noGutters={true}>
-                                                        <Col md="7">
-                                                            <Form.Label>
-                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                حداکثر مقدار حواله ماهانه:
-                                                            </Form.Label>
-                                                        </Col>
-                                                        <Col md="5">
-                                                            <Form.Control
-                                                                value={b.maximumAmount}
-                                                                onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "originBanks", bi, "maximumAmount")}
-                                                                disabled={!rc.originConnectionCheck || !this.state.editable}/>
-                                                        </Col>
-                                                    </Col>
+                                                        <Grid container spacing={1} item lg={3}
+                                                              className="textfield-container">
+
+                                                            <FormControl variant="outlined" fullWidth size="small">
+                                                                <InputLabel
+                                                                    id="demo-simple-select-outlined-label">
+
+                                                                    <Typography
+                                                                        style={{
+                                                                            fontFamily: 'Nika',
+                                                                            fontSize: "larger",
+                                                                            marginTop: "-7px",
+                                                                        }}>
+                                                                        سطح&nbsp;مذاکره
+                                                                    </Typography>
+
+                                                                </InputLabel>
+                                                                <Select
+
+                                                                    labelId="demo-simple-select-outlined-label"
+                                                                    id="demo-simple-select-outlined"
+
+                                                                    InputProps={{
+                                                                        style: {
+                                                                            // fontWeight: "bold",
+
+                                                                        },
+                                                                        shrink: true,
+                                                                    }}
 
 
-                                                </Col>
-                                                <Form.Group>
+                                                                    label={
+                                                                        <Typography
+                                                                            style={{
+                                                                                fontFamily: 'Nika',
+                                                                                fontSize: "larger",
+                                                                                marginTop: "-7px",
+                                                                            }}
+                                                                        >
+                                                                            "سطح&nbsp;مذاکره"
+                                                                        </Typography>
+                                                                    }
+
+                                                                    onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "originBanks", bi, "negotiationLevel")}
+                                                                    value={b.negotiationLevel}
+                                                                    disabled={!rc.originConnectionCheck || !this.state.editable}>
+
+                                                                    {this.negotiationLevels.map(option => (
+                                                                        <MenuItem key={option} value={option}>
+                                                                            {option}
+                                                                        </MenuItem>
+                                                                    ))}
+                                                                </Select>
+                                                            </FormControl>
+
+                                                        </Grid>
+
+
+                                                    </Grid>
+                                                    <Grid container item lg={12} spacing={4} style={{marginTop: "5px"}}>
+
+                                                        <Grid container item lg={6} spacing={1}>
+                                                            <Grid item lg={6} className="textfield-container">
+
+                                                                <TextField
+                                                                    variant="outlined"
+                                                                    size="small"
+                                                                    InputLabelProps={{
+                                                                        style: {
+                                                                            // fontWeight: "bold",
+
+                                                                        },
+                                                                        shrink: true,
+                                                                    }}
+
+                                                                    label={
+                                                                        <Typography
+                                                                            style={{
+                                                                                fontFamily: 'Nika',
+                                                                                fontSize: "larger",
+                                                                                marginTop: "-7px",
+                                                                            }}
+                                                                        >
+                                                                            "حداقل&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه"
+                                                                        </Typography>
+                                                                    }
+
+                                                                    fullWidth
+                                                                    value={b.minimumAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                                                    onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "originBanks", bi, "minimumAmount", true)}
+                                                                    disabled={!rc.originConnectionCheck || !this.state.editable}/>
+                                                            </Grid>
+                                                            <Grid item lg={6} className="textfield-container">
+
+                                                                <TextField
+                                                                    variant="outlined"
+                                                                    size="small"
+                                                                    InputLabelProps={{
+                                                                        style: {
+                                                                            // fontWeight: "bold",
+
+                                                                        },
+                                                                        shrink: true,
+                                                                    }}
+
+
+                                                                    label={
+                                                                        <Typography
+                                                                            style={{
+                                                                                fontFamily: 'Nika',
+                                                                                fontSize: "larger",
+                                                                                marginTop: "-7px",
+                                                                            }}
+                                                                        >
+                                                                            معادل دلاری
+                                                                        </Typography>
+                                                                    }
+
+                                                                    fullWidth
+                                                                    value={b.minInDollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                                                    onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "originBanks", bi, "minInDollar", true)}
+                                                                    disabled={!rc.originConnectionCheck || !this.state.editable}/>
+                                                            </Grid>
+                                                        </Grid>
+
+                                                        <Grid container item lg={6} spacing={1}>
+                                                            <Grid item lg={6} className="textfield-container">
+
+                                                                <TextField
+                                                                    variant="outlined"
+                                                                    size="small"
+                                                                    InputLabelProps={{
+                                                                        style: {
+                                                                            // fontWeight: "bold",
+
+                                                                        },
+                                                                        shrink: true,
+                                                                    }}
+
+                                                                    label={
+                                                                        <Typography
+                                                                            style={{
+                                                                                fontFamily: 'Nika',
+                                                                                fontSize: "larger",
+                                                                                marginTop: "-7px",
+                                                                            }}
+                                                                        >
+                                                                            "حداکثر&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه"
+                                                                        </Typography>
+                                                                    }
+
+                                                                    fullWidth
+                                                                    value={b.maximumAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                                                    onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "originBanks", bi, "maximumAmount", true)}
+                                                                    disabled={!rc.originConnectionCheck || !this.state.editable}/>
+                                                            </Grid>
+                                                            <Grid item lg={6} className="textfield-container">
+
+                                                                <TextField
+                                                                    variant="outlined"
+                                                                    size="small"
+                                                                    InputLabelProps={{
+                                                                        style: {
+                                                                            // fontWeight: "bold",
+
+                                                                        },
+                                                                        shrink: true,
+                                                                    }}
+
+                                                                    label={
+                                                                        <Typography
+                                                                            style={{
+                                                                                fontFamily: 'Nika',
+                                                                                fontSize: "larger",
+                                                                                marginTop: "-7px",
+                                                                            }}
+                                                                        >
+                                                                            معادل&nbsp;دلاری
+                                                                        </Typography>
+                                                                    }
+
+                                                                    fullWidth
+                                                                    value={b.maxInDollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                                                    onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "originBanks", bi, "maxInDollar", true)}
+                                                                    disabled={!rc.originConnectionCheck || !this.state.editable}/>
+                                                            </Grid>
+                                                        </Grid>
+
+                                                    </Grid>
                                                     <Button className="remove-btn tiny-control-btn top-left"
                                                             onClick={() => this.props.onRemoveContentLevel1Handler("remittanceContents", ri, "originBanks", bi)}
                                                             disabled={!rc.originConnectionCheck || !this.state.editable}>
                                                         ×</Button>
-                                                </Form.Group>
 
-                                            </Row>
-
-                                        );
-                                    })}
-
-                                </Container>
-                                <Button variant="primary" className="add-btn tiny-control-btn"
-                                        disabled={!rc.originConnectionCheck || !this.state.editable}
-                                        onClick={() => this.props.onAddContentLevel1Handler("remittanceContents", ri, "originBanks")}>+</Button>
+                                                </Grid>
 
 
-                                <Container fluid className="mb-0 mt-4">
+                                            );
+                                        })}
 
-                                    {rc.originPartners.map((p, pi) => {
-                                        return (
-                                            <Row
-                                                className="form-inner-content"
-                                                style={{marginBottom: "5px", position: "relative"}}
-                                                key={"rc-" + ri + "-origin-partner-" + pi}>
+                                    </Grid>
+                                    <Button variant="contained"
+                                            className="add-btn tiny-control-btn"
+                                            style={{marginTop: "10px", marginRight: "-5px"}}
+                                            disabled={!rc.originConnectionCheck || !this.state.editable}
+                                            onClick={() => this.props.onAddContentLevel1Handler("remittanceContents", ri, "originBanks")}>+</Button>
 
-                                                <Col md="12" className="mb-2" noGutters={true} as={Row}>
-                                                    <Col md="3">
-                                                        <Form.Label>نام شریک اقتصادی در کشور مبداء:</Form.Label>
-                                                    </Col>
-                                                    <Col md="6">
-                                                        <Form.Control
+
+                                    <Grid container item md={12} style={{marginTop: "10px"}}>
+
+                                        {rc.originPartners.map((p, pi) => {
+                                            return (
+                                                <Grid container item md={12}
+                                                      className="form-inner-content"
+                                                      style={{
+                                                          marginTop: "10px",
+                                                          paddingBottom: "0",
+                                                          paddingLeft: "20px",
+                                                          position: "relative"
+                                                      }}
+                                                      key={"rc-" + ri + "-origin-partner-" + pi} spacing={1}>
+
+                                                    <Grid item md={5} className="textfield-container"
+                                                          spacing={1}>
+                                                        <TextField
+                                                            fullWidth
+                                                            label={
+                                                                <Typography
+                                                                    style={{
+                                                                        fontFamily: 'Nika',
+                                                                        fontSize: "larger",
+                                                                        marginTop: "-7px",
+                                                                    }}
+                                                                >
+                                                                    "نام شریک&nbsp;اقتصادی&nbsp;در&nbsp;کشور&nbsp;مبداء"
+                                                                </Typography>
+                                                            }
+                                                            variant="outlined"
+                                                            InputLabelProps={{
+                                                                style: {
+                                                                    // fontWeight: "bold",
+
+                                                                },
+                                                                shrink: true,
+                                                            }}
+                                                            InputProps={{
+                                                                style: {
+                                                                    fontFamily: 'Nika',
+                                                                    fontSize: "large",
+                                                                    direction: "rtl",
+                                                                },
+                                                            }}
                                                             disabled={!this.state.editable}
                                                             value={p.name}
                                                             className="margin-bottom-5 origin-bank-input"
                                                             onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "originPartners", pi, "name")}
                                                         />
-                                                    </Col>
-                                                </Col>
+                                                    </Grid>
 
-                                                <Col md="12">
-                                                    {p.countries.map((c, ci) => {
-                                                        return (
-                                                            <Row key={"rc-" + ri + "-origin-partner-" + pi}
-                                                                 style={{position: "relative"}}
-                                                                 className="form-content mb-1" noGutters={true}>
+                                                    <Grid item md={7} spacing={1}>
+                                                        {p.countries.map((c, ci) => {
+                                                            return (
+                                                                <Grid container item md={12}
+                                                                      key={"rc-" + ri + "-origin-partner-" + pi}
+                                                                      style={{
+                                                                          position: "relative",
+                                                                          padding: "10px 5px 5px 20px"
+                                                                      }}
+                                                                      className="form-content" spacing={1}>
 
-                                                                <Col md="5" as={Row} className="mb-2" noGutters={true}>
-                                                                    <Col md="5">
-                                                                        <Form.Label className="mode1">کشور طرف
-                                                                            معامله:</Form.Label>
+                                                                    <Grid item md={7} spacing={1}
+                                                                          className="textfield-container">
 
-                                                                    </Col>
-                                                                    <Col md="7" className="mode1">
-                                                                        <Form.Control as="select"
-                                                                                      size="sm"
-                                                                                      disabled={!this.state.editable}
-                                                                                      id={"rc-" + ri + "-origin-partner-" + pi + "-country-" + ci}
-                                                                                      onChange={(e) => this.props.onContentLevel3onChangeHandler(e, "remittanceContents", ri, "originPartners", pi, "countries", ci, "name")}
-                                                                                      value={c.name}>
-                                                                            {this.countries.map(option => (
-                                                                                <option key={option}
-                                                                                        value={option}>
-                                                                                    {option}
-                                                                                </option>
-                                                                            ))}
-                                                                        </Form.Control>
-                                                                    </Col>
-                                                                    {/*<Col className="mode2"*/}
-                                                                    {/*     style={{paddingRight: "0", marginRight: "5px"}}>*/}
-                                                                    {/*    <Form.Control as="select"*/}
-                                                                    {/*                  id={"rc-" + ri + "-origin-partner-" + pi + "-country-" + ci}*/}
-                                                                    {/*                  onChange={(e) => this.contentLevel3onChangeHandler(e, "remittanceContents", ri, "originPartners", pi, "countries", ci, "name")}*/}
-                                                                    {/*                  value={c.name}>*/}
-                                                                    {/*        {this.countriesMode22.map(option => (*/}
-                                                                    {/*            <option key={option}*/}
-                                                                    {/*                    value={option}>*/}
-                                                                    {/*                {option}*/}
-                                                                    {/*            </option>*/}
-                                                                    {/*        ))}*/}
-                                                                    {/*    </Form.Control>*/}
-                                                                    {/*</Col>*/}
-                                                                </Col>
+                                                                        <Autocomplete
+                                                                            id={"rc-" + ri + "-origin-partner-" + pi + "-country-" + ci}
 
-                                                                <Col md="5" as={Row} className="mb-2" noGutters={true}>
-                                                                    <Col md="5">
-                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                        حجم معامله:
-                                                                    </Col>
-                                                                    <Col md="6">
-                                                                        <Form.Control
-                                                                            size="sm"
+                                                                            debug
+                                                                            // disableCloseOnSelect
+                                                                            clearOnEscape
+                                                                            // disableClearable
+                                                                            includeInputInList
+                                                                            autoComplete
+                                                                            disableListWrap
+                                                                            openOnFocus
+                                                                            autoHighlight
+                                                                            // autoSelect
+                                                                            blurOnSelect
+                                                                            style={{
+                                                                                // backgroundColor: "black"
+                                                                            }}
+                                                                            value={c.name}
+                                                                            groupBy={(option) => option[0]}
+
                                                                             disabled={!this.state.editable}
-                                                                            value={c.amount}
-                                                                            onChange={(e) => this.props.onContentLevel3onChangeHandler(e, "remittanceContents", ri, "originPartners", pi, "countries", ci, "amount")}
+                                                                            onChange={(e, selected) => {
+                                                                                if (selected !== null) {
+                                                                                    this.props.onContentLevel3onChangeHandler(selected, "remittanceContents", ri, "originPartners", pi, "countries", ci, "name", false, true)
+                                                                                }
+                                                                            }}
+                                                                            options={this.listedCountries.sort((a, b) => -b[0].localeCompare(a[0]))}
+                                                                            renderInput={(params) =>
+                                                                                <TextField {...params}
+                                                                                           fullWidth
+                                                                                           InputLabelProps={{
+                                                                                               style: {
+                                                                                                   // fontWeight: "bold",
+
+                                                                                               },
+                                                                                               shrink: true,
+                                                                                           }}
+
+                                                                                           label={
+                                                                                               <Typography
+                                                                                                   style={{
+                                                                                                       fontFamily: 'Nika',
+                                                                                                       fontSize: "larger",
+                                                                                                       marginTop: "-7px",
+                                                                                                   }}
+                                                                                               >
+                                                                                                   "کشور&nbsp;طرف&nbsp;معامله"
+                                                                                               </Typography>
+                                                                                           }
+
+                                                                                           variant="outlined"/>
+                                                                            }/>
+                                                                    </Grid>
+
+                                                                    <Grid item md={5} className="textfield-container"
+                                                                          spacing={1}>
+                                                                        <TextField
+                                                                            size="small"
+                                                                            label={
+                                                                                <Typography
+                                                                                    style={{
+                                                                                        fontFamily: 'Nika',
+                                                                                        fontSize: "larger",
+                                                                                        marginTop: "-7px",
+                                                                                    }}
+                                                                                >
+                                                                                    "حجم&nbsp;معامله"
+                                                                                </Typography>
+                                                                            }
+
+                                                                            disabled={!this.state.editable}
+                                                                            value={c.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                                                            variant="outlined"
+                                                                            InputLabelProps={{
+                                                                                style: {
+                                                                                    // fontWeight: "bold",
+
+                                                                                },
+                                                                                shrink: true,
+                                                                            }}
+                                                                            onChange={(e) => this.props.onContentLevel3onChangeHandler(e, "remittanceContents", ri, "originPartners", pi, "countries", ci, "amount", true, false)}
                                                                         />
-                                                                    </Col>
-                                                                </Col>
-                                                                <Button
-                                                                    className="remove-btn tiny-control-btn top-left"
-                                                                    disabled={!this.state.editable}
-                                                                    onClick={() => this.props.onRemoveContentLevel2Handler("remittanceContents", ri, "originPartners", pi, "countries", ci)}>
-                                                                    ×</Button>
-
-                                                            </Row>
-
-                                                        );
-                                                    })}
+                                                                    </Grid>
 
 
-                                                    <Button variant="primary"
-                                                            disabled={!this.state.editable}
-                                                            className="add-btn tiny-control-btn"
-                                                            onClick={() => this.props.onAddContentLevel2Handler("remittanceContents", ri, "originPartners", pi, "countries")}>+</Button>
-                                                </Col>
-                                                <Form.Group>
+                                                                    <Button
+                                                                        className="remove-btn tiny-control-btn top-left"
+                                                                        disabled={!this.state.editable}
+                                                                        onClick={() => this.props.onRemoveContentLevel2Handler("remittanceContents", ri, "originPartners", pi, "countries", ci)}>
+                                                                        ×</Button>
+
+                                                                </Grid>
+
+                                                            );
+                                                        })}
+                                                        <Button variant="primary"
+                                                                disabled={!this.state.editable}
+                                                                style={{marginTop: "5px"}}
+                                                                className="add-btn tiny-control-btn"
+                                                                onClick={() => this.props.onAddContentLevel2Handler("remittanceContents", ri, "originPartners", pi, "countries")}>+</Button>
+
+
+                                                    </Grid>
+
+
                                                     <Button className="remove-btn tiny-control-btn top-left"
                                                             disabled={!this.state.editable}
                                                             onClick={() => this.props.onRemoveContentLevel1Handler("remittanceContents", ri, "originPartners", pi)}>
                                                         ×</Button>
-                                                </Form.Group>
 
-                                            </Row>
+                                                </Grid>
 
 
-                                        );
-                                    })}
+                                            );
+                                        })}
 
-                                </Container>
-                                <Button variant="primary" className="add-btn tiny-control-btn"
-                                        disabled={!this.state.editable}
-                                        onClick={() => this.props.onAddContentLevel1Handler("remittanceContents", ri, "originPartners")}>+</Button>
+                                    </Grid>
 
+                                    <Button variant="primary"
+                                            className="add-btn tiny-control-btn"
+                                            style={{marginTop: "10px", marginRight: "-5px"}}
+                                            disabled={!this.state.editable}
+                                            onClick={() => this.props.onAddContentLevel1Handler("remittanceContents", ri, "originPartners")}>+</Button>
+
+
+                                </Grid>
 
                                 {/*//...........destination*/}
 
-                                <Container fluid className="mt-3">
-                                    <Form.Group as={Row}>
-                                        <Col md="6" className="mb-2" as={Row} noGutters={true}>
-                                            <Col md="4">
-                                                <Form.Label className="mode1">کشور مقصد حواله:</Form.Label>
-                                            </Col>
-                                            <Col md="7" className="mode1">
+                                <Grid container item style={{marginTop: "15px"}}>
 
+                                    <Button className="remove-btn control-btn top-right"
+                                            disabled={!this.state.editable}
+                                            onClick={() => this.props.onRemoveContentHandler("remittanceContents", ri)}>×</Button>
 
-                                                <ReactFlagsSelect
-                                                    // searchable={true}
-                                                    // searchPlaceholder="Search for a country"
-                                                    onSelect={
-                                                        event => {
-                                                            alert(event)
+                                    <Grid container item xs={12} spacing={1}
+                                          style={{marginTop: "25px", marginBottom: "15px"}}>
+                                        <Grid container item xs={12} spacing={1}>
+                                            <Grid item xs={4} className="textfield-container" spacing={1}>
+
+                                                <Autocomplete
+                                                    id={"rc-" + ri + "-destination-country"}
+                                                    value={rc.destinationCountry}
+                                                    debug
+                                                    // disableCloseOnSelect
+                                                    clearOnEscape
+                                                    // disableClearable
+                                                    includeInputInList
+                                                    autoComplete
+                                                    disableListWrap
+                                                    openOnFocus
+                                                    autoHighlight
+                                                    autoSelect
+                                                    blurOnSelect
+
+                                                    groupBy={(option) => option[0]}
+                                                    disabled={!this.state.editable}
+                                                    onChange={(e, selected) => {
+                                                        if (selected !== null) {
+                                                            this.props.onContentLevel1onChangeHandler(selected, "remittanceContents", ri, "destinationCountry", true);
                                                         }
-                                                    }
-                                                />
-                                                {/*<Form.Control as="select"*/}
-                                                {/*              disabled={!this.state.editable}*/}
-                                                {/*              id={"rc-" + ri + "-destination-country"}*/}
-                                                {/*              onChange={(e) => this.props.onContentLevel1onChangeHandler(e, "remittanceContents", ri, "destinationCountry")}*/}
-                                                {/*              value={rc.destinationCountry}>*/}
-                                                {/*    {this.countries.map(option => (*/}
-                                                {/*        <option key={option} value={option}>*/}
-                                                {/*            {option}*/}
-                                                {/*        </option>*/}
-                                                {/*    ))}*/}
-                                                {/*</Form.Control>*/}
-                                            </Col>
+                                                    }}
 
-                                            {/*<Col className="mode2">*/}
-                                            {/*    <Form.Control as="select"*/}
-                                            {/*                  id={"rc-" + ri + "-destination-country"}*/}
-                                            {/*                  onChange={(e) => this.contentLevel1onChangeHandler(e, "remittanceContents", ri, "destinationCountry")}*/}
-                                            {/*                  value={rc.destinationCountry}>*/}
-                                            {/*        {this.countriesMode21.map(option => (*/}
-                                            {/*            <option key={option} value={option}>*/}
-                                            {/*                {option}*/}
-                                            {/*            </option>*/}
-                                            {/*        ))}*/}
-                                            {/*    </Form.Control>*/}
-                                            {/*</Col>*/}
+                                                    options={this.listedCountries.sort((a, b) => -b[0].localeCompare(a[0]))}
+                                                    renderInput={(params) => <TextField {...params}
+                                                                                        fullWidth
+                                                                                        InputLabelProps={{
+                                                                                            style: {
+                                                                                                // fontWeight: "bold",
 
-                                        </Col>
-                                        <Col md="6">
-                                            <Form.Label for="xyz" style={{verticalAlign: " top"}}>آیا در کشور مقصد با
-                                                بانکی
-                                                ارتباط دارید؟</Form.Label>
-                                            <ToggleButtonGroup type="radio" className="mb-2" id="xyz"
-                                                               defaultValue={rc.destinationConnectionCheck}
-                                                               name={"rc-" + ri + "-destination-connection-check"}
-                                                               style={{height: "100%"}}>
-                                                <Form.Check
-                                                    disabled={!this.state.editable}
-                                                    value={true}
-                                                    inline
-                                                    custom
-                                                    type="radio"
-                                                    id={"rc-" + ri + "-destination-connection-check-1"}
-                                                    label="بله"
-                                                    onChange={(e) => this.props.onDisableRemittanceBanksHandler(e, ri, "destinationBanks", "destinationConnectionCheck")}
-                                                />
-                                                <spam>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</spam>
-                                                <Form.Check
-                                                    disabled={!this.state.editable}
-                                                    value={false}
-                                                    inline
-                                                    custom
-                                                    type="radio"
-                                                    id={"rc-" + ri + "-destination-connection-check-2"}
-                                                    label="خیر"
-                                                    onChange={(e) => this.props.onDisableRemittanceBanksHandler(e, ri, "destinationBanks", "destinationConnectionCheck")}
-                                                />
-                                            </ToggleButtonGroup>
-                                        </Col>
-                                    </Form.Group>
-                                </Container>
+                                                                                            },
+                                                                                            shrink: true,
+                                                                                        }}
+                                                        // InputProps={{
+                                                        //     style: {
+                                                        //         fontFamily: 'Nika',
+                                                        //         direction: "rtl",
+                                                        //     },
+                                                        // }}
+                                                                                        label={
+                                                                                            <Typography
+                                                                                                style={{
+                                                                                                    fontFamily: 'Nika',
+                                                                                                    fontSize: "larger",
+                                                                                                    marginTop: "-7px",
+                                                                                                }}
+                                                                                            >
+                                                                                                کشور&nbsp;مقصد&nbsp;حواله
+                                                                                            </Typography>
 
-                                <Container fluid className="mb-0">
+                                                                                        }
+                                                                                        variant="outlined"/>
+                                                    }/>
 
-                                    {rc.destinationBanks.map((b, bi) => {
-                                        return (
-                                            <Row key={"rc-" + ri + "-destination-bank-" + bi}
-                                                 style={{marginBottom: "5px", position: "relative"}}
-                                                 className="form-inner-content">
 
-                                                <Col md="12" as={Row} noGutters={true}>
-                                                    <Col md="7" className="mb-2" as={Row}
-                                                         noGutters={true}>
-                                                        <Col md="4">
-                                                            <Form.Label className="mode1">نام بانک در کشور
-                                                                مقصد:</Form.Label>
-                                                        </Col>
-                                                        <Col md="8" className="mode1">
-                                                            <Form.Control
+                                            </Grid>
+                                            <Grid container item md={8} spacing={1}>
+                                                <RadioGroup row name="destination-connection"
+                                                            value={rc.destinationConnectionCheck}
+                                                            onChange={
+                                                                // (e) => alert("goodbye")
+                                                                (e) => this.props.onDisableRemittanceBanksHandler(e, ri, "destinationBanks", "destinationConnectionCheck")
+                                                            }>
+
+                                                    <FormControlLabel
+                                                        disabled={!this.state.editable}
+                                                        value={true}
+                                                        control={<Radio
+                                                            // value={true}
+                                                            // checked={true}
+                                                            id={"rc-" + ri + "-destination-connection-check-1"}
+
+                                                        />}
+                                                        style={{direction: "ltr"}}
+                                                        label={
+                                                            <Typography
+                                                                style={{
+                                                                    fontFamily: 'Nika',
+                                                                    fontSize: "large",
+                                                                    marginTop: "-7px",
+                                                                }}
+                                                            >
+                                                                "آیا&nbsp;در&nbsp;کشور&nbsp;مقصد&nbsp;با&nbsp;بانکی&nbsp;ارتباط&nbsp;دارید؟&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;بله"
+                                                            </Typography>
+                                                        }
+
+
+                                                    />
+                                                    <FormControlLabel
+                                                        disabled={!this.state.editable}
+                                                        value={false}
+                                                        control={<Radio
+                                                            // value={false}
+                                                            // checked={false}
+                                                            id={"rc-" + ri + "-destination-connection-check-2"}
+                                                        />}
+
+                                                        style={{direction: "ltr"}}
+                                                        label={
+                                                            <Typography
+                                                                style={{
+                                                                    fontFamily: 'Nika',
+                                                                    fontSize: "large",
+                                                                    marginTop: "-7px",
+                                                                }}
+                                                            >
+                                                                خیر
+                                                            </Typography>
+                                                        }
+
+                                                    />
+                                                </RadioGroup>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+
+                                    <Grid container item md={12}>
+
+                                        {rc.destinationBanks.map((b, bi) => {
+                                            return (
+                                                <Grid container item key={"rc-" + ri + "-destination-bank-" + bi}
+                                                      style={{marginTop: "10px", position: "relative"}}
+                                                      className="form-inner-content" spacing={1}>
+
+                                                    <Grid container item lg={12} spacing={2}>
+                                                        <Grid item lg={4} className="textfield-container">
+                                                            <TextField
                                                                 value={b.name}
+                                                                variant="outlined"
+                                                                size="small"
+                                                                InputLabelProps={{
+                                                                    style: {
+                                                                        // fontWeight: "bold",
+                                                                        direction: "ltr",
+
+                                                                    },
+                                                                    shrink: true,
+                                                                }}
+                                                                InputProps={{
+                                                                    style: {
+                                                                        fontFamily: 'Nika',
+                                                                        fontSize: "large",
+                                                                        direction: "rtl",
+                                                                    },
+                                                                }}
+                                                                label={
+                                                                    <Typography
+                                                                        style={{
+                                                                            fontFamily: 'Nika',
+                                                                            fontSize: "larger",
+                                                                            marginTop: "-7px",
+                                                                        }}
+                                                                    >
+                                                                        نام&nbsp;بانک&nbsp;در&nbsp;کشور&nbsp;مقصد
+                                                                    </Typography>
+                                                                }
+
+                                                                fullWidth
                                                                 disabled={b.nameCheck || !rc.destinationConnectionCheck || !this.state.editable}
                                                                 className="margin-bottom-5 destination-bank-input"
                                                                 onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "destinationBanks", bi, "name")}/>
 
-                                                        </Col>
-                                                        {/*<Col className="mode2" style={{paddingRight: "0"}}>*/}
-                                                        {/*    <Form.Control*/}
-                                                        {/*        value={b.name}*/}
-                                                        {/*        disabled={b.nameCheck || !rc.destinationConnectionCheck}*/}
-                                                        {/*        className="margin-bottom-5 destination-bank-input"*/}
-                                                        {/*        onChange={(e) => this.contentLevel2onChangeHandler(e, "remittanceContents", ri, "destinationBanks", bi, "name")}*/}
-                                                        {/*        placeholder="نام بانک در کشور مبداء:"/>*/}
+                                                        </Grid>
 
-                                                        {/*</Col>*/}
+                                                        <Grid item lg={3} className="">
 
-                                                    </Col>
-                                                    <Col md="4" className="mb-2" style={{marginRight: "10px"}}>
-                                                        <ToggleButtonGroup type="checkbox"
-                                                                           defaultValue={b.nameCheck}>
-                                                            <Form.Check
-                                                                disabled={!rc.destinationConnectionCheck || !this.state.editable}
-                                                                value={true}
-                                                                custom
-                                                                type="checkbox"
-                                                                name={"rc-" + ri + "-destination-name-check-" + bi}
-                                                                id={"rc-" + ri + "-destination-name-check-" + bi}
-                                                                label="عدم افشای نام بانک"
-                                                                onChange={(e) => this.props.onDisableRemittanceBanksNameHandler(e, ri, "destinationBanks", bi)}
-                                                            />
-                                                        </ToggleButtonGroup>
-                                                    </Col>
+                                                            <ButtonGroup fullWidth>
+                                                                <FormControl fullWidth component="fieldset"
+                                                                             size="small">
+                                                                    <FormGroup>
+                                                                        <FormControlLabel
+                                                                            style={{
+                                                                                margin: "auto",
+                                                                            }}
 
+                                                                            InputProps={{
+                                                                                style: {
+                                                                                    fontFamily: 'Nika',
+                                                                                    fontSize: "large",
+                                                                                    direction: "rtl",
+                                                                                },
+                                                                            }}
 
-                                                </Col>
-                                                <Col md="12" as={Row} noGutters={true}>
+                                                                            control={<Checkbox
+                                                                                checked={b.nameCheck}
+                                                                                onChange={(e) => this.props.onDisableRemittanceBanksNameHandler(e, ri, "destinationBanks", bi)}
+                                                                                name={"rc-" + ri + "-destination-name-check-" + bi}
+                                                                                id={"rc-" + ri + "-destination-name-check-" + bi}
+                                                                                disabled={!rc.destinationConnectionCheck || !this.state.editable}
 
-                                                    <Col md="4" className="mb-2" as={Row}
-                                                         noGutters={true}>
-                                                        <Col md="5">
-                                                            <Form.Label className="mode1">سطح قدرت مذاکره:</Form.Label>
-                                                        </Col>
-                                                        <Col md="7" className="mode1">
-                                                            <Form.Control as="select"
-                                                                          onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "destinationBanks", bi, "negotiationLevel")}
-                                                                          value={b.negotiationLevel}
-                                                                          disabled={!rc.destinationConnectionCheck || !this.state.editable}>
-                                                                {this.negotiationLevels.map(option => (
-                                                                    <option key={option} value={option}>
-                                                                        {option}
-                                                                    </option>
-                                                                ))}
-                                                            </Form.Control>
-                                                        </Col>
-                                                        {/*<Col className="mode2" style={{paddingRight: "0"}}>*/}
-                                                        {/*    <Form.Control as="select"*/}
-                                                        {/*                  onChange={(e) => this.contentLevel2onChangeHandler(e, "remittanceContents", ri, "destinationBanks", bi, "negotiationLevel")}*/}
-                                                        {/*                  value={b.negotiationLevel}*/}
-                                                        {/*                  disabled={!rc.destinationConnectionCheck}>*/}
-                                                        {/*        {this.negotiationLevelsMode2.map(option => (*/}
-                                                        {/*            <option key={option} value={option}>*/}
-                                                        {/*                {option}*/}
-                                                        {/*            </option>*/}
-                                                        {/*        ))}*/}
-                                                        {/*    </Form.Control>*/}
-                                                        {/*</Col>*/}
-                                                    </Col>
+                                                                            />}
+                                                                            label={
+                                                                                <Typography
+                                                                                    style={{
+                                                                                        fontFamily: 'Nika',
+                                                                                        fontSize: "large",
+                                                                                        marginTop: "-7px",
+                                                                                    }}
+                                                                                >
+                                                                                    عدم&nbsp;افشای&nbsp;نام&nbsp;بانک
+                                                                                </Typography>
+                                                                            }
+                                                                        />
+                                                                    </FormGroup>
+                                                                </FormControl>
+                                                            </ButtonGroup>
 
-                                                    <Col md="4" className="mb-2" as={Row} noGutters={true}>
-                                                        <Col md="7">
-                                                            <Form.Label>
-                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                حداقل مقدار حواله ماهانه:
-                                                            </Form.Label>
-                                                        </Col>
-                                                        <Col md="5">
-                                                            <Form.Control
-                                                                value={b.minimumAmount}
-                                                                onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "destinationBanks", bi, "minimumAmount")}
-                                                                disabled={!rc.destinationConnectionCheck || !this.state.editable}/>
+                                                        </Grid>
 
-                                                        </Col>
-                                                    </Col>
-                                                    <Col md="4" as={Row} noGutters={true}>
-                                                        <Col md="7">
-                                                            <Form.Label>
-                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                حداکثر مقدار حواله ماهانه:
-                                                            </Form.Label>
-                                                        </Col>
-                                                        <Col md="5">
-                                                            <Form.Control
-                                                                value={b.maximumAmount}
-                                                                onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "destinationBanks", bi, "maximumAmount")}
-                                                                disabled={!rc.destinationConnectionCheck || !this.state.editable}/>
-                                                        </Col>
-                                                    </Col>
+                                                        <Grid container spacing={1} item lg={3}
+                                                              className="textfield-container">
+
+                                                            <FormControl variant="outlined" fullWidth size="small">
+                                                                <InputLabel>
+
+                                                                    <Typography
+                                                                        style={{
+                                                                            fontFamily: 'Nika',
+                                                                            fontSize: "larger",
+                                                                            marginTop: "-7px",
+                                                                        }}>
+                                                                        سطح&nbsp;مذاکره
+                                                                    </Typography>
+
+                                                                </InputLabel>
+                                                                <Select
+
+                                                                    InputProps={{
+                                                                        style: {
+                                                                            // fontWeight: "bold",
+
+                                                                        },
+                                                                        shrink: true,
+                                                                    }}
 
 
-                                                </Col>
-                                                <Form.Group>
+                                                                    label={
+                                                                        <Typography
+                                                                            style={{
+                                                                                fontFamily: 'Nika',
+                                                                                fontSize: "larger",
+                                                                                marginTop: "-7px",
+                                                                            }}>
+                                                                            "سطح&nbsp;مذاکره"
+                                                                        </Typography>
+                                                                    }
+
+                                                                    onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "destinationBanks", bi, "negotiationLevel")}
+                                                                    value={b.negotiationLevel}
+                                                                    disabled={!rc.destinationConnectionCheck || !this.state.editable}>
+
+                                                                    {this.negotiationLevels.map(option => (
+                                                                        <MenuItem key={option} value={option}>
+                                                                            {option}
+                                                                        </MenuItem>
+                                                                    ))}
+                                                                </Select>
+                                                            </FormControl>
+
+                                                        </Grid>
+
+
+                                                    </Grid>
+                                                    <Grid container item lg={12} spacing={4} style={{marginTop: "5px"}}>
+
+                                                        <Grid container item lg={6} spacing={1}>
+                                                            <Grid item lg={6} className="textfield-container">
+
+                                                                <TextField
+                                                                    variant="outlined"
+                                                                    size="small"
+                                                                    InputLabelProps={{
+                                                                        style: {
+                                                                            // fontWeight: "bold",
+
+                                                                        },
+                                                                        shrink: true,
+                                                                    }}
+
+                                                                    label={
+                                                                        <Typography
+                                                                            style={{
+                                                                                fontFamily: 'Nika',
+                                                                                fontSize: "larger",
+                                                                                marginTop: "-7px",
+                                                                            }}
+                                                                        >
+                                                                            "حداقل&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه"
+                                                                        </Typography>
+                                                                    }
+
+                                                                    fullWidth
+                                                                    value={b.minimumAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                                                    onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "destinationBanks", bi, "minimumAmount", true)}
+                                                                    disabled={!rc.destinationConnectionCheck || !this.state.editable}/>
+                                                            </Grid>
+                                                            <Grid item lg={6} className="textfield-container">
+
+                                                                <TextField
+                                                                    variant="outlined"
+                                                                    size="small"
+                                                                    InputLabelProps={{
+                                                                        style: {
+                                                                            // fontWeight: "bold",
+
+                                                                        },
+                                                                        shrink: true,
+                                                                    }}
+
+
+                                                                    label={
+                                                                        <Typography
+                                                                            style={{
+                                                                                fontFamily: 'Nika',
+                                                                                fontSize: "larger",
+                                                                                marginTop: "-7px",
+                                                                            }}
+                                                                        >
+                                                                            معادل دلاری
+                                                                        </Typography>
+                                                                    }
+
+                                                                    fullWidth
+                                                                    value={b.minInDollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                                                    onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "destinationBanks", bi, "minInDollar", true)}
+                                                                    disabled={!rc.destinationConnectionCheck || !this.state.editable}/>
+                                                            </Grid>
+                                                        </Grid>
+
+                                                        <Grid container item lg={6} spacing={1}>
+                                                            <Grid item lg={6} className="textfield-container">
+
+                                                                <TextField
+                                                                    variant="outlined"
+                                                                    size="small"
+                                                                    InputLabelProps={{
+                                                                        style: {
+                                                                            // fontWeight: "bold",
+
+                                                                        },
+                                                                        shrink: true,
+                                                                    }}
+
+                                                                    label={
+                                                                        <Typography
+                                                                            style={{
+                                                                                fontFamily: 'Nika',
+                                                                                fontSize: "larger",
+                                                                                marginTop: "-7px",
+                                                                            }}
+                                                                        >
+                                                                            "حداکثر&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه"
+                                                                        </Typography>
+                                                                    }
+
+                                                                    fullWidth
+                                                                    value={b.maximumAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                                                    onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "destinationBanks", bi, "maximumAmount", true)}
+                                                                    disabled={!rc.destinationConnectionCheck || !this.state.editable}/>
+                                                            </Grid>
+                                                            <Grid item lg={6} className="textfield-container">
+
+                                                                <TextField
+                                                                    variant="outlined"
+                                                                    size="small"
+                                                                    InputLabelProps={{
+                                                                        style: {
+                                                                            // fontWeight: "bold",
+
+                                                                        },
+                                                                        shrink: true,
+                                                                    }}
+
+                                                                    label={
+                                                                        <Typography
+                                                                            style={{
+                                                                                fontFamily: 'Nika',
+                                                                                fontSize: "larger",
+                                                                                marginTop: "-7px",
+                                                                            }}
+                                                                        >
+                                                                            معادل&nbsp;دلاری
+                                                                        </Typography>
+                                                                    }
+
+                                                                    fullWidth
+                                                                    value={b.maxInDollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                                                    onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "destinationBanks", bi, "maxInDollar", true)}
+                                                                    disabled={!rc.destinationConnectionCheck || !this.state.editable}/>
+                                                            </Grid>
+                                                        </Grid>
+
+                                                    </Grid>
                                                     <Button className="remove-btn tiny-control-btn top-left"
                                                             onClick={() => this.props.onRemoveContentLevel1Handler("remittanceContents", ri, "destinationBanks", bi)}
                                                             disabled={!rc.destinationConnectionCheck || !this.state.editable}>
                                                         ×</Button>
-                                                </Form.Group>
 
-                                            </Row>
-
-                                        );
-                                    })}
-
-                                </Container>
-                                <Button variant="primary" className="add-btn tiny-control-btn"
-                                        disabled={!rc.destinationConnectionCheck || !this.state.editable}
-                                        onClick={() => this.props.onAddContentLevel1Handler("remittanceContents", ri, "destinationBanks")}>+</Button>
+                                                </Grid>
 
 
-                                <Container fluid className="mb-0 mt-4">
+                                            );
+                                        })}
 
-                                    {rc.destinationPartners.map((p, pi) => {
-                                        return (
-                                            <Row
-                                                className="form-inner-content"
-                                                style={{marginBottom: "5px", position: "relative"}}
-                                                key={"rc-" + ri + "-destination-partner-" + pi}>
+                                    </Grid>
+                                    <Button variant="contained"
+                                            className="add-btn tiny-control-btn"
+                                            style={{marginTop: "10px", marginRight: "-5px"}}
+                                            disabled={!rc.destinationConnectionCheck || !this.state.editable}
+                                            onClick={() => this.props.onAddContentLevel1Handler("remittanceContents", ri, "destinationBanks")}>+</Button>
 
-                                                <Col md="12" className="mb-2" noGutters={true} as={Row}>
 
-                                                    <Col md="3">
-                                                        <Form.Label>نام شریک اقتصادی در کشور مقصد:</Form.Label>
-                                                    </Col>
-                                                    <Col md="6">
-                                                        <Form.Control
+                                    <Grid container item md={12} style={{marginTop: "10px"}}>
+
+                                        {rc.destinationPartners.map((p, pi) => {
+                                            return (
+                                                <Grid container item md={12}
+                                                      className="form-inner-content"
+                                                      style={{
+                                                          marginTop: "10px",
+                                                          paddingBottom: "0",
+                                                          paddingLeft: "20px",
+                                                          position: "relative"
+                                                      }}
+                                                      key={"rc-" + ri + "-destination-partner-" + pi} spacing={1}>
+
+                                                    <Grid item md={5} className="textfield-container"
+                                                          spacing={1}>
+                                                        <TextField
+                                                            fullWidth
+                                                            label={
+                                                                <Typography
+                                                                    style={{
+                                                                        fontFamily: 'Nika',
+                                                                        fontSize: "larger",
+                                                                        marginTop: "-7px",
+                                                                    }}
+                                                                >
+                                                                    نام شریک&nbsp;اقتصادی&nbsp;در&nbsp;کشور&nbsp;مقصد
+                                                                </Typography>
+                                                            }
+                                                            variant="outlined"
+                                                            InputLabelProps={{
+                                                                style: {
+                                                                    // fontWeight: "bold",
+
+                                                                },
+                                                                shrink: true,
+                                                            }}
+                                                            InputProps={{
+                                                                style: {
+                                                                    fontFamily: 'Nika',
+                                                                    fontSize: "large",
+                                                                    direction: "rtl",
+                                                                },
+                                                            }}
                                                             disabled={!this.state.editable}
                                                             value={p.name}
                                                             className="margin-bottom-5 destination-bank-input"
                                                             onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "destinationPartners", pi, "name")}
                                                         />
-                                                    </Col>
-                                                </Col>
+                                                    </Grid>
 
-                                                <Col md="12">
-                                                    {p.countries.map((c, ci) => {
-                                                        return (
-                                                            <Row key={"rc-" + ri + "-destination-partner-" + pi}
-                                                                 style={{position: "relative"}}
-                                                                 className="form-content mb-1" noGutters={true}>
+                                                    <Grid item md={7} spacing={1}>
+                                                        {p.countries.map((c, ci) => {
+                                                            return (
+                                                                <Grid container item md={12}
+                                                                      key={"rc-" + ri + "-destination-partner-" + pi}
+                                                                      style={{
+                                                                          position: "relative",
+                                                                          padding: "10px 5px 5px 20px"
+                                                                      }}
+                                                                      className="form-content" spacing={1}>
 
-                                                                <Col md="5" as={Row} className="mb-2" noGutters={true}>
-                                                                    <Col md="5">
-                                                                        <Form.Label className="mode1">کشور طرف
-                                                                            معامله:</Form.Label>
+                                                                    <Grid item md={7} spacing={1}
+                                                                          className="textfield-container">
 
-                                                                    </Col>
-                                                                    <Col md="7" className="mode1">
-                                                                        <Form.Control as="select"
-                                                                                      size="sm"
-                                                                                      disabled={!this.state.editable}
-                                                                                      id={"rc-" + ri + "-destination-partner-" + pi + "-country-" + ci}
-                                                                                      onChange={(e) => this.props.onContentLevel3onChangeHandler(e, "remittanceContents", ri, "destinationPartners", pi, "countries", ci, "name")}
-                                                                                      value={c.name}>
-                                                                            {this.countries.map(option => (
-                                                                                <option key={option}
-                                                                                        value={option}>
-                                                                                    {option}
-                                                                                </option>
-                                                                            ))}
-                                                                        </Form.Control>
-                                                                    </Col>
-                                                                    {/*<Col className="mode2"*/}
-                                                                    {/*     style={{paddingRight: "0", marginRight: "5px"}}>*/}
-                                                                    {/*    <Form.Control as="select"*/}
-                                                                    {/*                  id={"rc-" + ri + "-destination-partner-" + pi + "-country-" + ci}*/}
-                                                                    {/*                  onChange={(e) => this.contentLevel3onChangeHandler(e, "remittanceContents", ri, "destinationPartners", pi, "countries", ci, "name")}*/}
-                                                                    {/*                  value={c.name}>*/}
-                                                                    {/*        {this.countriesMode22.map(option => (*/}
-                                                                    {/*            <option key={option}*/}
-                                                                    {/*                    value={option}>*/}
-                                                                    {/*                {option}*/}
-                                                                    {/*            </option>*/}
-                                                                    {/*        ))}*/}
-                                                                    {/*    </Form.Control>*/}
-                                                                    {/*</Col>*/}
-                                                                </Col>
+                                                                        <Autocomplete
+                                                                            id={"rc-" + ri + "-destination-partner-" + pi + "-country-" + ci}
 
-                                                                <Col md="5" as={Row} className="mb-2" noGutters={true}>
-                                                                    <Col md="5">
-                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                        حجم معامله:
-                                                                    </Col>
-                                                                    <Col md="6">
-                                                                        <Form.Control
-                                                                            size="sm"
-                                                                            value={c.amount}
+                                                                            debug
+                                                                            // disableCloseOnSelect
+                                                                            clearOnEscape
+                                                                            // disableClearable
+                                                                            includeInputInList
+                                                                            autoComplete
+                                                                            disableListWrap
+                                                                            openOnFocus
+                                                                            autoHighlight
+                                                                            // autoSelect
+                                                                            blurOnSelect
+                                                                            style={{
+                                                                                // backgroundColor: "black"
+                                                                            }}
+                                                                            value={c.name}
+                                                                            groupBy={(option) => option[0]}
+
                                                                             disabled={!this.state.editable}
-                                                                            onChange={(e) => this.props.onContentLevel3onChangeHandler(e, "remittanceContents", ri, "destinationPartners", pi, "countries", ci, "amount")}
+                                                                            onChange={(e, selected) => {
+                                                                                if (selected !== null) {
+                                                                                    this.props.onContentLevel3onChangeHandler(selected, "remittanceContents", ri, "destinationPartners", pi, "countries", ci, "name", false, true)
+                                                                                }
+                                                                            }}
+                                                                            options={this.listedCountries.sort((a, b) => -b[0].localeCompare(a[0]))}
+                                                                            renderInput={(params) =>
+                                                                                <TextField {...params}
+                                                                                           fullWidth
+                                                                                           InputLabelProps={{
+                                                                                               style: {
+                                                                                                   // fontWeight: "bold",
+
+                                                                                               },
+                                                                                               shrink: true,
+                                                                                           }}
+
+                                                                                           label={
+                                                                                               <Typography
+                                                                                                   style={{
+                                                                                                       fontFamily: 'Nika',
+                                                                                                       fontSize: "larger",
+                                                                                                       marginTop: "-7px",
+                                                                                                   }}
+                                                                                               >
+                                                                                                   کشور&nbsp;طرف&nbsp;معامله
+                                                                                               </Typography>
+                                                                                           }
+
+                                                                                           variant="outlined"/>
+                                                                            }/>
+                                                                    </Grid>
+
+                                                                    <Grid item md={5} className="textfield-container"
+                                                                          spacing={1}>
+                                                                        <TextField
+                                                                            size="small"
+                                                                            label={
+                                                                                <Typography
+                                                                                    style={{
+                                                                                        fontFamily: 'Nika',
+                                                                                        fontSize: "larger",
+                                                                                        marginTop: "-7px",
+                                                                                    }}
+                                                                                >
+                                                                                    "حجم&nbsp;معامله"
+                                                                                </Typography>
+                                                                            }
+
+                                                                            disabled={!this.state.editable}
+                                                                            value={c.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                                                            variant="outlined"
+                                                                            InputLabelProps={{
+                                                                                style: {
+                                                                                    // fontWeight: "bold",
+
+                                                                                },
+                                                                                shrink: true,
+                                                                            }}
+                                                                            onChange={(e) => this.props.onContentLevel3onChangeHandler(e, "remittanceContents", ri, "destinationPartners", pi, "countries", ci, "amount", true, false)}
                                                                         />
-                                                                    </Col>
-                                                                </Col>
-                                                                <Button
-                                                                    className="remove-btn tiny-control-btn top-left"
-                                                                    disabled={!this.state.editable}
-                                                                    onClick={() => this.props.onRemoveContentLevel2Handler("remittanceContents", ri, "destinationPartners", pi, "countries", ci)}>
-                                                                    ×</Button>
-
-                                                            </Row>
-
-                                                        );
-                                                    })}
+                                                                    </Grid>
 
 
-                                                    <Button variant="primary"
-                                                            disabled={!this.state.editable}
-                                                            className="add-btn tiny-control-btn"
-                                                            onClick={() => this.props.onAddContentLevel2Handler("remittanceContents", ri, "destinationPartners", pi, "countries")}>+</Button>
-                                                </Col>
-                                                <Form.Group>
+                                                                    <Button
+                                                                        className="remove-btn tiny-control-btn top-left"
+                                                                        disabled={!this.state.editable}
+                                                                        onClick={() => this.props.onRemoveContentLevel2Handler("remittanceContents", ri, "destinationPartners", pi, "countries", ci)}>
+                                                                        ×</Button>
+
+                                                                </Grid>
+
+                                                            );
+                                                        })}
+                                                        <Button variant="primary"
+                                                                disabled={!this.state.editable}
+                                                                style={{marginTop: "5px"}}
+                                                                className="add-btn tiny-control-btn"
+                                                                onClick={() => this.props.onAddContentLevel2Handler("remittanceContents", ri, "destinationPartners", pi, "countries")}>+</Button>
+
+
+                                                    </Grid>
+
+
                                                     <Button className="remove-btn tiny-control-btn top-left"
                                                             disabled={!this.state.editable}
                                                             onClick={() => this.props.onRemoveContentLevel1Handler("remittanceContents", ri, "destinationPartners", pi)}>
                                                         ×</Button>
-                                                </Form.Group>
 
-                                            </Row>
-
-
-                                        );
-                                    })}
-
-                                </Container>
-                                <Button variant="primary" className="add-btn tiny-control-btn"
-                                        disabled={!this.state.editable}
-                                        onClick={() => this.props.onAddContentLevel1Handler("remittanceContents", ri, "destinationPartners")}>+</Button>
+                                                </Grid>
 
 
-                            </Container>
+                                            );
+                                        })}
+
+                                    </Grid>
+
+                                    <Button variant="primary"
+                                            className="add-btn tiny-control-btn"
+                                            style={{marginTop: "10px", marginRight: "-5px"}}
+                                            disabled={!this.state.editable}
+                                            onClick={() => this.props.onAddContentLevel1Handler("remittanceContents", ri, "destinationPartners")}>+</Button>
+
+
+                                </Grid>
+
+                            </Grid>
                         );
                     })
                 );
 
 
-            // let customerContainers = (
-            //     this.state.customerContents.map((cc, ci) => {
-            //         return (
-            //             <Form.Group className="form-content margin-bottom-5" key={"customer-" + ci}
-            //                         style={{padding: "5px 45px 5px 45px"}}>
-            //
-            //                 <Form.Group>
-            //                     <Button className="remove-btn control-btn"
-            //                             onClick={() => this.removeContentHandler("customerContents", ci)}>×</Button>
-            //                 </Form.Group>
-            //
-            //                 <Form.Group as={Row}>
-            //
-            //                     <Form.Label column sm="2">
-            //                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            //                         نوع مشتری :
-            //                     </Form.Label>
-            //
-            //                     <Col sm="3">
-            //                         <Form.Control as="select"
-            //                                       value={cc.cType}
-            //                                       onChange={(e) => this.contentLevel1onChangeHandler(e, "customerContents", ci, "cType")}>
-            //                             <option key="i" value="importer">وارد کننده</option>
-            //                             <option key="e" value="exporter">صادر کننده</option>
-            //                         </Form.Control>
-            //                     </Col>
-            //
-            //                     <Col sm="2"></Col>
-            //
-            //                     <Form.Label column sm="2">
-            //                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            //                         حجم تراکنش سالانه :
-            //                     </Form.Label>
-            //
-            //                     <Col sm="2">
-            //                         <Form.Control as="select"
-            //                                       value={cc.amount}
-            //                                       onChange={(e) => this.contentLevel1onChangeHandler(e, "customerContents", ci, "amount")}>
-            //
-            //                             {this.moneyScales.map(option => (
-            //                                 <option key={option} value={option}>
-            //                                     {option}
-            //                                 </option>
-            //                             ))}
-            //                         </Form.Control>
-            //
-            //                     </Col>
-            //
-            //                     <Col sm="1"></Col>
-            //
-            //                 </Form.Group>
-            //             </Form.Group>
-            //
-            //         );
-            //     })
-            // );
-
-
             form = (
-                <Form className="main-form my-form">
+                <form className="main-form my-form" style={{marginBottom: "10px"}}>
 
-                    <Container fluid className="form-inner-content padding-bottom-5 mb-4">
+                    <Container className="form-inner-content">
 
                         {remittanceContainers}
 
@@ -823,35 +1341,72 @@ class Main extends Component {
                                 onClick={() => this.props.onAddContentHandler("remittanceContents")}>+</Button>
                     </Container>
 
-                    {/*<Form.Group className="form-inner-content">*/}
+                    {/*<Grid className="form-inner-content">*/}
                     {/*    {customerContainers}*/}
                     {/*    <Button className="add-btn control-btn margin" variant="primary"*/}
                     {/*            onClick={() => this.addContentHandler("customerContents")}>+</Button>*/}
-                    {/*</Form.Group>*/}
+                    {/*</Grid>*/}
 
-                    <Container fluid className="form-inner-content">
-                        <Row className="form-content margin-bottom-5" style={{padding: "5px 45px 5px 45px"}}>
-                            <Col md="8" as={Row}>
-                                <Form.Label>
-                                    سرمایه مورد نیاز برای گسترش شبکه:
-                                </Form.Label>
-                                <Col>
-                                    <Form.Control as="select"
-                                                  disabled={!this.state.editable}
-                                                  value={this.props.formData.moneyRequired}
-                                                  onChange={(e) => this.props.onOnChangeHandler(e, "moneyRequired")}>
+                    <Container className="form-inner-content">
+                        <Grid container className="form-content margin-bottom-5" style={{padding: "15px"}}>
+                            <Grid item container className="textfield-container" md={5}>
+                                <FormControl variant="outlined" fullWidth size="small">
+                                    <InputLabel
+                                        id="demo-simple-select-outlined-label">
+
+                                        <Typography
+                                            style={{
+                                                fontFamily: 'Nika',
+                                                fontSize: "larger",
+                                                marginTop: "-7px",
+                                            }}>
+                                            سرمایه &nbsp;مورد&nbsp;نیاز&nbsp;برای&nbsp;گسترش&nbsp; شبکه
+                                        </Typography>
+
+                                    </InputLabel>
+                                    <Select
+
+                                        labelId="demo-simple-select-outlined-label"
+                                        id="demo-simple-select-outlined"
+
+                                        InputProps={{
+                                            style: {
+                                                // fontWeight: "bold",
+
+                                            },
+                                            shrink: true,
+                                        }}
+
+
+                                        label={
+                                            <Typography
+                                                style={{
+                                                    fontFamily: 'Nika',
+                                                    fontSize: "larger",
+                                                    marginTop: "-7px",
+                                                }}
+                                            >
+                                                سرمایه &nbsp;مورد&nbsp;نیاز&nbsp;برای&nbsp;گسترش&nbsp; شبکه
+
+                                            </Typography>
+                                        }
+                                        disabled={!this.state.editable}
+                                        value={this.props.formData.moneyRequired}
+                                        onChange={(e) => this.props.onOnChangeHandler(e, "moneyRequired")}>
+
                                         {this.moneyScales.map(option => (
-                                            <option key={option} value={option}>
+                                            <MenuItem key={option} value={option}>
                                                 {option}
-                                            </option>
+                                            </MenuItem>
                                         ))}
-                                    </Form.Control>
-                                </Col>
-                            </Col>
-                        </Row>
+                                    </Select>
+                                </FormControl>
+
+                            </Grid>
+                        </Grid>
                     </Container>
 
-                </Form>
+                </form>
             );
 
         } else {
@@ -860,14 +1415,12 @@ class Main extends Component {
 
         return (
 
-            <div className="mt-5 mb-5">
+            <div style={{marginTop: "50px"}}>
                 <h4 className={styles.TextCenter}>فرم زیر را کامل کنید</h4>
-                <div>
+                <div style={{marginBottom: "50px"}}>
                     {form}
 
-                    <Button className="mt-5 submit-btn" disabled={this.state.editable}
-                            onClick={() => this.setState({editable: true})}>ویرایش</Button>
-                    <Button className="mt-5  ml-2 submit-btn" disabled={!this.state.editable}
+                    <Button variant="contained" color="secondary" disabled={!this.state.editable}
                             onClick={() => {
                                 this.setState({
                                     editable: false,
@@ -875,6 +1428,10 @@ class Main extends Component {
 
                                 this.props.onPostForm({username: this.props.username}, this.props.formData)
                             }}>ارسال</Button>
+
+                    <Button variant="contained" disabled={this.state.editable}
+                            style={{marginLeft: "5px"}}
+                            onClick={() => this.setState({editable: true})}>ویرایش</Button>
 
                 </div>
             </div>
@@ -886,9 +1443,11 @@ class Main extends Component {
 const mapStateToProps = state => {
     return {
         username: state.auth.username,
+        date: state.main.data[state.main.data.length - 1].date,
         formData: state.main.data[state.main.data.length - 1].data,
         loading: state.main.loading,
         counter: state.main.counter,
+        isNew: state.main.data[state.main.data.length - 1].date === "init",
     }
 };
 
@@ -898,13 +1457,13 @@ const mapDispatchToProps = dispatch => {
         onOnChangeHandler: (event, control) => dispatch(actions.onChangeHandler(event, control)),
         onAddContentHandler: (control) => dispatch(actions.addContentHandler(control)),
         onRemoveContentHandler: (control, index) => dispatch(actions.removeContentHandler(control, index)),
-        onContentLevel1onChangeHandler: (event, control, index, control2) => dispatch(actions.contentLevel1onChangeHandler(event, control, index, control2)),
+        onContentLevel1onChangeHandler: (event, control, index, control2, autoFlag) => dispatch(actions.contentLevel1onChangeHandler(event, control, index, control2, autoFlag)),
         onAddContentLevel1Handler: (control, index, control2) => dispatch(actions.addContentLevel1Handler(control, index, control2)),
         onRemoveContentLevel1Handler: (control, index, control2, index2) => dispatch(actions.removeContentLevel1Handler(control, index, control2, index2)),
-        onContentLevel2onChangeHandler: (event, control, index, control2, index2, control3) => dispatch(actions.contentLevel2onChangeHandler(event, control, index, control2, index2, control3)),
+        onContentLevel2onChangeHandler: (event, control, index, control2, index2, control3, commaFlag) => dispatch(actions.contentLevel2onChangeHandler(event, control, index, control2, index2, control3, commaFlag)),
         onAddContentLevel2Handler: (control, index, control2, index2, control3) => dispatch(actions.addContentLevel2Handler(control, index, control2, index2, control3)),
         onRemoveContentLevel2Handler: (control, index, control2, index2, control3, index3) => dispatch(actions.removeContentLevel2Handler(control, index, control2, index2, control3, index3)),
-        onContentLevel3onChangeHandler: (event, control, index, control2, index2, control3, index3, control4) => dispatch(actions.contentLevel3onChangeHandler(event, control, index, control2, index2, control3, index3, control4)),
+        onContentLevel3onChangeHandler: (event, control, index, control2, index2, control3, index3, control4, commaFlag, autoFlag) => dispatch(actions.contentLevel3onChangeHandler(event, control, index, control2, index2, control3, index3, control4, commaFlag, autoFlag)),
         onDisableRemittanceBanksNameHandler: (event, index, control, index2) => dispatch(actions.disableRemittanceBanksNameHandler(event, index, control, index2)),
         onDisableRemittanceBanksHandler: (event, index, control, control2) => dispatch(actions.disableRemittanceBanksHandler(event, index, control, control2)),
 

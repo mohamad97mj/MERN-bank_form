@@ -33,7 +33,7 @@ const toolbar = (props) => (
                         </Nav.Item>
 
                         <Nav.Item>
-                            <Nav.Link id="nav-1" exact as={NavLink} to="/">
+                            <Nav.Link id="nav-1" onClick={()=>window.location.reload(true)} exact as={NavLink} to="/">
                                 ورود
                             </Nav.Link>
                         </Nav.Item>
@@ -62,7 +62,7 @@ const toolbar = (props) => (
 
 
                         <Nav.Item>
-                            <Nav.Link id="nav-5" exact as={NavLink} to="/logout">
+                            <Nav.Link id="nav-5" onClick={()=>window.location.reload(true)} exact as={NavLink} to="/logout">
                                 خروج
                             </Nav.Link>
                         </Nav.Item>

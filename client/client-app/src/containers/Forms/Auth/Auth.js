@@ -1,18 +1,37 @@
 import React, {Component} from 'react';
 
 import Spinner from '../../../components/UI/Spinner/Spinner';
-import styles from './Auth.module.css';
+// import styles from './Auth.module.css';
 import axios from 'axios';
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
+
+import {Grid, Button, Container, Box, TextField, Typography} from '@material-ui/core';
+import {withStyles} from '@material-ui/core/styles';
+
+
+// import Form from "react-bootstrap/Form";
+// import Grid from "react-bootstrap/Grid";
+// import Grid from "react-bootstrap/Grid";
+// import Button from "react-bootstrap/Button";
+// import Container from "react-bootstrap/Container";
+
+
 import {connect} from 'react-redux';
 import * as actions from '../../../api/index';
 import "./Auth.css";
 import '../Form.css';
+
 import {Redirect} from "react-router-dom";
-import Container from "react-bootstrap/Container";
+
+const styles = {
+    root: {
+        backgroundColor: 'red',
+    },
+
+    centerText: {
+        textAlign: "center"
+    }
+
+};
 
 class Auth extends Component {
 
@@ -83,32 +102,47 @@ class Auth extends Component {
     render() {
 
         let form = (
-            <Form onSubmit={this.loginHandler} className="login-form my-form" >
-                <Container className="form-content" style={{padding: "15px"}}>
-                    <Row>
-                        <Form.Label column sm="3">
-                            نام کاربری
-                        </Form.Label>
-                        <Col sm="9">
-                            <Form.Control id="username" onChange={this.onChangeHandler}/>
-                        </Col>
-                    </Row>
-                    <Row className="mt-2">
-                        <Form.Label column sm="3">
-                            گذرواژه
-                        </Form.Label>
-                        <Col sm="9">
-                            <Form.Control type="password" id="password" onChange={this.onChangeHandler}/>
-                        </Col>
 
-                    </Row>
-                </Container>
-                <Form.Group className={styles.CenterContent}>
-                    <Button type="submit" className="center margin-top-5 submit-btn">ورود</Button>
-                </Form.Group>
+            <form onSubmit={this.loginHandler} className="login-form my-form">
 
 
-            </Form>
+                <Grid container className="form-inner-content" style={{marginBottom: "10px"}} spacing={2}>
+                    <Grid item xs={12} className="textfield-container">
+                        <TextField variant="outlined"
+                                   label="نام کاربری"
+                                   fullWidth
+                                   type="text"
+                                   id="username"
+                                   InputLabelProps={{
+                                       shrink: true,
+                                   }}
+                                   InputProps={{
+                                       style: {direction: "rtl"},
+                                   }}
+                                   onChange={this.onChangeHandler}/>
+                    </Grid>
+                    <Grid item xs={12} className="textfield-container">
+                        <TextField variant="outlined"
+                                   label="گذرواژه"
+                                   fullWidth
+                                   type="password"
+                                   id="password"
+                                   InputLabelProps={{
+                                       shrink: true,
+                                   }}
+                                   InputProps={{
+                                       style: {direction: "rtl"},
+                                   }}
+                                   onChange={this.onChangeHandler}/>
+
+                    </Grid>
+                </Grid>
+                <Grid container justify="center">
+                    <Button type="submit" variant="contained" className="center">ورود</Button>
+                </Grid>
+
+
+            </form>
         );
         if (this.state.loading) {
             form = <Spinner/>;
@@ -163,4 +197,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Auth));

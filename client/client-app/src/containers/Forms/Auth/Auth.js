@@ -109,13 +109,27 @@ class Auth extends Component {
                 <Grid container className="form-inner-content" style={{marginBottom: "10px"}} spacing={2}>
                     <Grid item xs={12} className="textfield-container">
                         <TextField variant="outlined"
-                                   label="نام کاربری"
+
                                    fullWidth
                                    type="text"
                                    id="username"
                                    InputLabelProps={{
                                        shrink: true,
                                    }}
+
+                                   label={
+                                       <Typography
+                                           style={{
+                                               fontFamily: 'Nika',
+                                               fontSize: "large",
+                                               marginTop: "-7px",
+                                           }}
+                                       >
+                                           نام&nbsp;کاربری
+                                       </Typography>
+                                   }
+
+
                                    InputProps={{
                                        style: {direction: "rtl"},
                                    }}
@@ -123,10 +137,24 @@ class Auth extends Component {
                     </Grid>
                     <Grid item xs={12} className="textfield-container">
                         <TextField variant="outlined"
-                                   label="گذرواژه"
+
                                    fullWidth
                                    type="password"
                                    id="password"
+
+                                   label={
+                                       <Typography
+                                           style={{
+                                               fontFamily: 'Nika',
+                                               fontSize: "large",
+                                               marginTop: "-7px",
+
+                                           }}
+                                       >
+                                           گذرواژه
+                                       </Typography>
+                                   }
+
                                    InputLabelProps={{
                                        shrink: true,
                                    }}
@@ -192,7 +220,7 @@ const mapDispatchToProps = dispatch => {
         onAuth: (userData) => {
             dispatch(actions.auth(userData))
         },
-        onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath("/profile"))
+        onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath("/logged"))
 
     }
 };

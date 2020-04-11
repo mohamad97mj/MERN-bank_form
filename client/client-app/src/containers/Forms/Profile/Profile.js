@@ -150,7 +150,20 @@ class Profile extends Component {
                                                            direction: "rtl",
                                                        },
                                                    }}
-                                                   label="نام و نام خانوادگی"
+                                                   label={
+                                                       <Typography
+                                                           style={{
+                                                               fontFamily: 'Nika',
+                                                               fontSize: "large",
+                                                               marginTop: "-7px",
+
+                                                           }}
+                                                       >
+                                                           نام و نام خانوادگی
+                                                       </Typography>
+                                                   }
+
+
                                                    fullWidth
                                                    onChange={(e) => this.inputOnChangeHandler(e, "name")}/>
                                     </Grid>
@@ -158,7 +171,19 @@ class Profile extends Component {
                                     <Grid item md={4} className="textfield-container">
 
                                         <TextField id="national-code"
-                                                   label="کد ملی"
+
+                                                   label={
+                                                       <Typography
+                                                           style={{
+                                                               fontFamily: 'Nika',
+                                                               fontSize: "large",
+                                                               marginTop: "-7px",
+
+                                                           }}
+                                                       >
+                                                           کد ملی
+                                                       </Typography>
+                                                   }
                                                    variant="outlined"
                                                    fullWidth
                                                    InputLabelProps={{
@@ -181,7 +206,19 @@ class Profile extends Component {
                                         <Grid item style={{marginBottom: "5px"}}
                                               className="textfield-container">
                                             <TextField id="state" value={this.props.profileData.state}
-                                                       label="استان"
+
+                                                       label={
+                                                           <Typography
+                                                               style={{
+                                                                   fontFamily: 'Nika',
+                                                                   fontSize: "large",
+                                                                   marginTop: "-7px",
+
+                                                               }}
+                                                           >
+                                                               استان
+                                                           </Typography>
+                                                       }
                                                        variant="outlined"
                                                        fullWidth
                                                        InputLabelProps={{
@@ -231,7 +268,19 @@ class Profile extends Component {
 
                                         <Grid item className="textfield-container">
                                             <TextField value={this.props.profileData.postalCode} id="postal-code"
-                                                       label="کد پستی"
+
+                                                       label={
+                                                           <Typography
+                                                               style={{
+                                                                   fontFamily: 'Nika',
+                                                                   fontSize: "large",
+                                                                   marginTop: "-7px",
+
+                                                               }}
+                                                           >
+                                                               کد پستی
+                                                           </Typography>
+                                                       }
                                                        variant="outlined"
                                                        fullWidth
                                                        InputLabelProps={{
@@ -250,7 +299,19 @@ class Profile extends Component {
                                         <Grid item md={12} className="textfield-container">
 
                                             <TextField value={this.props.profileData.city} id="city"
-                                                       label="شهر"
+
+                                                       label={
+                                                           <Typography
+                                                               style={{
+                                                                   fontFamily: 'Nika',
+                                                                   fontSize: "large",
+                                                                   marginTop: "-7px",
+
+                                                               }}
+                                                           >
+                                                               شهر
+                                                           </Typography>
+                                                       }
                                                        variant="outlined"
                                                        fullWidth
                                                        InputLabelProps={{
@@ -271,7 +332,19 @@ class Profile extends Component {
                                         <Grid item md={12} className="textfield-container">
 
                                             <TextField value={this.props.profileData.telephone} id="telephone"
-                                                       label="تلفن"
+
+                                                       label={
+                                                           <Typography
+                                                               style={{
+                                                                   fontFamily: 'Nika',
+                                                                   fontSize: "large",
+                                                                   marginTop: "-7px",
+
+                                                               }}
+                                                           >
+                                                               تلفن
+                                                           </Typography>
+                                                       }
                                                        variant="outlined"
                                                        fullWidth
                                                        InputLabelProps={{
@@ -298,7 +371,19 @@ class Profile extends Component {
                                                    InputProps={{
                                                        style: {direction: "rtl"},
                                                    }}
-                                                   label="آدرس"
+
+                                                   label={
+                                                       <Typography
+                                                           style={{
+                                                               fontFamily: 'Nika',
+                                                               fontSize: "large",
+                                                               marginTop: "-7px",
+
+                                                           }}
+                                                       >
+                                                           آدرس
+                                                       </Typography>
+                                                   }
                                                    rowsMax="4"
                                                    disabled={!this.state.editable}
                                                    onChange={(e) => this.inputOnChangeHandler(e, "address")}
@@ -310,7 +395,19 @@ class Profile extends Component {
                                 <Grid container item spacing={2}>
                                     <Grid item md={3} className="textfield-container">
                                         <TextField id="mobile" value={this.props.profileData.mobile}
-                                                   label="شماره موبایل"
+
+                                                   label={
+                                                       <Typography
+                                                           style={{
+                                                               fontFamily: 'Nika',
+                                                               fontSize: "large",
+                                                               marginTop: "-7px",
+
+                                                           }}
+                                                       >
+                                                           شماره موبایل
+                                                       </Typography>
+                                                   }
                                                    variant="outlined"
                                                    fullWidth
                                                    InputLabelProps={{
@@ -342,7 +439,19 @@ class Profile extends Component {
                                                             disabled={!this.state.editable}
 
                                                         />}
-                                                        label="امکان دسترسی از طریق شبکه های اجتماعی"
+
+                                                        label={
+                                                            <Typography
+                                                                style={{
+                                                                    fontFamily: 'Nika',
+                                                                    fontSize: "large",
+                                                                    marginTop: "-7px",
+
+                                                                }}
+                                                            >
+                                                                امکان دسترسی از طریق شبکه های اجتماعی
+                                                            </Typography>
+                                                        }
                                                     />
                                                 </FormGroup>
                                             </FormControl>
@@ -359,7 +468,19 @@ class Profile extends Component {
                                 <Grid container item spacing={2}>
                                     <Grid item sm={4} className="textfield-container">
                                         <TextField value={this.props.profileData.lastLicenseNumber}
-                                                   label="شماره آخرین مجوز"
+
+                                                   label={
+                                                       <Typography
+                                                           style={{
+                                                               fontFamily: 'Nika',
+                                                               fontSize: "large",
+                                                               marginTop: "-7px",
+
+                                                           }}
+                                                       >
+                                                           شماره آخرین مجوز
+                                                       </Typography>
+                                                   }
                                                    variant="outlined"
                                                    fullWidth
                                                    InputLabelProps={{
@@ -378,7 +499,19 @@ class Profile extends Component {
                                     <Grid item md={4} className="textfield-container">
 
                                         <TextField value={this.props.profileData.lastLicenseValidityDate}
-                                                   label="تاریخ اعتبار آخرین مجوز"
+
+                                                   label={
+                                                       <Typography
+                                                           style={{
+                                                               fontFamily: 'Nika',
+                                                               fontSize: "large",
+                                                               marginTop: "-7px",
+
+                                                           }}
+                                                       >
+                                                           تاریخ اعتبار آخرین مجوز
+                                                       </Typography>
+                                                   }
                                                    InputLabelProps={{
                                                        shrink: true,
                                                    }}
@@ -394,7 +527,19 @@ class Profile extends Component {
 
                                     <Grid item md={4} className="textfield-container">
                                         <TextField value={this.props.profileData.registerNumber}
-                                                   label="شماره ثبت"
+
+                                                   label={
+                                                       <Typography
+                                                           style={{
+                                                               fontFamily: 'Nika',
+                                                               fontSize: "large",
+                                                               marginTop: "-7px",
+
+                                                           }}
+                                                       >
+                                                           شماره ثبت
+                                                       </Typography>
+                                                   }
                                                    id="register-number"
                                                    variant="outlined"
                                                    fullWidth
@@ -413,7 +558,20 @@ class Profile extends Component {
                                     <Grid item md={6} className="textfield-container">
 
                                         <TextField id="manager" value={this.props.profileData.manager}
-                                                   label="مدیر"
+
+                                                   label={
+                                                       <Typography
+                                                           style={{
+                                                               fontFamily: 'Nika',
+                                                               fontSize: "large",
+                                                               marginTop: "-7px",
+
+                                                           }}
+                                                       >
+                                                           مدیر
+                                                       </Typography>
+                                                   }
+
                                                    variant="outlined"
                                                    fullWidth
                                                    InputLabelProps={{

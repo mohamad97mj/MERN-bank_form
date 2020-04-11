@@ -1,0 +1,18 @@
+
+.first-page-container {
+    width: 800px;
+    padding: 100px;
+    margin: auto;
+    direction: rtl;
+}
+
+p {
+    text-align: right;
+    /*text-align-last: justify;*/
+}
+
+p:after {
+    /*content: "";*/
+    /*display: inline-block;*/
+    /*width: 100%;*/
+}

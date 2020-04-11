@@ -44,8 +44,10 @@ class Logged extends Component {
                     خواهید داشت.
                 </p>
                 <p>
-                    در صورتیکه نیاز به پاسخگویی هر نوع سوالی در این مورد داشتید به شماره 09027237097 در واتساپ یا تلگرام
-                    یا به شکل پیامکی درخواست داده یا به رایانامه ma.tavallaei@enbank.ir یک رایانامه ارسال فرمایید و حتما
+
+
+                    در صورتیکه نیاز به پاسخگویی هر نوع سوالی در این مورد داشتید به شماره <span style={{textDecoration: "underline"}}>09027237097</span> در واتساپ یا تلگرام
+                    یا به شکل پیامکی درخواست داده یا به رایانامه <Nav.Link exact as={NavLink} to="/form" style={{display: "inline", margin: "0", padding: "0", textDecoration: "underline"}}>ma.tavallaei@enbank.ir</Nav.Link>  یک رایانامه ارسال فرمایید و حتما
                     نام صرافی خود را ذکر بفرمایید تا در اسرع وقت خدمت شما تماس گرفته شود.
                 </p>
             </div>

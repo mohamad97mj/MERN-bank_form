@@ -71,7 +71,7 @@ export const postForm = (userData, userForm) => dispatch => {
     const date = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + "-" + d.getHours() + "-" + d.getMinutes() + "-" + d.getSeconds();
 
     // dispatch(postFormStart());
-    alert('here');
+    // alert('here');
 
     const tempPostData =
         {

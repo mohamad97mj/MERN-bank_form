@@ -319,7 +319,7 @@ class Main extends Component {
                                                                             fontSize: "larger",
                                                                             marginTop: "-7px",
                                                                         }}>
-                                                                        سطح&nbsp;مذاکره
+                                                                        سطح&nbsp;قدرت&nbsp;مذاکره
                                                                     </Typography>
 
                                                                 </InputLabel>
@@ -345,7 +345,7 @@ class Main extends Component {
                                                                                 marginTop: "-7px",
                                                                             }}
                                                                         >
-                                                                            "سطح&nbsp;مذاکره"
+                                                                            "سطح&nbsp;قدرت&nbsp;مذاکره"
                                                                         </Typography>
                                                                     }
 
@@ -389,7 +389,7 @@ class Main extends Component {
                                                                                 marginTop: "-7px",
                                                                             }}
                                                                         >
-                                                                            "حداقل&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه"
+                                                                            حداقل&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه&nbsp;به&nbsp;ارز&nbsp;محلی
                                                                         </Typography>
                                                                     }
 
@@ -453,7 +453,8 @@ class Main extends Component {
                                                                                 marginTop: "-7px",
                                                                             }}
                                                                         >
-                                                                            "حداکثر&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه"
+                                                                            حداکثر&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه&nbsp;به&nbsp;ارز&nbsp;محلی
+
                                                                         </Typography>
                                                                     }
 
@@ -645,7 +646,8 @@ class Main extends Component {
                                                                                         marginTop: "-7px",
                                                                                     }}
                                                                                 >
-                                                                                    "حجم&nbsp;معامله"
+                                                                                    حجم&nbsp;معامله&nbsp;به&nbsp;ارز&nbsp;محلی
+
                                                                                 </Typography>
                                                                             }
 
@@ -1035,7 +1037,7 @@ class Main extends Component {
                                                                                 marginTop: "-7px",
                                                                             }}
                                                                         >
-                                                                            "حداقل&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه"
+                                                                            حداقل&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه&nbsp;به&nbsp;ارز&nbsp;محلی
                                                                         </Typography>
                                                                     }
 
@@ -1099,7 +1101,7 @@ class Main extends Component {
                                                                                 marginTop: "-7px",
                                                                             }}
                                                                         >
-                                                                            "حداکثر&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه"
+                                                                            حداکثر&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه&nbsp;به&nbsp;ارز&nbsp;محلی
                                                                         </Typography>
                                                                     }
 
@@ -1291,7 +1293,7 @@ class Main extends Component {
                                                                                         marginTop: "-7px",
                                                                                     }}
                                                                                 >
-                                                                                    حجم&nbsp;معامله
+                                                                                    حجم&nbsp;معامله&nbsp;به&nbsp;ارز&nbsp;محلی
                                                                                 </Typography>
                                                                             }
 
@@ -1479,7 +1481,7 @@ class Main extends Component {
                                                        <Typography
                                                            style={{
                                                                fontFamily: 'Nika',
-                                                               fontSize: "larger",
+                                                               fontSize: "large",
                                                                marginTop: "-7px",
                                                            }}
                                                        >

@@ -194,7 +194,7 @@ class Auth extends Component {
 
         return (
 
-            <div className="mt-5">
+            <div>
                 {authRedirect}
                 {errorMessage}
                 <div>

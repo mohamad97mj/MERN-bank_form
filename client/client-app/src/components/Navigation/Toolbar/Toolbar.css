@@ -1,14 +1,28 @@
 
-.nav-item a {
-    color: #F4EFF0;
-    line-height: 40px;
-}
-.nav-item a:hover {
-    color: #EF626C;
-}
 
-
-#bootstrap-overwrite .active {
-    color: white;
+#bootstrap-overwrite .nav-item .active {
+    color: #F2F2F2;
     font-weight: bold;
 }
+
+#bootstrap-overwrite .nav-item a {
+    color: #FF9793;
+    line-height: 40px;
+}
+
+#bootstrap-overwrite .nav-item a:hover {
+    color: #F2F2F2;
+    font-weight: bold;
+}
+
+
+#bootstrap-overwrite .navbar-toggler {
+    color: #F7CECD;
+    border-color: #F7CECD;
+}
+
+#bootstrap-overwrite .navbar-collapse {
+    align-items: flex-end;
+    text-align: right;
+}
+

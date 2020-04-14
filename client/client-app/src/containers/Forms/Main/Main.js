@@ -4,6 +4,7 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import styles from './Main.module.css';
 import './Main.css';
 import '../Form.css';
+// import {fs1, fs2, fs3} from './responsive';
 
 import {
     Grid,
@@ -31,7 +32,7 @@ import {Autocomplete} from '@material-ui/lab';
 // import ButtonGroup from "react-bootstrap/ButtonGroup";
 // import Button from "react-bootstrap/Button";
 // import Container from "react-bootstrap/Container";
-// import {Typeahead} from 'react-bootstrap-typeahead';
+import {Typeahead} from 'react-bootstrap-typeahead';
 
 import * as actions from "../../../api";
 import {connect} from "react-redux";
@@ -41,23 +42,31 @@ import FlagIcon from "../../../components/UI/FlagIcon/FlagIcon";
 import 'react-flags-select/css/react-flags-select.css';
 
 
+//responsive ...........................................................................................................
+
+
+//.......... ...........................................................................................................
+
+
 class Main extends Component {
 
     constructor(props) {
         super(props);
-        // this.addOriginBankHandler();
 
+        // this.addOriginBankHandler();
     }
 
     state = {
         editable: false,
     };
 
+
     handleRadioChange = (event) => {
         // setValue(event.target.value);
         // setHelperText(' ');
         // setError(false);
     };
+
 
     // countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua &amp; Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia &amp; Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Cayman Islands", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cruise Ship", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Kyrgyz Republic", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre &amp; Miquelon", "Samoa", "San Marino", "Satellite", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St Kitts &amp; Nevis", "St Lucia", "St Vincent", "St. Lucia", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad &amp; Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks &amp; Caicos", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
     countries = [
@@ -76,7 +85,6 @@ class Main extends Component {
         "اسلوونی",
         "اسواتینی",
         "افغانستان",
-        "اکوادور",
         "اکوادور",
         "الجزایر",
         "السالوادور",
@@ -110,7 +118,6 @@ class Main extends Component {
         "برزیل",
         "برمودا",
         "برونئی",
-        "بریتانیای کبیر",
         "بریتانیای کبیر",
         "بلاروس",
         "بلژیک",
@@ -326,7 +333,7 @@ class Main extends Component {
 
     negotiationLevels = ["در سطح رییس شعبه", "در سطح مدیران ارشد", "در سطح هیئت مدیره"];
 
-    moneyScales = ["1,000", "10,000", "100,000", "1,000,000", "10,000,000", "100,000,000", "1,000,000,000", "10,000,000,000"];
+    moneyScales = ["1,000$", "10,000$", "100,000$", "1,000,000$", "10,000,000$", "100,000,000$", "1,000,000,000$", "10,000,000,000$"];
 
 
     //..................................................................................
@@ -357,10 +364,24 @@ class Main extends Component {
 
                                     <Grid container item xs={12} spacing={1}
                                           style={{marginTop: "25px", marginBottom: "15px"}}>
-                                        <Grid container item xs={12} spacing={1}>
-                                            <Grid item xs={4} className="textfield-container" spacing={1}>
+                                        <Grid container item xs={12} spacing={3}>
+                                            <Grid container item md={4} className="textfield-container" spacing={1}>
 
+
+                                                {/*<Typeahead*/}
+                                                {/*    style={{direction: "rtl"}}*/}
+                                                {/*    value={rc.originCountry}*/}
+                                                {/*    multiple*/}
+                                                {/*    onChange={(e, selected) => {*/}
+                                                {/*        if (selected !== null) {*/}
+                                                {/*            this.props.onContentLevel1onChangeHandler(selected, "remittanceContents", ri, "originCountry", true);*/}
+                                                {/*        }*/}
+                                                {/*    }}*/}
+                                                {/*    options={this.listedCountries}*/}
+                                                {/*/>*/}
                                                 <Autocomplete
+                                                    style={{width: "100%"}}
+                                                    fullWidth
                                                     id={"rc-" + ri + "-origin-country"}
                                                     value={rc.originCountry}
                                                     debug
@@ -416,67 +437,78 @@ class Main extends Component {
 
 
                                             </Grid>
-                                            <Grid container item md={8} spacing={1}>
+                                            <Grid item md={8} spacing={1}>
                                                 <RadioGroup row name="origin-connection"
                                                             value={rc.originConnectionCheck}
                                                             onChange={
                                                                 // (e) => alert("goodbye")
                                                                 (e) => this.props.onDisableRemittanceBanksHandler(e, ri, "originBanks", "originConnectionCheck")
                                                             }>
+                                                    <FormLabel
+                                                        component='div'
+                                                        style={{
+                                                            fontFamily: 'Nika',
+                                                            fontSize: "medium",
+                                                            lineHeight: "40px",
+                                                        }}>
 
-                                                    <FormControlLabel
-                                                        disabled={!this.state.editable}
-                                                        value={true}
-                                                        control={<Radio
-                                                            // value={true}
-                                                            // checked={true}
-                                                            id={"rc-" + ri + "-origin-connection-check-1"}
+                                                        آیا در کشور مبداء با بانکی ارتباط دارید؟
+                                                    </FormLabel>
+                                                    <div style={{display: "inline"}}>
+                                                        <FormControlLabel
 
-                                                        />}
-                                                        style={{direction: "ltr"}}
-                                                        label={
-                                                            <Typography
-                                                                style={{
-                                                                    fontFamily: 'Nika',
-                                                                    fontSize: "large",
-                                                                    marginTop: "-7px",
-                                                                }}
-                                                            >
-                                                                "آیا&nbsp;در&nbsp;کشور&nbsp;مبداء&nbsp;با&nbsp;بانکی&nbsp;ارتباط&nbsp;دارید؟&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;بله"
-                                                            </Typography>
-                                                        }
+                                                            disabled={!this.state.editable}
+                                                            value={true}
+                                                            control={<Radio
+                                                                // value={true}
+                                                                // checked={true}
+                                                                id={"rc-" + ri + "-origin-connection-check-1"}
+
+                                                            />}
+                                                            style={{direction: "ltr"}}
+                                                            label={
+                                                                <Typography
+                                                                    style={{
+                                                                        fontFamily: 'Nika',
+                                                                        fontSize: "medium",
+                                                                        marginTop: "-7px",
+                                                                    }}
+                                                                >
+                                                                    بله
+                                                                </Typography>
+                                                            }
 
 
-                                                    />
-                                                    <FormControlLabel
-                                                        disabled={!this.state.editable}
-                                                        value={false}
-                                                        control={<Radio
-                                                            // value={false}
-                                                            // checked={false}
-                                                            id={"rc-" + ri + "-origin-connection-check-2"}
-                                                        />}
+                                                        />
+                                                        <FormControlLabel
+                                                            disabled={!this.state.editable}
+                                                            value={false}
+                                                            control={<Radio
+                                                                // value={false}
+                                                                // checked={false}
+                                                                id={"rc-" + ri + "-origin-connection-check-2"}
+                                                            />}
 
-                                                        style={{direction: "ltr"}}
-                                                        label={
-                                                            <Typography
-                                                                style={{
-                                                                    fontFamily: 'Nika',
-                                                                    fontSize: "large",
-                                                                    marginTop: "-7px",
-                                                                }}
-                                                            >
-                                                                خیر
-                                                            </Typography>
-                                                        }
-
-                                                    />
+                                                            style={{direction: "ltr"}}
+                                                            label={
+                                                                <Typography
+                                                                    style={{
+                                                                        fontFamily: 'Nika',
+                                                                        fontSize: "medium",
+                                                                        marginTop: "-7px",
+                                                                    }}
+                                                                >
+                                                                    خیر
+                                                                </Typography>
+                                                            }
+                                                        />
+                                                    </div>
                                                 </RadioGroup>
                                             </Grid>
                                         </Grid>
                                     </Grid>
 
-                                    <Grid container item md={12}>
+                                    <Grid container item xs={12}>
 
                                         {rc.originBanks.map((b, bi) => {
                                             return (
@@ -484,8 +516,9 @@ class Main extends Component {
                                                       style={{marginTop: "10px", position: "relative"}}
                                                       className="form-inner-content" spacing={1}>
 
-                                                    <Grid container item lg={12} spacing={2}>
-                                                        <Grid item lg={4} className="textfield-container">
+                                                    <Grid container item xs={12} spacing={2}>
+                                                        <Grid item sm={12} md={4} lg={4}
+                                                              className="textfield-container">
                                                             <TextField
                                                                 value={b.name}
                                                                 variant="outlined"
@@ -500,7 +533,7 @@ class Main extends Component {
                                                                 InputProps={{
                                                                     style: {
                                                                         fontFamily: 'Nika',
-                                                                        fontSize: "large",
+                                                                        fontSize: "larger",
                                                                         direction: "rtl",
                                                                     },
                                                                 }}
@@ -523,7 +556,7 @@ class Main extends Component {
 
                                                         </Grid>
 
-                                                        <Grid item lg={3} className="">
+                                                        <Grid item sm={6} md={4} lg={3} className="">
 
                                                             <ButtonGroup fullWidth>
                                                                 <FormControl fullWidth component="fieldset"
@@ -537,7 +570,7 @@ class Main extends Component {
                                                                             InputProps={{
                                                                                 style: {
                                                                                     fontFamily: 'Nika',
-                                                                                    fontSize: "large",
+                                                                                    fontSize: "medium",
                                                                                     direction: "rtl",
                                                                                 },
                                                                             }}
@@ -554,11 +587,11 @@ class Main extends Component {
                                                                                 <Typography
                                                                                     style={{
                                                                                         fontFamily: 'Nika',
-                                                                                        fontSize: "large",
+                                                                                        fontSize: "medium",
                                                                                         marginTop: "-7px",
                                                                                     }}
                                                                                 >
-                                                                                    عدم&nbsp;افشای&nbsp;نام&nbsp;بانک
+                                                                                    عدم افشای نام بانک
                                                                                 </Typography>
                                                                             }
                                                                         />
@@ -568,21 +601,17 @@ class Main extends Component {
 
                                                         </Grid>
 
-                                                        <Grid container spacing={1} item lg={3}
+                                                        <Grid container spacing={1} item sm={6} md={4} lg={3}
                                                               className="textfield-container">
 
                                                             <FormControl variant="outlined" fullWidth size="small">
                                                                 <InputLabel
-                                                                    id="demo-simple-select-outlined-label">
-
-                                                                    <Typography
-                                                                        style={{
-                                                                            fontFamily: 'Nika',
-                                                                            fontSize: "larger",
-                                                                            marginTop: "-7px",
-                                                                        }}>
-                                                                        سطح&nbsp;قدرت&nbsp;مذاکره
-                                                                    </Typography>
+                                                                    id="demo-simple-select-outlined-label"
+                                                                    style={{
+                                                                        fontFamily: 'Nika',
+                                                                        fontSize: "medium",
+                                                                    }}>
+                                                                    سطح&nbsp;قدرت&nbsp;مذاکره
 
                                                                 </InputLabel>
                                                                 <Select
@@ -627,10 +656,10 @@ class Main extends Component {
 
 
                                                     </Grid>
-                                                    <Grid container item lg={12} spacing={4} style={{marginTop: "5px"}}>
+                                                    <Grid container item xs={12} spacing={2} style={{marginTop: "5px"}}>
 
                                                         <Grid container item lg={6} spacing={1}>
-                                                            <Grid item lg={6} className="textfield-container">
+                                                            <Grid item sm={7} lg={6} className="textfield-container">
 
                                                                 <TextField
                                                                     variant="outlined"
@@ -660,7 +689,7 @@ class Main extends Component {
                                                                     onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "originBanks", bi, "minimumAmount", true)}
                                                                     disabled={!rc.originConnectionCheck || !this.state.editable}/>
                                                             </Grid>
-                                                            <Grid item lg={6} className="textfield-container">
+                                                            <Grid item sm={5} lg={6} className="textfield-container">
 
                                                                 <TextField
                                                                     variant="outlined"
@@ -694,7 +723,7 @@ class Main extends Component {
                                                         </Grid>
 
                                                         <Grid container item lg={6} spacing={1}>
-                                                            <Grid item lg={6} className="textfield-container">
+                                                            <Grid item sm={7} lg={6} className="textfield-container">
 
                                                                 <TextField
                                                                     variant="outlined"
@@ -725,7 +754,7 @@ class Main extends Component {
                                                                     onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "originBanks", bi, "maximumAmount", true)}
                                                                     disabled={!rc.originConnectionCheck || !this.state.editable}/>
                                                             </Grid>
-                                                            <Grid item lg={6} className="textfield-container">
+                                                            <Grid item sm={5} lg={6} className="textfield-container">
 
                                                                 <TextField
                                                                     variant="outlined"
@@ -777,11 +806,11 @@ class Main extends Component {
                                             onClick={() => this.props.onAddContentLevel1Handler("remittanceContents", ri, "originBanks")}>+</Button>
 
 
-                                    <Grid container item md={12} style={{marginTop: "10px"}}>
+                                    <Grid container item xs={12} style={{marginTop: "10px"}}>
 
                                         {rc.originPartners.map((p, pi) => {
                                             return (
-                                                <Grid container item md={12}
+                                                <Grid container item xs={12}
                                                       className="form-inner-content"
                                                       style={{
                                                           marginTop: "10px",
@@ -791,15 +820,16 @@ class Main extends Component {
                                                       }}
                                                       key={"rc-" + ri + "-origin-partner-" + pi} spacing={1}>
 
-                                                    <Grid item md={4} className="textfield-container"
+                                                    <Grid item sm={12} md={8} lg={4} className="textfield-container"
                                                           spacing={1}>
                                                         <TextField
+                                                            size="small"
                                                             fullWidth
                                                             label={
                                                                 <Typography
                                                                     style={{
                                                                         fontFamily: 'Nika',
-                                                                        fontSize: "larger",
+                                                                        fontSize: "17px",
                                                                         marginTop: "-7px",
                                                                     }}
                                                                 >
@@ -817,7 +847,7 @@ class Main extends Component {
                                                             InputProps={{
                                                                 style: {
                                                                     fontFamily: 'Nika',
-                                                                    fontSize: "large",
+                                                                    fontSize: "larger",
                                                                     direction: "rtl",
                                                                 },
                                                             }}
@@ -828,23 +858,23 @@ class Main extends Component {
                                                         />
                                                     </Grid>
 
-                                                    <Grid item md={8} spacing={1}>
+                                                    <Grid item xs={12} lg={8} spacing={1}>
                                                         {p.countries.map((c, ci) => {
                                                             return (
-                                                                <Grid container item md={12}
+                                                                <Grid container item xs={12}
                                                                       key={"rc-" + ri + "-origin-partner-" + pi}
                                                                       style={{
                                                                           position: "relative",
                                                                           padding: "10px 5px 5px 20px"
                                                                       }}
-                                                                      className="form-content" spacing={1}>
+                                                                      className="form-content" spacing={2}>
 
-                                                                    <Grid item md={6} spacing={1}
+                                                                    <Grid container item md={5} spacing={1}
                                                                           className="textfield-container">
 
                                                                         <Autocomplete
                                                                             id={"rc-" + ri + "-origin-partner-" + pi + "-country-" + ci}
-
+                                                                            size="small"
                                                                             debug
                                                                             // disableCloseOnSelect
                                                                             clearOnEscape
@@ -857,7 +887,7 @@ class Main extends Component {
                                                                             // autoSelect
                                                                             blurOnSelect
                                                                             style={{
-                                                                                // backgroundColor: "black"
+                                                                                width: "100%",
                                                                             }}
                                                                             value={c.name}
                                                                             groupBy={(option) => option[0]}
@@ -896,7 +926,8 @@ class Main extends Component {
                                                                             }/>
                                                                     </Grid>
 
-                                                                    <Grid item md={3} className="textfield-container"
+                                                                    <Grid item sm={7} md={4}
+                                                                          className="textfield-container"
                                                                           spacing={1}>
                                                                         <TextField
                                                                             size="small"
@@ -927,7 +958,8 @@ class Main extends Component {
                                                                         />
                                                                     </Grid>
 
-                                                                    <Grid item md={3} className="textfield-container"
+                                                                    <Grid item sm={5} md={3}
+                                                                          className="textfield-container"
                                                                           spacing={1}>
                                                                         <TextField
                                                                             size="small"
@@ -1009,15 +1041,17 @@ class Main extends Component {
 
                                     <Grid container item xs={12} spacing={1}
                                           style={{marginTop: "25px", marginBottom: "15px"}}>
-                                        <Grid container item xs={12} spacing={1}>
-                                            <Grid item xs={4} className="textfield-container" spacing={1}>
+                                        <Grid container item xs={12} spacing={3}>
+                                            <Grid container item md={4} className="textfield-container" spacing={1}>
 
                                                 <Autocomplete
+                                                    style={{width: "100%"}}
+                                                    fullWidth
                                                     id={"rc-" + ri + "-destination-country"}
                                                     value={rc.destinationCountry}
                                                     debug
                                                     // disableCloseOnSelect
-                                                    clearOnEscape
+                                                    // clearOnEscape
                                                     // disableClearable
                                                     includeInputInList
                                                     autoComplete
@@ -1068,67 +1102,78 @@ class Main extends Component {
 
 
                                             </Grid>
-                                            <Grid container item md={8} spacing={1}>
+                                            <Grid item md={8} spacing={1}>
                                                 <RadioGroup row name="destination-connection"
                                                             value={rc.destinationConnectionCheck}
                                                             onChange={
                                                                 // (e) => alert("goodbye")
                                                                 (e) => this.props.onDisableRemittanceBanksHandler(e, ri, "destinationBanks", "destinationConnectionCheck")
                                                             }>
+                                                    <FormLabel
+                                                        component='div'
+                                                        style={{
+                                                            fontFamily: 'Nika',
+                                                            fontSize: "medium",
+                                                            lineHeight: "40px",
+                                                        }}>
 
-                                                    <FormControlLabel
-                                                        disabled={!this.state.editable}
-                                                        value={true}
-                                                        control={<Radio
-                                                            // value={true}
-                                                            // checked={true}
-                                                            id={"rc-" + ri + "-destination-connection-check-1"}
+                                                        آیا در کشور مقصد با بانکی ارتباط دارید؟
+                                                    </FormLabel>
+                                                    <div style={{display: "inline"}}>
+                                                        <FormControlLabel
 
-                                                        />}
-                                                        style={{direction: "ltr"}}
-                                                        label={
-                                                            <Typography
-                                                                style={{
-                                                                    fontFamily: 'Nika',
-                                                                    fontSize: "large",
-                                                                    marginTop: "-7px",
-                                                                }}
-                                                            >
-                                                                "آیا&nbsp;در&nbsp;کشور&nbsp;مقصد&nbsp;با&nbsp;بانکی&nbsp;ارتباط&nbsp;دارید؟&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;بله"
-                                                            </Typography>
-                                                        }
+                                                            disabled={!this.state.editable}
+                                                            value={true}
+                                                            control={<Radio
+                                                                // value={true}
+                                                                // checked={true}
+                                                                id={"rc-" + ri + "-destination-connection-check-1"}
+
+                                                            />}
+                                                            style={{direction: "ltr"}}
+                                                            label={
+                                                                <Typography
+                                                                    style={{
+                                                                        fontFamily: 'Nika',
+                                                                        fontSize: "medium",
+                                                                        marginTop: "-7px",
+                                                                    }}
+                                                                >
+                                                                    بله
+                                                                </Typography>
+                                                            }
 
 
-                                                    />
-                                                    <FormControlLabel
-                                                        disabled={!this.state.editable}
-                                                        value={false}
-                                                        control={<Radio
-                                                            // value={false}
-                                                            // checked={false}
-                                                            id={"rc-" + ri + "-destination-connection-check-2"}
-                                                        />}
+                                                        />
+                                                        <FormControlLabel
+                                                            disabled={!this.state.editable}
+                                                            value={false}
+                                                            control={<Radio
+                                                                // value={false}
+                                                                // checked={false}
+                                                                id={"rc-" + ri + "-destination-connection-check-2"}
+                                                            />}
 
-                                                        style={{direction: "ltr"}}
-                                                        label={
-                                                            <Typography
-                                                                style={{
-                                                                    fontFamily: 'Nika',
-                                                                    fontSize: "large",
-                                                                    marginTop: "-7px",
-                                                                }}
-                                                            >
-                                                                خیر
-                                                            </Typography>
-                                                        }
-
-                                                    />
+                                                            style={{direction: "ltr"}}
+                                                            label={
+                                                                <Typography
+                                                                    style={{
+                                                                        fontFamily: 'Nika',
+                                                                        fontSize: "medium",
+                                                                        marginTop: "-7px",
+                                                                    }}
+                                                                >
+                                                                    خیر
+                                                                </Typography>
+                                                            }
+                                                        />
+                                                    </div>
                                                 </RadioGroup>
                                             </Grid>
                                         </Grid>
                                     </Grid>
 
-                                    <Grid container item md={12}>
+                                    <Grid container item xs={12}>
 
                                         {rc.destinationBanks.map((b, bi) => {
                                             return (
@@ -1136,8 +1181,9 @@ class Main extends Component {
                                                       style={{marginTop: "10px", position: "relative"}}
                                                       className="form-inner-content" spacing={1}>
 
-                                                    <Grid container item lg={12} spacing={2}>
-                                                        <Grid item lg={4} className="textfield-container">
+                                                    <Grid container item xs={12} spacing={2}>
+                                                        <Grid item sm={12} md={4} lg={4}
+                                                              className="textfield-container">
                                                             <TextField
                                                                 value={b.name}
                                                                 variant="outlined"
@@ -1145,7 +1191,6 @@ class Main extends Component {
                                                                 InputLabelProps={{
                                                                     style: {
                                                                         // fontWeight: "bold",
-                                                                        direction: "ltr",
 
                                                                     },
                                                                     shrink: true,
@@ -1153,7 +1198,7 @@ class Main extends Component {
                                                                 InputProps={{
                                                                     style: {
                                                                         fontFamily: 'Nika',
-                                                                        fontSize: "large",
+                                                                        fontSize: "larger",
                                                                         direction: "rtl",
                                                                     },
                                                                 }}
@@ -1176,7 +1221,7 @@ class Main extends Component {
 
                                                         </Grid>
 
-                                                        <Grid item lg={3} className="">
+                                                        <Grid item sm={6} md={4} lg={3} className="">
 
                                                             <ButtonGroup fullWidth>
                                                                 <FormControl fullWidth component="fieldset"
@@ -1190,7 +1235,7 @@ class Main extends Component {
                                                                             InputProps={{
                                                                                 style: {
                                                                                     fontFamily: 'Nika',
-                                                                                    fontSize: "large",
+                                                                                    fontSize: "medium",
                                                                                     direction: "rtl",
                                                                                 },
                                                                             }}
@@ -1207,11 +1252,11 @@ class Main extends Component {
                                                                                 <Typography
                                                                                     style={{
                                                                                         fontFamily: 'Nika',
-                                                                                        fontSize: "large",
+                                                                                        fontSize: "medium",
                                                                                         marginTop: "-7px",
                                                                                     }}
                                                                                 >
-                                                                                    عدم&nbsp;افشای&nbsp;نام&nbsp;بانک
+                                                                                    عدم افشای نام بانک
                                                                                 </Typography>
                                                                             }
                                                                         />
@@ -1221,23 +1266,23 @@ class Main extends Component {
 
                                                         </Grid>
 
-                                                        <Grid container spacing={1} item lg={3}
+                                                        <Grid container spacing={1} item sm={6} md={4} lg={3}
                                                               className="textfield-container">
 
                                                             <FormControl variant="outlined" fullWidth size="small">
-                                                                <InputLabel>
-
-                                                                    <Typography
-                                                                        style={{
-                                                                            fontFamily: 'Nika',
-                                                                            fontSize: "larger",
-                                                                            marginTop: "-7px",
-                                                                        }}>
-                                                                        سطح&nbsp;مذاکره
-                                                                    </Typography>
+                                                                <InputLabel
+                                                                    id="demo-simple-select-outlined-label"
+                                                                    style={{
+                                                                        fontFamily: 'Nika',
+                                                                        fontSize: "medium",
+                                                                    }}>
+                                                                    سطح&nbsp;قدرت&nbsp;مذاکره
 
                                                                 </InputLabel>
                                                                 <Select
+
+                                                                    labelId="demo-simple-select-outlined-label"
+                                                                    id="demo-simple-select-outlined"
 
                                                                     InputProps={{
                                                                         style: {
@@ -1254,8 +1299,9 @@ class Main extends Component {
                                                                                 fontFamily: 'Nika',
                                                                                 fontSize: "larger",
                                                                                 marginTop: "-7px",
-                                                                            }}>
-                                                                            "سطح&nbsp;مذاکره"
+                                                                            }}
+                                                                        >
+                                                                            "سطح&nbsp;قدرت&nbsp;مذاکره"
                                                                         </Typography>
                                                                     }
 
@@ -1275,10 +1321,10 @@ class Main extends Component {
 
 
                                                     </Grid>
-                                                    <Grid container item lg={12} spacing={4} style={{marginTop: "5px"}}>
+                                                    <Grid container item xs={12} spacing={2} style={{marginTop: "5px"}}>
 
                                                         <Grid container item lg={6} spacing={1}>
-                                                            <Grid item lg={6} className="textfield-container">
+                                                            <Grid item sm={7} lg={6} className="textfield-container">
 
                                                                 <TextField
                                                                     variant="outlined"
@@ -1308,7 +1354,7 @@ class Main extends Component {
                                                                     onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "destinationBanks", bi, "minimumAmount", true)}
                                                                     disabled={!rc.destinationConnectionCheck || !this.state.editable}/>
                                                             </Grid>
-                                                            <Grid item lg={6} className="textfield-container">
+                                                            <Grid item sm={5} lg={6} className="textfield-container">
 
                                                                 <TextField
                                                                     variant="outlined"
@@ -1342,7 +1388,7 @@ class Main extends Component {
                                                         </Grid>
 
                                                         <Grid container item lg={6} spacing={1}>
-                                                            <Grid item lg={6} className="textfield-container">
+                                                            <Grid item sm={7} lg={6} className="textfield-container">
 
                                                                 <TextField
                                                                     variant="outlined"
@@ -1364,6 +1410,7 @@ class Main extends Component {
                                                                             }}
                                                                         >
                                                                             حداکثر&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه&nbsp;به&nbsp;ارز&nbsp;محلی
+
                                                                         </Typography>
                                                                     }
 
@@ -1372,7 +1419,7 @@ class Main extends Component {
                                                                     onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "destinationBanks", bi, "maximumAmount", true)}
                                                                     disabled={!rc.destinationConnectionCheck || !this.state.editable}/>
                                                             </Grid>
-                                                            <Grid item lg={6} className="textfield-container">
+                                                            <Grid item sm={5} lg={6} className="textfield-container">
 
                                                                 <TextField
                                                                     variant="outlined"
@@ -1424,11 +1471,11 @@ class Main extends Component {
                                             onClick={() => this.props.onAddContentLevel1Handler("remittanceContents", ri, "destinationBanks")}>+</Button>
 
 
-                                    <Grid container item md={12} style={{marginTop: "10px"}}>
+                                    <Grid container item xs={12} style={{marginTop: "10px"}}>
 
-                                        {rc.destinationPartners.map((p, pi) => {
+                                        {rc.originPartners.map((p, pi) => {
                                             return (
-                                                <Grid container item md={12}
+                                                <Grid container item xs={12}
                                                       className="form-inner-content"
                                                       style={{
                                                           marginTop: "10px",
@@ -1436,17 +1483,18 @@ class Main extends Component {
                                                           paddingLeft: "20px",
                                                           position: "relative"
                                                       }}
-                                                      key={"rc-" + ri + "-destination-partner-" + pi} spacing={1}>
+                                                      key={"rc-" + ri + "-origin-partner-" + pi} spacing={1}>
 
-                                                    <Grid item md={4} className="textfield-container"
+                                                    <Grid item sm={12} md={8} lg={4} className="textfield-container"
                                                           spacing={1}>
                                                         <TextField
+                                                            size="small"
                                                             fullWidth
                                                             label={
                                                                 <Typography
                                                                     style={{
                                                                         fontFamily: 'Nika',
-                                                                        fontSize: "larger",
+                                                                        fontSize: "17px",
                                                                         marginTop: "-7px",
                                                                     }}
                                                                 >
@@ -1464,34 +1512,34 @@ class Main extends Component {
                                                             InputProps={{
                                                                 style: {
                                                                     fontFamily: 'Nika',
-                                                                    fontSize: "large",
+                                                                    fontSize: "larger",
                                                                     direction: "rtl",
                                                                 },
                                                             }}
                                                             disabled={!this.state.editable}
                                                             value={p.name}
-                                                            className="margin-bottom-5 destination-bank-input"
-                                                            onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "destinationPartners", pi, "name")}
+                                                            className="margin-bottom-5 origin-bank-input"
+                                                            onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "originPartners", pi, "name")}
                                                         />
                                                     </Grid>
 
-                                                    <Grid item md={8} spacing={1}>
+                                                    <Grid item xs={12} lg={8} spacing={1}>
                                                         {p.countries.map((c, ci) => {
                                                             return (
-                                                                <Grid container item md={12}
-                                                                      key={"rc-" + ri + "-destination-partner-" + pi}
+                                                                <Grid container item xs={12}
+                                                                      key={"rc-" + ri + "-origin-partner-" + pi}
                                                                       style={{
                                                                           position: "relative",
                                                                           padding: "10px 5px 5px 20px"
                                                                       }}
-                                                                      className="form-content" spacing={1}>
+                                                                      className="form-content" spacing={2}>
 
-                                                                    <Grid item md={6} spacing={1}
+                                                                    <Grid container item md={5} spacing={1}
                                                                           className="textfield-container">
 
                                                                         <Autocomplete
-                                                                            id={"rc-" + ri + "-destination-partner-" + pi + "-country-" + ci}
-
+                                                                            id={"rc-" + ri + "-origin-partner-" + pi + "-country-" + ci}
+                                                                            size="small"
                                                                             debug
                                                                             // disableCloseOnSelect
                                                                             clearOnEscape
@@ -1504,7 +1552,7 @@ class Main extends Component {
                                                                             // autoSelect
                                                                             blurOnSelect
                                                                             style={{
-                                                                                // backgroundColor: "black"
+                                                                                width: "100%",
                                                                             }}
                                                                             value={c.name}
                                                                             groupBy={(option) => option[0]}
@@ -1512,7 +1560,7 @@ class Main extends Component {
                                                                             disabled={!this.state.editable}
                                                                             onChange={(e, selected) => {
                                                                                 if (selected !== null) {
-                                                                                    this.props.onContentLevel3onChangeHandler(selected, "remittanceContents", ri, "destinationPartners", pi, "countries", ci, "name", false, true)
+                                                                                    this.props.onContentLevel3onChangeHandler(selected, "remittanceContents", ri, "originPartners", pi, "countries", ci, "name", false, true)
                                                                                 }
                                                                             }}
                                                                             options={this.listedCountries}
@@ -1535,7 +1583,7 @@ class Main extends Component {
                                                                                                        marginTop: "-7px",
                                                                                                    }}
                                                                                                >
-                                                                                                   کشور&nbsp;طرف&nbsp;معامله
+                                                                                                   "کشور&nbsp;طرف&nbsp;معامله"
                                                                                                </Typography>
                                                                                            }
 
@@ -1543,7 +1591,8 @@ class Main extends Component {
                                                                             }/>
                                                                     </Grid>
 
-                                                                    <Grid item md={3} className="textfield-container"
+                                                                    <Grid item sm={7} md={4}
+                                                                          className="textfield-container"
                                                                           spacing={1}>
                                                                         <TextField
                                                                             size="small"
@@ -1556,6 +1605,7 @@ class Main extends Component {
                                                                                     }}
                                                                                 >
                                                                                     حجم&nbsp;معامله&nbsp;به&nbsp;ارز&nbsp;محلی
+
                                                                                 </Typography>
                                                                             }
 
@@ -1569,11 +1619,12 @@ class Main extends Component {
                                                                                 },
                                                                                 shrink: true,
                                                                             }}
-                                                                            onChange={(e) => this.props.onContentLevel3onChangeHandler(e, "remittanceContents", ri, "destinationPartners", pi, "countries", ci, "amount", true, false)}
+                                                                            onChange={(e) => this.props.onContentLevel3onChangeHandler(e, "remittanceContents", ri, "originPartners", pi, "countries", ci, "amount", true, false)}
                                                                         />
                                                                     </Grid>
 
-                                                                    <Grid item md={3} className="textfield-container"
+                                                                    <Grid item sm={5} md={3}
+                                                                          className="textfield-container"
                                                                           spacing={1}>
                                                                         <TextField
                                                                             size="small"
@@ -1599,14 +1650,14 @@ class Main extends Component {
                                                                                 },
                                                                                 shrink: true,
                                                                             }}
-                                                                            onChange={(e) => this.props.onContentLevel3onChangeHandler(e, "remittanceContents", ri, "destinationPartners", pi, "countries", ci, "amountInDollar", true, false)}
+                                                                            onChange={(e) => this.props.onContentLevel3onChangeHandler(e, "remittanceContents", ri, "originPartners", pi, "countries", ci, "amountInDollar", true, false)}
                                                                         />
                                                                     </Grid>
 
                                                                     <Button
                                                                         className="remove-btn tiny-control-btn top-left"
                                                                         disabled={!this.state.editable}
-                                                                        onClick={() => this.props.onRemoveContentLevel2Handler("remittanceContents", ri, "destinationPartners", pi, "countries", ci)}>
+                                                                        onClick={() => this.props.onRemoveContentLevel2Handler("remittanceContents", ri, "originPartners", pi, "countries", ci)}>
                                                                         ×</Button>
 
                                                                 </Grid>
@@ -1617,7 +1668,7 @@ class Main extends Component {
                                                                 disabled={!this.state.editable}
                                                                 style={{marginTop: "5px"}}
                                                                 className="add-btn tiny-control-btn"
-                                                                onClick={() => this.props.onAddContentLevel2Handler("remittanceContents", ri, "destinationPartners", pi, "countries")}>+</Button>
+                                                                onClick={() => this.props.onAddContentLevel2Handler("remittanceContents", ri, "originPartners", pi, "countries")}>+</Button>
 
 
                                                     </Grid>
@@ -1625,7 +1676,7 @@ class Main extends Component {
 
                                                     <Button className="remove-btn tiny-control-btn top-left"
                                                             disabled={!this.state.editable}
-                                                            onClick={() => this.props.onRemoveContentLevel1Handler("remittanceContents", ri, "destinationPartners", pi)}>
+                                                            onClick={() => this.props.onRemoveContentLevel1Handler("remittanceContents", ri, "originPartners", pi)}>
                                                         ×</Button>
 
                                                 </Grid>
@@ -1640,10 +1691,11 @@ class Main extends Component {
                                             className="add-btn tiny-control-btn"
                                             style={{marginTop: "10px", marginRight: "-5px"}}
                                             disabled={!this.state.editable}
-                                            onClick={() => this.props.onAddContentLevel1Handler("remittanceContents", ri, "destinationPartners")}>+</Button>
+                                            onClick={() => this.props.onAddContentLevel1Handler("remittanceContents", ri, "originPartners")}>+</Button>
 
 
                                 </Grid>
+
 
                             </Grid>
                         );
@@ -1652,7 +1704,8 @@ class Main extends Component {
 
 
             form = (
-                <div>
+                <div style={{padding: "50px 0 50px 0"}}>
+                    <h5 className={styles.TextCenter}>فرم زیر را کامل کنید</h5>
                     <form className="main-form my-form" style={{marginBottom: "10px"}}>
 
                         <Container className="form-inner-content">
@@ -1674,15 +1727,16 @@ class Main extends Component {
                             <Grid container className="form-content margin-bottom-5">
 
                                 <Grid container item spacing={2}>
-                                    <Grid item className="textfield-container" md={6}>
+                                    <Grid item container xs={12} md={6} lg={4} className="textfield-container">
                                         <FormControl variant="outlined" fullWidth size="small">
                                             <InputLabel
                                                 id="demo-simple-select-outlined-label">
 
                                                 <Typography
                                                     style={{
+                                                        width: "100%",
                                                         fontFamily: 'Nika',
-                                                        fontSize: "larger",
+                                                        fontSize: "medium",
                                                         marginTop: "-7px",
                                                     }}>
                                                     سرمایه &nbsp;مورد&nbsp;نیاز&nbsp;برای&nbsp;گسترش&nbsp; شبکه
@@ -1728,7 +1782,7 @@ class Main extends Component {
                                         </FormControl>
 
                                     </Grid>
-                                    <Grid item className="textfield-container" md={6}>
+                                    <Grid item xs={12} sm={12} md={6} lg={8} className="textfield-container">
                                         <TextField value={this.props.formData.others} id="others"
                                                    variant="outlined"
                                                    fullWidth
@@ -1737,13 +1791,18 @@ class Main extends Component {
                                                        shrink: true,
                                                    }}
                                                    InputProps={{
-                                                       style: {direction: "rtl"},
+                                                       style: {
+                                                           fontFamily: 'Nika',
+                                                           fontSize: "larger",
+                                                           direction: "rtl",
+                                                       },
                                                    }}
+
                                                    label={
                                                        <Typography
                                                            style={{
                                                                fontFamily: 'Nika',
-                                                               fontSize: "large",
+                                                               fontSize: "larger",
                                                                marginTop: "-7px",
                                                            }}
                                                        >
@@ -1782,12 +1841,8 @@ class Main extends Component {
 
         return (
 
-            <div style={{marginTop: "50px"}}>
-                <h4 className={styles.TextCenter}>فرم زیر را کامل کنید</h4>
-                <div style={{marginBottom: "50px"}}>
-                    {form}
-
-                </div>
+            <div>
+                {form}
             </div>
         );
     }
@@ -1796,6 +1851,7 @@ class Main extends Component {
 
 const mapStateToProps = state => {
     return {
+
         username: state.auth.username,
         date: state.main.data[state.main.data.length - 1].date,
         formData: state.main.data[state.main.data.length - 1].data,

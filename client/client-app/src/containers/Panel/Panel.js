@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import './Logged.css';
+import './Panel.css';
 import Nav from "react-bootstrap/Nav";
 import {NavLink} from "react-router-dom";
 
 
-class Logged extends Component {
+class Panel extends Component {
 
     render() {
         return (
-            <div className="first-page-container">
+            <div className="first-page-container first-page">
                 <p style={{textAlign: "center"}}>
                     بسم الله الرحمن الرحیم
                 </p>
@@ -25,14 +25,14 @@ class Logged extends Component {
                 <p>
 
 
-                    این سایت شامل دو پرسشنامه اصلی می باشد که اولی با نام <Nav.Link exact as={NavLink} to="/profile" style={{display: "inline", margin: "0", padding: "0", textDecoration: "underline"}}>مشخصات صرافی</Nav.Link> در صفحه قابل مشاهده است شامل
+                    این سایت شامل دو پرسش نامه اصلی می باشد که اولی با نام <Nav.Link exact as={NavLink} to="/profile" style={{display: "inline", margin: "0", padding: "0", textDecoration: "underline"}}>مشخصات صرافی</Nav.Link> در صفحه قابل مشاهده است شامل
                     اطلاعات هویتی شما می باشد که خواهشمندیم اگر این اطلاعات نقصانی دارد آنرا اصلاح کرده و شماره تلفن
                     همراه برای ارتباط در شبکه های اجتماعی مانند واتساپ و تلگرام و همینطور ارتباط مستقیم در اختیار بانک
                     قرار دهید.
 
                 </p>
                 <p>
-                    پرسشنامه دوم که به نام <Nav.Link exact as={NavLink} to="/form" style={{display: "inline", margin: "0", padding: "0", textDecoration: "underline"}}>اطلاعات ارتباطات داخلی وخارجی</Nav.Link> قابل مشاهده می باشد، شامل اطلاعات حرفه ای شما
+                    پرسش نامه دوم که به نام <Nav.Link exact as={NavLink} to="/form" style={{display: "inline", margin: "0", padding: "0", textDecoration: "underline"}}>اطلاعات ارتباطات داخلی وخارجی</Nav.Link> قابل مشاهده می باشد، شامل اطلاعات حرفه ای شما
                     شامل توانایی شما در ارسال و دریافت حواله بین کشورهای گوناگون و همینطور ارتباطات موثر شما شامل بانک
                     هایی که امکان مذاکره با آنها دارید و سایر شرکای اقتصادی شما در آن کشور و نوع ارتباطات آنها استعلام
                     شده است.
@@ -55,5 +55,5 @@ class Logged extends Component {
     }
 }
 
-export default Logged;
+export default Panel;
 

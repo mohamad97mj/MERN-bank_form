@@ -124,17 +124,16 @@ class Profile extends Component {
 
         if (this.props.profileData !== undefined) {
             form = (
-                <div style={{marginTop: "50px"}}>
-                    <h4>فرم زیر را کامل کنید</h4>
+                <div style={{padding: "50px 0 50px 0"}}>
+                    <h5>فرم زیر را کامل کنید</h5>
                     <form onSubmit={this.submitHandler} style={{marginBottom: "10px"}}
-                          className="profile-form form-inner-content my-form">
-                        <Grid container spacing={1}>
-                            <Grid container item md={12} className="form-content" spacing={2}>
-                                <Grid container item spacing={2}>
-                                    <Grid item md={8} className="textfield-container">
-                                        {/*<Grid item md="3">*/}
-                                        {/*    نام و نام خانوادگی:*/}
-                                        {/*</Grid>*/}
+                          className="profile-form  my-form">
+                        <Grid className="form-inner-content">
+
+                            <Grid  item className="form-content">
+                                <Grid container item xs={12} xs={12} spacing={2}>
+                                    <Grid item xs={12} sm={8} className="textfield-container">
+
                                         <TextField id="name" value={this.props.profileData.name}
                                                    disabled={!this.state.editable}
                                                    variant="outlined"
@@ -167,8 +166,7 @@ class Profile extends Component {
                                                    fullWidth
                                                    onChange={(e) => this.inputOnChangeHandler(e, "name")}/>
                                     </Grid>
-
-                                    <Grid item md={4} className="textfield-container">
+                                    <Grid item xs={12} sm={4} className="textfield-container">
 
                                         <TextField id="national-code"
 
@@ -196,14 +194,13 @@ class Profile extends Component {
                                                    value={this.props.profileData.nationalCode}
                                                    disabled={!this.state.editable}/>
                                     </Grid>
-
                                 </Grid>
                             </Grid>
 
-                            <Grid container item md={12} className="form-content" spacing={2}>
-                                <Grid container item md={12} spacing={2}>
-                                    <Grid container item md={3} spacing={2}>
-                                        <Grid item style={{marginBottom: "5px"}}
+                            <Grid  item className="form-content" >
+                                <Grid container item xs={12} spacing={2} style={{marginBottom: "15px"}}>
+                                    <Grid container item xs={12} sm={6} md={3}>
+                                        <Grid item xs={12} style={{marginBottom: "15px"}}
                                               className="textfield-container">
                                             <TextField id="state" value={this.props.profileData.state}
 
@@ -266,7 +263,7 @@ class Profile extends Component {
                                             {/*</Grid>*/}
                                         </Grid>
 
-                                        <Grid item className="textfield-container">
+                                        <Grid item xs={12} className="textfield-container">
                                             <TextField value={this.props.profileData.postalCode} id="postal-code"
 
                                                        label={
@@ -295,8 +292,9 @@ class Profile extends Component {
                                             />
                                         </Grid>
                                     </Grid>
-                                    <Grid container item md={3} spacing={2}>
-                                        <Grid item md={12} className="textfield-container">
+                                    <Grid container item xs={12} sm={6} md={3}>
+                                        <Grid item xs={12} className="textfield-container"
+                                              style={{marginBottom: "15px"}}>
 
                                             <TextField value={this.props.profileData.city} id="city"
 
@@ -329,7 +327,7 @@ class Profile extends Component {
 
                                         </Grid>
 
-                                        <Grid item md={12} className="textfield-container">
+                                        <Grid item xs={12} className="textfield-container">
 
                                             <TextField value={this.props.profileData.telephone} id="telephone"
 
@@ -359,7 +357,7 @@ class Profile extends Component {
                                         </Grid>
 
                                     </Grid>
-                                    <Grid container item md={6} className="textfield-container">
+                                    <Grid container item xs={12} sm={12} md={6} className="textfield-container">
 
                                         <TextField value={this.props.profileData.address} id="address"
                                                    variant="outlined"
@@ -392,8 +390,8 @@ class Profile extends Component {
                                     </Grid>
 
                                 </Grid>
-                                <Grid container item spacing={2}>
-                                    <Grid item md={3} className="textfield-container">
+                                <Grid container item xs={12} spacing={2}>
+                                    <Grid item xs={12} md={3} className="textfield-container">
                                         <TextField id="mobile" value={this.props.profileData.mobile}
 
                                                    label={
@@ -421,7 +419,7 @@ class Profile extends Component {
                                         />
                                     </Grid>
 
-                                    <Grid container item spacing={2} md={7}>
+                                    <Grid container item spacing={2} xs={12} md={7}>
 
                                         <ButtonGroup fullWidth>
 
@@ -464,9 +462,9 @@ class Profile extends Component {
                                 </Grid>
                             </Grid>
 
-                            <Grid container item md={12} className="form-content" spacing={2}>
-                                <Grid container item spacing={2}>
-                                    <Grid item sm={4} className="textfield-container">
+                            <Grid  item className="form-content" >
+                                <Grid container item xs={12} spacing={2}>
+                                    <Grid item xs={12} sm={6} md={4} className="textfield-container">
                                         <TextField value={this.props.profileData.lastLicenseNumber}
 
                                                    label={
@@ -496,7 +494,7 @@ class Profile extends Component {
                                     </Grid>
 
 
-                                    <Grid item md={4} className="textfield-container">
+                                    <Grid item xs={12} sm={6} md={4} className="textfield-container">
 
                                         <TextField value={this.props.profileData.lastLicenseValidityDate}
 
@@ -525,7 +523,7 @@ class Profile extends Component {
 
                                     </Grid>
 
-                                    <Grid item md={4} className="textfield-container">
+                                    <Grid item xs={12} sm={4} md={4} className="textfield-container">
                                         <TextField value={this.props.profileData.registerNumber}
 
                                                    label={
@@ -553,9 +551,7 @@ class Profile extends Component {
                                                    onChange={(e) => this.inputOnChangeHandler(e, "registerNumber")}/>
                                     </Grid>
 
-                                </Grid>
-                                <Grid container item spacing={2}>
-                                    <Grid item md={6} className="textfield-container">
+                                    <Grid item xs={12} sm={8} md={6} className="textfield-container">
 
                                         <TextField id="manager" value={this.props.profileData.manager}
 
@@ -589,7 +585,7 @@ class Profile extends Component {
                         </Grid>
 
                     </form>
-                   <Button variant="contained" color="secondary" disabled={!this.state.editable}
+                    <Button variant="contained" color="secondary" disabled={!this.state.editable}
                             onClick={() => {
                                 this.setState({
                                     editable: false,

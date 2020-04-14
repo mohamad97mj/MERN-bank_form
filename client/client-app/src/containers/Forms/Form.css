@@ -1,17 +1,18 @@
 #bootstrap-overwrite .form-content {
     padding: 20px;
     margin: auto;
-    border: 1px solid #EDAFB8;
+    /*border: 1px solid #F3908D;*/
     box-sizing: border-box;
     position: relative;
     background-color: white;
     border-radius: .25rem;
+    border: none;
 
 }
 
 #bootstrap-overwrite .form-inner-content {
 
-    background-color: #F4EFF0;
+    background-color: #F2F2F2;
     padding: 10px;
     border-radius: .25rem;
 
@@ -58,26 +59,24 @@
 }
 
 #bootstrap-overwrite .add-btn{
-
+    border-color: black;
     background-color: #ADF2A4;
 
 
 }
 
-#bootstrap-overwrite .submit-btn{
-    /*padding: 3px 10px 3px 10px;*/
-    background-color: #3C153B;
-    color: #F4EFF0;
-    border: none;
-    /*line-height: 42px;*/
-    font-size: x-large;
-    margin-top: 20px;
-    /*margin-bottom: 2px;*/
-}
+/*#bootstrap-overwrite .submit-btn{*/
+/*    !*padding: 3px 10px 3px 10px;*!*/
+/*    border: none;*/
+/*    !*line-height: 42px;*!*/
+/*    font-size: x-large;*/
+/*    margin-top: 20px;*/
+/*    !*margin-bottom: 2px;*!*/
+/*}*/
 
 #bootstrap-overwrite .remove-btn {
 
-    background-color: #EF626C;
+    background-color: #FF9793;
 
 }
 
@@ -104,7 +103,7 @@
     /*border-radius: 0;*/
     border: none;
     font-size: xx-large;
-
+    /*border: 1px solid #F3908D;*/
 
 }
 
@@ -115,6 +114,8 @@
     min-width: 20px;
     min-height: 20px;
     line-height: 20px;
+
+    /*border: 1px solid #F3908D;*/
 
     padding: 0;
     font-size: large;

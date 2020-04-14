@@ -86,19 +86,19 @@ class Register extends Component {
             <form onSubmit={this.loginHandler}>
                 <Grid className={styles.LoginForm}>
                     <Grid >
-                        <Grid column xs="3">
+                        <Grid lg={3}>
                             نام کاربری
                         </Grid>
-                        <Grid xs="9">
+                        <Grid lg={9}>
                             <Grid id="username" onChange={this.onChangeHandler}/>
                         </Grid>
 
                     </Grid>
                     <Grid >
-                        <Grid column xs="3">
+                        <Grid lg={3}>
                             گذرواژه
                         </Grid>
-                        <Grid sm="9">
+                        <Grid lg={9}>
                             <Grid type="password" id="password" onChange={this.onChangeHandler} />
                         </Grid>
 
@@ -117,7 +117,7 @@ class Register extends Component {
         return (
 
             <div>
-                <h4>نام کاربری و گذرواژه خود را وارد کنید </h4>
+                <h5>نام کاربری و گذرواژه خود را وارد کنید </h5>
                 <div>
                     {form}
                 </div>

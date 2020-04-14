@@ -102,75 +102,77 @@ class Auth extends Component {
     render() {
 
         let form = (
-
-            <form onSubmit={this.loginHandler} className="login-form my-form">
-
-
-                <Grid container className="form-inner-content" style={{marginBottom: "10px"}} spacing={2}>
-                    <Grid item xs={12} className="textfield-container">
-                        <TextField variant="outlined"
-
-                                   fullWidth
-                                   type="text"
-                                   id="username"
-                                   InputLabelProps={{
-                                       shrink: true,
-                                   }}
-
-                                   label={
-                                       <Typography
-                                           style={{
-                                               fontFamily: 'Nika',
-                                               fontSize: "large",
-                                               marginTop: "-7px",
-                                           }}
-                                       >
-                                           نام&nbsp;کاربری
-                                       </Typography>
-                                   }
+            <div style={{padding: "50px 0 50px 0"}}>
+                <h5>نام کاربری و گذرواژه خود را وارد کنید </h5>
+                <form onSubmit={this.loginHandler} className="login-form my-form">
 
 
-                                   InputProps={{
-                                       style: {direction: "rtl"},
-                                   }}
-                                   onChange={this.onChangeHandler}/>
+                    <Grid container className="" style={{marginBottom: "10px"}} spacing={2}>
+                        <Grid item xs={12} className="textfield-container">
+                            <TextField variant="outlined"
+
+                                       fullWidth
+                                       type="text"
+                                       id="username"
+                                       InputLabelProps={{
+                                           shrink: true,
+                                       }}
+
+                                       label={
+                                           <Typography
+                                               style={{
+                                                   fontFamily: 'Nika',
+                                                   fontSize: "large",
+                                                   marginTop: "-7px",
+                                               }}
+                                           >
+                                               نام&nbsp;کاربری
+                                           </Typography>
+                                       }
+
+
+                                       InputProps={{
+                                           style: {direction: "rtl"},
+                                       }}
+                                       onChange={this.onChangeHandler}/>
+                        </Grid>
+                        <Grid item xs={12} className="textfield-container">
+                            <TextField variant="outlined"
+
+                                       fullWidth
+                                       type="password"
+                                       id="password"
+
+                                       label={
+                                           <Typography
+                                               style={{
+                                                   fontFamily: 'Nika',
+                                                   fontSize: "large",
+                                                   marginTop: "-7px",
+
+                                               }}
+                                           >
+                                               گذرواژه
+                                           </Typography>
+                                       }
+
+                                       InputLabelProps={{
+                                           shrink: true,
+                                       }}
+                                       InputProps={{
+                                           style: {direction: "rtl"},
+                                       }}
+                                       onChange={this.onChangeHandler}/>
+
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12} className="textfield-container">
-                        <TextField variant="outlined"
-
-                                   fullWidth
-                                   type="password"
-                                   id="password"
-
-                                   label={
-                                       <Typography
-                                           style={{
-                                               fontFamily: 'Nika',
-                                               fontSize: "large",
-                                               marginTop: "-7px",
-
-                                           }}
-                                       >
-                                           گذرواژه
-                                       </Typography>
-                                   }
-
-                                   InputLabelProps={{
-                                       shrink: true,
-                                   }}
-                                   InputProps={{
-                                       style: {direction: "rtl"},
-                                   }}
-                                   onChange={this.onChangeHandler}/>
-
+                    <Grid container justify="center">
+                        <Button type="submit" variant="contained" className="center">ورود</Button>
                     </Grid>
-                </Grid>
-                <Grid container justify="center">
-                    <Button type="submit" variant="contained" className="center">ورود</Button>
-                </Grid>
 
 
-            </form>
+                </form>
+            </div>
         );
         if (this.state.loading) {
             form = <Spinner/>;
@@ -195,7 +197,6 @@ class Auth extends Component {
             <div className="mt-5">
                 {authRedirect}
                 {errorMessage}
-                <h4>نام کاربری و گذرواژه خود را وارد کنید </h4>
                 <div>
                     {form}
                 </div>

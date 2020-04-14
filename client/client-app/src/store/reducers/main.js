@@ -3,10 +3,15 @@ import {updateObject} from '../utility';
 
 const initialState = {
 
+    fs1 : "larger",
+    fs2 : "medium",
+    fs3 : "small",
+
     error: null,
     loading: false,
     loaded: false,
     counter: 0,
+
     data: [
         {
             date: "init",

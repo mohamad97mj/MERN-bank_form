@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 // import styles from './Auth.module.css';
 import axios from 'axios';
-
 import {Grid, Button, Container, Box, TextField, Typography} from '@material-ui/core';
 import {withStyles} from '@material-ui/core/styles';
 
@@ -90,10 +89,14 @@ class Auth extends Component {
     loginHandler = (event) => {
         event.preventDefault();
 
+        alert("username is :" + this.state.username);
+        alert("password is :" + this.state.password)
+
         const userData = {
             username: this.state.username,
             password: this.state.password,
         };
+
 
         this.props.onAuth(userData);
 
@@ -221,7 +224,7 @@ const mapDispatchToProps = dispatch => {
         onAuth: (userData) => {
             dispatch(actions.auth(userData))
         },
-        onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath("/logged"))
+        onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath("/panel"))
 
     }
 };

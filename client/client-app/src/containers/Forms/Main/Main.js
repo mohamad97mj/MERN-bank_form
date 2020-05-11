@@ -1,54 +1,84 @@
-import React, {Component} from 'react';
-
-import Spinner from '../../../components/UI/Spinner/Spinner';
-import styles from './Main.module.css';
+import React, {Component} from "react";
+// nodejs library that concatenates classes
+import classNames from "classnames";
+// @material-ui/core components
+import {createMuiTheme, makeStyles, StylesProvider, ThemeProvider, withStyles} from "@material-ui/core/styles";
+// @material-ui/icons
+import Camera from "@material-ui/icons/Camera";
+import Palette from "@material-ui/icons/Palette";
+import Favorite from "@material-ui/icons/Favorite";
+// core components
+import Header from "../../../components/UI/Header/Header.js";
+import Footer from "../../../components/UI/Footer/Footer.js";
+import Button from "../../../components/UI/CustomButtons/Button.js";
+import GridContainer from "../../../components/UI/Grid/GridContainer.js";
+import GridItem from "../../../components/UI/Grid/GridItem.js";
+import HeaderLinks from "../../../components/UI/Header/HeaderLinks.js";
+// import NavPills from "../../components/UI/NavPills/NavPills.js";
+import Parallax from "../../../components/UI/Parallax/Parallax.js";
+import '../../Panel/Panel.css';
 import './Main.css';
 import '../Form.css';
-// import {fs1, fs2, fs3} from './responsive';
-
-import {
-    Grid,
-    Button,
-    Container,
-    Box,
-    TextField,
-    Typography,
-    ButtonGroup,
-    FormControl,
-    InputLabel,
-    Select,
-    MenuItem,
-    FormLabel,
-    FormControlLabel,
-    Radio,
-    RadioGroup, FormGroup, Checkbox
-} from '@material-ui/core';
-import {Autocomplete} from '@material-ui/lab';
 
 
-// import Form from "react-bootstrap/Form";
-// import Col from "react-bootstrap/Col";
-// import Row from "react-bootstrap/Row";
-// import ButtonGroup from "react-bootstrap/ButtonGroup";
-// import Button from "react-bootstrap/Button";
-// import Container from "react-bootstrap/Container";
-import {Typeahead} from 'react-bootstrap-typeahead';
+import {jssPreset} from "@material-ui/core/styles";
 
-import * as actions from "../../../api";
+import styles from "../../../assets/jss/material-kit-react/views/profilePage.js";
+import Nav from "react-bootstrap/Nav";
+import {NavLink} from "react-router-dom";
+import LoggedInHeaderLinks from "../../../components/UI/Header/LoggedInHeaderLinks";
 import {connect} from "react-redux";
+import * as actions from "../../../api";
+import {
+    ButtonGroup, Checkbox, Container, FormControl,
+    FormControlLabel, FormGroup,
+    FormLabel,
+    Grid, InputLabel, MenuItem,
+    Radio,
+    RadioGroup, Select,
+    TextField,
+    Typography
+} from "@material-ui/core";
+import {Autocomplete} from "@material-ui/lab";
+import Spinner from "../../../components/UI/Spinner/Spinner";
 
-import ReactFlagsSelect from 'react-flags-select';
-import FlagIcon from "../../../components/UI/FlagIcon/FlagIcon";
-import 'react-flags-select/css/react-flags-select.css';
+import {create} from 'jss';
+import rtl from 'jss-rtl';
+const jss = create({plugins: [...jssPreset().plugins, rtl()]});
 
+const mapStateToProps = state => {
+    return {
 
-//responsive ...........................................................................................................
+        username: state.auth.username,
+        date: state.main.data[state.main.data.length - 1].date,
+        formData: state.main.data[state.main.data.length - 1].data,
+        loading: state.main.loading,
+        counter: state.main.counter,
+        isNew: state.main.data[state.main.data.length - 1].date === "init",
+    }
+};
 
+const mapDispatchToProps = dispatch => {
+    return {
 
-//.......... ...........................................................................................................
+        onOnChangeHandler: (event, control) => dispatch(actions.onChangeHandler(event, control)),
+        onAddContentHandler: (control) => dispatch(actions.addContentHandler(control)),
+        onRemoveContentHandler: (control, index) => dispatch(actions.removeContentHandler(control, index)),
+        onContentLevel1onChangeHandler: (event, control, index, control2, autoFlag) => dispatch(actions.contentLevel1onChangeHandler(event, control, index, control2, autoFlag)),
+        onAddContentLevel1Handler: (control, index, control2) => dispatch(actions.addContentLevel1Handler(control, index, control2)),
+        onRemoveContentLevel1Handler: (control, index, control2, index2) => dispatch(actions.removeContentLevel1Handler(control, index, control2, index2)),
+        onContentLevel2onChangeHandler: (event, control, index, control2, index2, control3, commaFlag) => dispatch(actions.contentLevel2onChangeHandler(event, control, index, control2, index2, control3, commaFlag)),
+        onAddContentLevel2Handler: (control, index, control2, index2, control3) => dispatch(actions.addContentLevel2Handler(control, index, control2, index2, control3)),
+        onRemoveContentLevel2Handler: (control, index, control2, index2, control3, index3) => dispatch(actions.removeContentLevel2Handler(control, index, control2, index2, control3, index3)),
+        onContentLevel3onChangeHandler: (event, control, index, control2, index2, control3, index3, control4, commaFlag, autoFlag) => dispatch(actions.contentLevel3onChangeHandler(event, control, index, control2, index2, control3, index3, control4, commaFlag, autoFlag)),
+        onDisableRemittanceBanksNameHandler: (event, index, control, index2) => dispatch(actions.disableRemittanceBanksNameHandler(event, index, control, index2)),
+        onDisableRemittanceBanksHandler: (event, index, control, control2) => dispatch(actions.disableRemittanceBanksHandler(event, index, control, control2)),
 
+        onPostForm: (userData, userProfile) => dispatch(actions.postForm(userData, userProfile))
+    }
+};
 
-class Main extends Component {
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(class LoginPage extends Component {
 
     constructor(props) {
         super(props);
@@ -61,11 +91,9 @@ class Main extends Component {
     };
 
 
-    handleRadioChange = (event) => {
-        // setValue(event.target.value);
-        // setHelperText(' ');
-        // setError(false);
-    };
+    theme = createMuiTheme({
+        direction: 'rtl', // Both here and <body dir="rtl">
+    });
 
 
     // countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua &amp; Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia &amp; Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Cayman Islands", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cruise Ship", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Kyrgyz Republic", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre &amp; Miquelon", "Samoa", "San Marino", "Satellite", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St Kitts &amp; Nevis", "St Lucia", "St Vincent", "St. Lucia", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad &amp; Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks &amp; Caicos", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
@@ -414,24 +442,8 @@ class Main extends Component {
                                                                                             },
                                                                                             shrink: true,
                                                                                         }}
-                                                        // InputProps={{
-                                                        //     style: {
-                                                        //         fontFamily: 'Nika',
-                                                        //         direction: "rtl",
-                                                        //     },
-                                                        // }}
-                                                                                        label={
-                                                                                            <Typography
-                                                                                                style={{
-                                                                                                    fontFamily: 'Nika',
-                                                                                                    fontSize: "larger",
-                                                                                                    marginTop: "-7px",
-                                                                                                }}
-                                                                                            >
-                                                                                                کشور&nbsp;مبداء&nbsp;حواله
-                                                                                            </Typography>
 
-                                                                                        }
+                                                                                        label="کشور&nbsp;مبداء&nbsp;حواله"
                                                                                         variant="outlined"/>
                                                     }/>
 
@@ -447,7 +459,6 @@ class Main extends Component {
                                                     <FormLabel
                                                         component='div'
                                                         style={{
-                                                            fontFamily: 'Nika',
                                                             fontSize: "medium",
                                                             lineHeight: "40px",
                                                         }}>
@@ -466,18 +477,8 @@ class Main extends Component {
 
                                                             />}
                                                             style={{direction: "ltr"}}
-                                                            label={
-                                                                <Typography
-                                                                    style={{
-                                                                        fontFamily: 'Nika',
-                                                                        fontSize: "medium",
-                                                                        marginTop: "-7px",
-                                                                    }}
-                                                                >
-                                                                    بله
-                                                                </Typography>
-                                                            }
 
+                                                            label="&nbsp;بله&nbsp;&nbsp;&nbsp;&nbsp;"
 
                                                         />
                                                         <FormControlLabel
@@ -488,19 +489,10 @@ class Main extends Component {
                                                                 // checked={false}
                                                                 id={"rc-" + ri + "-origin-connection-check-2"}
                                                             />}
-
                                                             style={{direction: "ltr"}}
-                                                            label={
-                                                                <Typography
-                                                                    style={{
-                                                                        fontFamily: 'Nika',
-                                                                        fontSize: "medium",
-                                                                        marginTop: "-7px",
-                                                                    }}
-                                                                >
-                                                                    خیر
-                                                                </Typography>
-                                                            }
+
+                                                            label="خیر"
+
                                                         />
                                                     </div>
                                                 </RadioGroup>
@@ -530,24 +522,8 @@ class Main extends Component {
                                                                     },
                                                                     shrink: true,
                                                                 }}
-                                                                InputProps={{
-                                                                    style: {
-                                                                        fontFamily: 'Nika',
-                                                                        fontSize: "larger",
-                                                                        direction: "rtl",
-                                                                    },
-                                                                }}
-                                                                label={
-                                                                    <Typography
-                                                                        style={{
-                                                                            fontFamily: 'Nika',
-                                                                            fontSize: "larger",
-                                                                            marginTop: "-7px",
-                                                                        }}
-                                                                    >
-                                                                        نام&nbsp;بانک&nbsp;در&nbsp;کشور&nbsp;مبداء
-                                                                    </Typography>
-                                                                }
+
+                                                                label="نام&nbsp;بانک&nbsp;در&nbsp;کشور&nbsp;مبداء"
 
                                                                 fullWidth
                                                                 disabled={b.nameCheck || !rc.originConnectionCheck || !this.state.editable}
@@ -586,8 +562,7 @@ class Main extends Component {
                                                                             label={
                                                                                 <Typography
                                                                                     style={{
-                                                                                        fontFamily: 'Nika',
-                                                                                        fontSize: "medium",
+                                                                                        fontSize: "small",
                                                                                         marginTop: "-7px",
                                                                                     }}
                                                                                 >
@@ -608,8 +583,7 @@ class Main extends Component {
                                                                 <InputLabel
                                                                     id="demo-simple-select-outlined-label"
                                                                     style={{
-                                                                        fontFamily: 'Nika',
-                                                                        fontSize: "medium",
+                                                                        fontSize: "small",
                                                                     }}>
                                                                     سطح&nbsp;قدرت&nbsp;مذاکره
 
@@ -631,8 +605,7 @@ class Main extends Component {
                                                                     label={
                                                                         <Typography
                                                                             style={{
-                                                                                fontFamily: 'Nika',
-                                                                                fontSize: "larger",
+                                                                                fontSize: "small",
                                                                                 marginTop: "-7px",
                                                                             }}
                                                                         >
@@ -672,17 +645,7 @@ class Main extends Component {
                                                                         shrink: true,
                                                                     }}
 
-                                                                    label={
-                                                                        <Typography
-                                                                            style={{
-                                                                                fontFamily: 'Nika',
-                                                                                fontSize: "larger",
-                                                                                marginTop: "-7px",
-                                                                            }}
-                                                                        >
-                                                                            حداقل&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه&nbsp;به&nbsp;ارز&nbsp;محلی
-                                                                        </Typography>
-                                                                    }
+                                                                    label="حداقل&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه&nbsp;به&nbsp;ارز&nbsp;محلی"
 
                                                                     fullWidth
                                                                     value={b.minimumAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -703,17 +666,7 @@ class Main extends Component {
                                                                     }}
 
 
-                                                                    label={
-                                                                        <Typography
-                                                                            style={{
-                                                                                fontFamily: 'Nika',
-                                                                                fontSize: "larger",
-                                                                                marginTop: "-7px",
-                                                                            }}
-                                                                        >
-                                                                            معادل دلاری
-                                                                        </Typography>
-                                                                    }
+                                                                    label="معادل دلاری"
 
                                                                     fullWidth
                                                                     value={b.minInDollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -736,18 +689,7 @@ class Main extends Component {
                                                                         shrink: true,
                                                                     }}
 
-                                                                    label={
-                                                                        <Typography
-                                                                            style={{
-                                                                                fontFamily: 'Nika',
-                                                                                fontSize: "larger",
-                                                                                marginTop: "-7px",
-                                                                            }}
-                                                                        >
-                                                                            حداکثر&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه&nbsp;به&nbsp;ارز&nbsp;محلی
-
-                                                                        </Typography>
-                                                                    }
+                                                                    label=" حداکثر&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه&nbsp;به&nbsp;ارز&nbsp;محلی"
 
                                                                     fullWidth
                                                                     value={b.maximumAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -767,17 +709,7 @@ class Main extends Component {
                                                                         shrink: true,
                                                                     }}
 
-                                                                    label={
-                                                                        <Typography
-                                                                            style={{
-                                                                                fontFamily: 'Nika',
-                                                                                fontSize: "larger",
-                                                                                marginTop: "-7px",
-                                                                            }}
-                                                                        >
-                                                                            معادل&nbsp;دلاری
-                                                                        </Typography>
-                                                                    }
+                                                                    label="معادل&nbsp;دلاری"
 
                                                                     fullWidth
                                                                     value={b.maxInDollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -825,17 +757,8 @@ class Main extends Component {
                                                         <TextField
                                                             size="small"
                                                             fullWidth
-                                                            label={
-                                                                <Typography
-                                                                    style={{
-                                                                        fontFamily: 'Nika',
-                                                                        fontSize: "17px",
-                                                                        marginTop: "-7px",
-                                                                    }}
-                                                                >
-                                                                    نام شریک&nbsp;اقتصادی&nbsp;در&nbsp;کشور&nbsp;مبداء
-                                                                </Typography>
-                                                            }
+                                                            label="نام شریک&nbsp;اقتصادی&nbsp;در&nbsp;کشور&nbsp;مبداء"
+
                                                             variant="outlined"
                                                             InputLabelProps={{
                                                                 style: {
@@ -844,13 +767,8 @@ class Main extends Component {
                                                                 },
                                                                 shrink: true,
                                                             }}
-                                                            InputProps={{
-                                                                style: {
-                                                                    fontFamily: 'Nika',
-                                                                    fontSize: "larger",
-                                                                    direction: "rtl",
-                                                                },
-                                                            }}
+
+
                                                             disabled={!this.state.editable}
                                                             value={p.name}
                                                             className="margin-bottom-5 origin-bank-input"
@@ -910,17 +828,7 @@ class Main extends Component {
                                                                                                shrink: true,
                                                                                            }}
 
-                                                                                           label={
-                                                                                               <Typography
-                                                                                                   style={{
-                                                                                                       fontFamily: 'Nika',
-                                                                                                       fontSize: "larger",
-                                                                                                       marginTop: "-7px",
-                                                                                                   }}
-                                                                                               >
-                                                                                                   "کشور&nbsp;طرف&nbsp;معامله"
-                                                                                               </Typography>
-                                                                                           }
+                                                                                           label="کشور&nbsp;طرف&nbsp;معامله"
 
                                                                                            variant="outlined"/>
                                                                             }/>
@@ -931,18 +839,7 @@ class Main extends Component {
                                                                           spacing={1}>
                                                                         <TextField
                                                                             size="small"
-                                                                            label={
-                                                                                <Typography
-                                                                                    style={{
-                                                                                        fontFamily: 'Nika',
-                                                                                        fontSize: "larger",
-                                                                                        marginTop: "-7px",
-                                                                                    }}
-                                                                                >
-                                                                                    حجم&nbsp;معامله&nbsp;به&nbsp;ارز&nbsp;محلی
-
-                                                                                </Typography>
-                                                                            }
+                                                                            label="حجم&nbsp;معامله&nbsp;به&nbsp;ارز&nbsp;محلی"
 
                                                                             disabled={!this.state.editable}
                                                                             value={c.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -963,17 +860,7 @@ class Main extends Component {
                                                                           spacing={1}>
                                                                         <TextField
                                                                             size="small"
-                                                                            label={
-                                                                                <Typography
-                                                                                    style={{
-                                                                                        fontFamily: 'Nika',
-                                                                                        fontSize: "larger",
-                                                                                        marginTop: "-7px",
-                                                                                    }}
-                                                                                >
-                                                                                    معادل&nbsp;دلاری
-                                                                                </Typography>
-                                                                            }
+                                                                            label="معادل&nbsp;دلاری"
 
                                                                             disabled={!this.state.editable}
                                                                             value={c.amountInDollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -1085,18 +972,8 @@ class Main extends Component {
                                                         //         direction: "rtl",
                                                         //     },
                                                         // }}
-                                                                                        label={
-                                                                                            <Typography
-                                                                                                style={{
-                                                                                                    fontFamily: 'Nika',
-                                                                                                    fontSize: "larger",
-                                                                                                    marginTop: "-7px",
-                                                                                                }}
-                                                                                            >
-                                                                                                کشور&nbsp;مقصد&nbsp;حواله
-                                                                                            </Typography>
+                                                                                        label=" کشور&nbsp;مقصد&nbsp;حواله"
 
-                                                                                        }
                                                                                         variant="outlined"/>
                                                     }/>
 
@@ -1112,7 +989,6 @@ class Main extends Component {
                                                     <FormLabel
                                                         component='div'
                                                         style={{
-                                                            fontFamily: 'Nika',
                                                             fontSize: "medium",
                                                             lineHeight: "40px",
                                                         }}>
@@ -1131,18 +1007,7 @@ class Main extends Component {
 
                                                             />}
                                                             style={{direction: "ltr"}}
-                                                            label={
-                                                                <Typography
-                                                                    style={{
-                                                                        fontFamily: 'Nika',
-                                                                        fontSize: "medium",
-                                                                        marginTop: "-7px",
-                                                                    }}
-                                                                >
-                                                                    بله
-                                                                </Typography>
-                                                            }
-
+                                                            label="&nbsp;بله&nbsp;&nbsp;&nbsp;&nbsp;"
 
                                                         />
                                                         <FormControlLabel
@@ -1155,17 +1020,7 @@ class Main extends Component {
                                                             />}
 
                                                             style={{direction: "ltr"}}
-                                                            label={
-                                                                <Typography
-                                                                    style={{
-                                                                        fontFamily: 'Nika',
-                                                                        fontSize: "medium",
-                                                                        marginTop: "-7px",
-                                                                    }}
-                                                                >
-                                                                    خیر
-                                                                </Typography>
-                                                            }
+                                                            label="خیر"
                                                         />
                                                     </div>
                                                 </RadioGroup>
@@ -1195,25 +1050,8 @@ class Main extends Component {
                                                                     },
                                                                     shrink: true,
                                                                 }}
-                                                                InputProps={{
-                                                                    style: {
-                                                                        fontFamily: 'Nika',
-                                                                        fontSize: "larger",
-                                                                        direction: "rtl",
-                                                                    },
-                                                                }}
-                                                                label={
-                                                                    <Typography
-                                                                        style={{
-                                                                            fontFamily: 'Nika',
-                                                                            fontSize: "larger",
-                                                                            marginTop: "-7px",
-                                                                        }}
-                                                                    >
-                                                                        نام&nbsp;بانک&nbsp;در&nbsp;کشور&nbsp;مقصد
-                                                                    </Typography>
-                                                                }
 
+                                                                label="نام&nbsp;بانک&nbsp;در&nbsp;کشور&nbsp;مقصد"
                                                                 fullWidth
                                                                 disabled={b.nameCheck || !rc.destinationConnectionCheck || !this.state.editable}
                                                                 className="margin-bottom-5 destination-bank-input"
@@ -1251,8 +1089,7 @@ class Main extends Component {
                                                                             label={
                                                                                 <Typography
                                                                                     style={{
-                                                                                        fontFamily: 'Nika',
-                                                                                        fontSize: "medium",
+                                                                                        fontSize: "small",
                                                                                         marginTop: "-7px",
                                                                                     }}
                                                                                 >
@@ -1273,8 +1110,7 @@ class Main extends Component {
                                                                 <InputLabel
                                                                     id="demo-simple-select-outlined-label"
                                                                     style={{
-                                                                        fontFamily: 'Nika',
-                                                                        fontSize: "medium",
+                                                                        fontSize: "small",
                                                                     }}>
                                                                     سطح&nbsp;قدرت&nbsp;مذاکره
 
@@ -1296,8 +1132,7 @@ class Main extends Component {
                                                                     label={
                                                                         <Typography
                                                                             style={{
-                                                                                fontFamily: 'Nika',
-                                                                                fontSize: "larger",
+                                                                                fontSize: "small",
                                                                                 marginTop: "-7px",
                                                                             }}
                                                                         >
@@ -1337,18 +1172,7 @@ class Main extends Component {
                                                                         shrink: true,
                                                                     }}
 
-                                                                    label={
-                                                                        <Typography
-                                                                            style={{
-                                                                                fontFamily: 'Nika',
-                                                                                fontSize: "larger",
-                                                                                marginTop: "-7px",
-                                                                            }}
-                                                                        >
-                                                                            حداقل&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه&nbsp;به&nbsp;ارز&nbsp;محلی
-                                                                        </Typography>
-                                                                    }
-
+                                                                    label="حداقل&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه&nbsp;به&nbsp;ارز&nbsp;محلی"
                                                                     fullWidth
                                                                     value={b.minimumAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                                                                     onChange={(e) => this.props.onContentLevel2onChangeHandler(e, "remittanceContents", ri, "destinationBanks", bi, "minimumAmount", true)}
@@ -1368,17 +1192,7 @@ class Main extends Component {
                                                                     }}
 
 
-                                                                    label={
-                                                                        <Typography
-                                                                            style={{
-                                                                                fontFamily: 'Nika',
-                                                                                fontSize: "larger",
-                                                                                marginTop: "-7px",
-                                                                            }}
-                                                                        >
-                                                                            معادل دلاری
-                                                                        </Typography>
-                                                                    }
+                                                                    label="معادل دلاری"
 
                                                                     fullWidth
                                                                     value={b.minInDollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -1401,18 +1215,7 @@ class Main extends Component {
                                                                         shrink: true,
                                                                     }}
 
-                                                                    label={
-                                                                        <Typography
-                                                                            style={{
-                                                                                fontFamily: 'Nika',
-                                                                                fontSize: "larger",
-                                                                                marginTop: "-7px",
-                                                                            }}
-                                                                        >
-                                                                            حداکثر&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه&nbsp;به&nbsp;ارز&nbsp;محلی
-
-                                                                        </Typography>
-                                                                    }
+                                                                    label="حداکثر&nbsp;مقدار&nbsp;حواله&nbsp;ماهانه&nbsp;به&nbsp;ارز&nbsp;محلی"
 
                                                                     fullWidth
                                                                     value={b.maximumAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -1432,17 +1235,7 @@ class Main extends Component {
                                                                         shrink: true,
                                                                     }}
 
-                                                                    label={
-                                                                        <Typography
-                                                                            style={{
-                                                                                fontFamily: 'Nika',
-                                                                                fontSize: "larger",
-                                                                                marginTop: "-7px",
-                                                                            }}
-                                                                        >
-                                                                            معادل&nbsp;دلاری
-                                                                        </Typography>
-                                                                    }
+                                                                    label="معادل&nbsp;دلاری"
 
                                                                     fullWidth
                                                                     value={b.maxInDollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -1490,17 +1283,7 @@ class Main extends Component {
                                                         <TextField
                                                             size="small"
                                                             fullWidth
-                                                            label={
-                                                                <Typography
-                                                                    style={{
-                                                                        fontFamily: 'Nika',
-                                                                        fontSize: "17px",
-                                                                        marginTop: "-7px",
-                                                                    }}
-                                                                >
-                                                                    نام شریک&nbsp;اقتصادی&nbsp;در&nbsp;کشور&nbsp;مقصد
-                                                                </Typography>
-                                                            }
+                                                            label="نام&nbsp;شریک&nbsp;اقتصادی&nbsp;در&nbsp;کشور&nbsp;مقصد"
                                                             variant="outlined"
                                                             InputLabelProps={{
                                                                 style: {
@@ -1509,13 +1292,7 @@ class Main extends Component {
                                                                 },
                                                                 shrink: true,
                                                             }}
-                                                            InputProps={{
-                                                                style: {
-                                                                    fontFamily: 'Nika',
-                                                                    fontSize: "larger",
-                                                                    direction: "rtl",
-                                                                },
-                                                            }}
+
                                                             disabled={!this.state.editable}
                                                             value={p.name}
                                                             className="margin-bottom-5 origin-bank-input"
@@ -1575,17 +1352,7 @@ class Main extends Component {
                                                                                                shrink: true,
                                                                                            }}
 
-                                                                                           label={
-                                                                                               <Typography
-                                                                                                   style={{
-                                                                                                       fontFamily: 'Nika',
-                                                                                                       fontSize: "larger",
-                                                                                                       marginTop: "-7px",
-                                                                                                   }}
-                                                                                               >
-                                                                                                   "کشور&nbsp;طرف&nbsp;معامله"
-                                                                                               </Typography>
-                                                                                           }
+                                                                                           label="کشور&nbsp;طرف&nbsp;معامله"
 
                                                                                            variant="outlined"/>
                                                                             }/>
@@ -1596,18 +1363,7 @@ class Main extends Component {
                                                                           spacing={1}>
                                                                         <TextField
                                                                             size="small"
-                                                                            label={
-                                                                                <Typography
-                                                                                    style={{
-                                                                                        fontFamily: 'Nika',
-                                                                                        fontSize: "larger",
-                                                                                        marginTop: "-7px",
-                                                                                    }}
-                                                                                >
-                                                                                    حجم&nbsp;معامله&nbsp;به&nbsp;ارز&nbsp;محلی
-
-                                                                                </Typography>
-                                                                            }
+                                                                            label="حجم&nbsp;معامله&nbsp;به&nbsp;ارز&nbsp;محلی"
 
                                                                             disabled={!this.state.editable}
                                                                             value={c.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -1628,17 +1384,7 @@ class Main extends Component {
                                                                           spacing={1}>
                                                                         <TextField
                                                                             size="small"
-                                                                            label={
-                                                                                <Typography
-                                                                                    style={{
-                                                                                        fontFamily: 'Nika',
-                                                                                        fontSize: "larger",
-                                                                                        marginTop: "-7px",
-                                                                                    }}
-                                                                                >
-                                                                                    معادل&nbsp;دلاری
-                                                                                </Typography>
-                                                                            }
+                                                                            label="معادل&nbsp;دلاری"
 
                                                                             disabled={!this.state.editable}
                                                                             value={c.amountInDollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -1704,181 +1450,147 @@ class Main extends Component {
 
 
             form = (
-                <div style={{padding: "50px 0 50px 0"}}>
-                    <h5 className={styles.TextCenter}>فرم زیر را کامل کنید</h5>
-                    <form className="main-form my-form" style={{marginBottom: "10px"}}>
 
-                        <Container className="form-inner-content">
+                <ThemeProvider theme={this.theme}>
+                    <div style={{padding: "50px 0 50px 0"}}>
+                        <h5>فرم زیر را کامل کنید</h5>
+                        <form className="main-form my-form" style={{marginBottom: "10px"}}>
 
-                            {remittanceContainers}
+                            <Container className="form-inner-content">
 
-                            <Button className="add-btn control-btn margin" variant="primary"
-                                    disabled={!this.state.editable}
-                                    onClick={() => this.props.onAddContentHandler("remittanceContents")}>+</Button>
-                        </Container>
+                                {remittanceContainers}
 
-                        {/*<Grid className="form-inner-content">*/}
-                        {/*    {customerContainers}*/}
-                        {/*    <Button className="add-btn control-btn margin" variant="primary"*/}
-                        {/*            onClick={() => this.addContentHandler("customerContents")}>+</Button>*/}
-                        {/*</Grid>*/}
+                                <Button className="add-btn control-btn margin" variant="primary"
+                                        disabled={!this.state.editable}
+                                        onClick={() => this.props.onAddContentHandler("remittanceContents")}>+</Button>
+                            </Container>
 
-                        <Container className="form-inner-content" style={{marginTop: "10px"}}>
-                            <Grid container className="form-content margin-bottom-5">
+                            {/*<Grid className="form-inner-content">*/}
+                            {/*    {customerContainers}*/}
+                            {/*    <Button className="add-btn control-btn margin" variant="primary"*/}
+                            {/*            onClick={() => this.addContentHandler("customerContents")}>+</Button>*/}
+                            {/*</Grid>*/}
 
-                                <Grid container item spacing={2}>
-                                    <Grid item container xs={12} md={6} lg={4} className="textfield-container">
-                                        <FormControl variant="outlined" fullWidth size="small">
-                                            <InputLabel
-                                                id="demo-simple-select-outlined-label">
+                            <Container className="form-inner-content" style={{marginTop: "10px"}}>
+                                <Grid container className="form-content margin-bottom-5">
 
-                                                <Typography
-                                                    style={{
-                                                        width: "100%",
-                                                        fontFamily: 'Nika',
-                                                        fontSize: "medium",
-                                                        marginTop: "-7px",
-                                                    }}>
-                                                    سرمایه &nbsp;مورد&nbsp;نیاز&nbsp;برای&nbsp;گسترش&nbsp; شبکه
-                                                </Typography>
+                                    <Grid container item spacing={2}>
+                                        <Grid item container xs={12} md={6} lg={4} className="textfield-container">
+                                            <FormControl variant="outlined" fullWidth size="small">
+                                                <InputLabel
+                                                    id="demo-simple-select-outlined-label">
 
-                                            </InputLabel>
-                                            <Select
-
-                                                labelId="demo-simple-select-outlined-label"
-                                                id="demo-simple-select-outlined"
-
-                                                InputProps={{
-                                                    style: {
-                                                        // fontWeight: "bold",
-
-                                                    },
-                                                    shrink: true,
-                                                }}
-
-
-                                                label={
                                                     <Typography
                                                         style={{
-                                                            fontFamily: 'Nika',
-                                                            fontSize: "larger",
+                                                            width: "100%",
+                                                            fontSize: "small",
                                                             marginTop: "-7px",
-                                                        }}
-                                                    >
+                                                        }}>
                                                         سرمایه &nbsp;مورد&nbsp;نیاز&nbsp;برای&nbsp;گسترش&nbsp; شبکه
-
                                                     </Typography>
-                                                }
-                                                disabled={!this.state.editable}
-                                                value={this.props.formData.moneyRequired}
-                                                onChange={(e) => this.props.onOnChangeHandler(e, "moneyRequired")}>
 
-                                                {this.moneyScales.map(option => (
-                                                    <MenuItem key={option} value={option}>
-                                                        {option}
-                                                    </MenuItem>
-                                                ))}
-                                            </Select>
-                                        </FormControl>
+                                                </InputLabel>
+                                                <Select
 
+                                                    labelId="demo-simple-select-outlined-label"
+                                                    id="demo-simple-select-outlined"
+
+                                                    InputProps={{
+                                                        style: {
+                                                            // fontWeight: "bold",
+
+                                                        },
+                                                        shrink: true,
+                                                    }}
+
+
+                                                    label={
+                                                        <Typography
+                                                            style={{
+                                                                fontSize: "small",
+                                                                marginTop: "-7px",
+                                                            }}
+                                                        >
+                                                            سرمایه &nbsp;مورد&nbsp;نیاز&nbsp;برای&nbsp;گسترش&nbsp; شبکه
+
+                                                        </Typography>
+                                                    }                                                    disabled={!this.state.editable}
+                                                    value={this.props.formData.moneyRequired}
+                                                    onChange={(e) => this.props.onOnChangeHandler(e, "moneyRequired")}>
+
+                                                    {this.moneyScales.map(option => (
+                                                        <MenuItem key={option} value={option}>
+                                                            {option}
+                                                        </MenuItem>
+                                                    ))}
+                                                </Select>
+                                            </FormControl>
+
+                                        </Grid>
+                                        <Grid item xs={12} sm={12} md={6} lg={8} className="textfield-container">
+                                            <TextField value={this.props.formData.others} id="others"
+                                                       variant="outlined"
+                                                       fullWidth
+                                                       multiline
+                                                       InputLabelProps={{
+                                                           shrink: true,
+                                                       }}
+
+                                                       label="سایر&nbsp;توضیحات"
+                                                       rowsMax="4"
+                                                       disabled={!this.state.editable}
+                                                       onChange={(e) => this.props.onOnChangeHandler(e, "others")}
+                                            />
+
+                                        </Grid>
                                     </Grid>
-                                    <Grid item xs={12} sm={12} md={6} lg={8} className="textfield-container">
-                                        <TextField value={this.props.formData.others} id="others"
-                                                   variant="outlined"
-                                                   fullWidth
-                                                   multiline
-                                                   InputLabelProps={{
-                                                       shrink: true,
-                                                   }}
-                                                   InputProps={{
-                                                       style: {
-                                                           fontFamily: 'Nika',
-                                                           fontSize: "larger",
-                                                           direction: "rtl",
-                                                       },
-                                                   }}
 
-                                                   label={
-                                                       <Typography
-                                                           style={{
-                                                               fontFamily: 'Nika',
-                                                               fontSize: "larger",
-                                                               marginTop: "-7px",
-                                                           }}
-                                                       >
-                                                           سایر&nbsp;توضیحات
-                                                       </Typography>
-                                                   }
-                                                   rowsMax="4"
-                                                   disabled={!this.state.editable}
-                                                   onChange={(e) => this.props.onOnChangeHandler(e, "others")}
-                                        />
-
-                                    </Grid>
                                 </Grid>
+                            </Container>
+                        </form>
+                        <Button variant="contained" color="primary" disabled={!this.state.editable}
+                                onClick={() => {
+                                    this.setState({
+                                        editable: false,
+                                    });
 
-                            </Grid>
-                        </Container>
-                    </form>
-                    <Button variant="contained" color="secondary" disabled={!this.state.editable}
-                            onClick={() => {
-                                this.setState({
-                                    editable: false,
-                                });
+                                    this.props.onPostForm({username: this.props.username}, this.props.formData)
+                                }}>ارسال</Button>
 
-                                this.props.onPostForm({username: this.props.username}, this.props.formData)
-                            }}>ارسال</Button>
-
-                    <Button variant="contained" disabled={this.state.editable}
-                            style={{marginLeft: "5px"}}
-                            onClick={() => this.setState({editable: true})}>ویرایش</Button>
-                </div>
+                        <Button variant="contained" color="primary" disabled={this.state.editable}
+                                style={{marginLeft: "5px"}}
+                                onClick={() => this.setState({editable: true})}>ویرایش</Button>
+                    </div>
+                </ThemeProvider>
             )
 
         } else {
             form = <Spinner/>;
         }
 
+
         return (
-
-            <div>
-                {form}
-            </div>
-        );
+            <StylesProvider jss={jss}>
+                <Header
+                    color="transparent"
+                    brand="Material Kit React"
+                    rightLinks={<LoggedInHeaderLinks/>}
+                    fixed
+                    changeColorOnScroll={{
+                        height: 200,
+                        color: "white"
+                    }}
+                    {...this.props.classes}
+                />
+                <Parallax small filter image={require("../../../assets/images/tinified/panel2.jpg")}/>
+                <div className={classNames(this.props.classes.main, this.props.classes.mainRaised)}>
+                    <div>
+                        {form}
+                    </div>
+                </div>
+                <Footer/>
+            </StylesProvider>
+        )
     }
 
-}
-
-const mapStateToProps = state => {
-    return {
-
-        username: state.auth.username,
-        date: state.main.data[state.main.data.length - 1].date,
-        formData: state.main.data[state.main.data.length - 1].data,
-        loading: state.main.loading,
-        counter: state.main.counter,
-        isNew: state.main.data[state.main.data.length - 1].date === "init",
-    }
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-
-        onOnChangeHandler: (event, control) => dispatch(actions.onChangeHandler(event, control)),
-        onAddContentHandler: (control) => dispatch(actions.addContentHandler(control)),
-        onRemoveContentHandler: (control, index) => dispatch(actions.removeContentHandler(control, index)),
-        onContentLevel1onChangeHandler: (event, control, index, control2, autoFlag) => dispatch(actions.contentLevel1onChangeHandler(event, control, index, control2, autoFlag)),
-        onAddContentLevel1Handler: (control, index, control2) => dispatch(actions.addContentLevel1Handler(control, index, control2)),
-        onRemoveContentLevel1Handler: (control, index, control2, index2) => dispatch(actions.removeContentLevel1Handler(control, index, control2, index2)),
-        onContentLevel2onChangeHandler: (event, control, index, control2, index2, control3, commaFlag) => dispatch(actions.contentLevel2onChangeHandler(event, control, index, control2, index2, control3, commaFlag)),
-        onAddContentLevel2Handler: (control, index, control2, index2, control3) => dispatch(actions.addContentLevel2Handler(control, index, control2, index2, control3)),
-        onRemoveContentLevel2Handler: (control, index, control2, index2, control3, index3) => dispatch(actions.removeContentLevel2Handler(control, index, control2, index2, control3, index3)),
-        onContentLevel3onChangeHandler: (event, control, index, control2, index2, control3, index3, control4, commaFlag, autoFlag) => dispatch(actions.contentLevel3onChangeHandler(event, control, index, control2, index2, control3, index3, control4, commaFlag, autoFlag)),
-        onDisableRemittanceBanksNameHandler: (event, index, control, index2) => dispatch(actions.disableRemittanceBanksNameHandler(event, index, control, index2)),
-        onDisableRemittanceBanksHandler: (event, index, control, control2) => dispatch(actions.disableRemittanceBanksHandler(event, index, control, control2)),
-
-        onPostForm: (userData, userProfile) => dispatch(actions.postForm(userData, userProfile))
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+}))

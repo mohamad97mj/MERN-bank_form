@@ -48,7 +48,7 @@ const toolbar = (props) => (
                             <Aux>
 
                                 <Nav.Item>
-                                    < Nav.Link id="nav-3" exact as={NavLink} to="/logged">
+                                    < Nav.Link id="nav-3" exact as={NavLink} to="/panel">
                                         صفحه نخست
                                     </Nav.Link>
                                 </Nav.Item>

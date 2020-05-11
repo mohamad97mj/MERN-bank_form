@@ -1,9 +1,9 @@
 
-.first-page-container {
+.panel-container {
     width: 800px;
 }
 
-.first-page {
+.panel-page {
     padding: 50px 10px 10px 50px;
     margin: auto;
     direction: rtl;
@@ -21,14 +21,14 @@ p:after {
 }
 
 @media (min-width: 960px) and (max-width: 1279px) {
-    .first-page-container {
+    .panel-container {
         width: 720px;
     }
 }
 
 @media (min-width: 600px) and (max-width: 959px) {
 
-    .first-page-container {
+    .panel-container {
         width: 520px;
     }
 
@@ -36,20 +36,20 @@ p:after {
 
 @media (min-width: 320px) and (max-width: 599px) {
 
-    .first-page-container {
+    .panel-container {
         width: 330px;
     }
 }
 
 
 @media (min-width: 259px) and (max-width: 319px) {
-    .first-page-container {
+    .panel-container {
         width: 250px;
     }
 }
 
 @media (max-width: 258px) {
-    .first-page-container {
+    .panel-container {
         width: 200px;
     }
 }

@@ -1,0 +1,27 @@
+.center {
+    margin: auto;
+    /*text-align: center;*/
+}
+
+.login-form {
+    width: 400px;
+}
+
+@media (min-width: 321px) and (max-width: 480px) {
+    .login-form {
+        width: 300px;
+    }
+}
+
+
+@media (min-width: 259px) and (max-width: 320px) {
+    .login-form {
+        width: 250px;
+    }
+}
+
+@media (max-width: 258px) {
+    .login-form {
+        width: 200px;
+    }
+}

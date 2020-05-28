@@ -1,0 +1,59 @@
+{
+  "name": "client-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.9.9",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.48",
+    "@material-ui/styles": "^4.9.6",
+    "@material-ui/system": "^4.9.6",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1",
+    "jwt-decode": "^2.2.0",
+    "radium": "^0.26.0",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.0.0-beta.17",
+    "react-bootstrap-typeahead": "^5.0.0-alpha.1",
+    "react-dom": "^16.13.1",
+    "react-flag-icon-css": "^1.0.25",
+    "react-flags-select": "^1.1.12",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "redium": "^0.6.2",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "rfdc": "^1.1.4",
+    "store": "^2.0.12"
+  },
+  "scripts": {
+    "start": "PORT=80 HOST=0.0.0.0 DANGEROUSLY_DISABLE_HOST_CHECK=true react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.8.3"
+  },
+  "proxy" : "http://localhost:5000"
+}

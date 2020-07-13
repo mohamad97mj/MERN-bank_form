@@ -13,6 +13,7 @@ export const authStart = () => {
 
 export const authSuccess = (user) => {
 
+    user.username = "u14005613010"
     return {
         type: actionTypes.AUTH_SUCCESS,
         user: user,

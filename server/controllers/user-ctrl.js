@@ -150,9 +150,7 @@ myPostProfile = (req, res) => {
             error: 'You must provide a profile',
         })
     }
-
-    'use strict';
-    const util = require('util');
+    console.log("username is : " + body.username)
 
     const profile = new Profile(
         // body
@@ -210,7 +208,6 @@ myPostForm = (req, res) => {
 
     const body = req.body;
 
-    const util = require('util');
 
     if (!body) {
         return res.status(400).json({

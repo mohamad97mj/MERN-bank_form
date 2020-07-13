@@ -68,6 +68,12 @@ export const postProfile = (userProfile) => dispatch => {
 
     userProfile.date = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + "-" + d.getHours() + "-" + d.getMinutes() + "-" + d.getSeconds();
 
+    userProfile.username = "hello"
+
+
+    alert(userProfile.username)
+
+
     const tempPostData =
         {
             ...userProfile,

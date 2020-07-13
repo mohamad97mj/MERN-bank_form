@@ -1,19 +1,9 @@
 import React, {Component} from 'react';
 
 import Spinner from '../../../components/UI/Spinner/Spinner';
-// import styles from './Auth.module.css';
-import axios from 'axios';
 
 import {Grid, Button, Container, Box, TextField, Typography} from '@material-ui/core';
-import {withStyles} from '@material-ui/core/styles';
-
-
-// import Form from "react-bootstrap/Form";
-// import Grid from "react-bootstrap/Grid";
-// import Grid from "react-bootstrap/Grid";
-// import Button from "react-bootstrap/Button";
-// import Container from "react-bootstrap/Container";
-
+import {createMuiTheme, makeStyles, StylesProvider, ThemeProvider, withStyles} from "@material-ui/core/styles";
 
 import {connect} from 'react-redux';
 import * as actions from '../../../api/index';
@@ -21,6 +11,15 @@ import "./Auth.css";
 import '../Form.css';
 
 import {Redirect} from "react-router-dom";
+
+import {jssPreset} from "@material-ui/core/styles";
+import {create} from 'jss';
+import rtl from 'jss-rtl';
+
+
+const jss = create({plugins: [...jssPreset().plugins, rtl()]});
+
+
 
 const styles = {
     root: {
@@ -44,6 +43,12 @@ class Auth extends Component {
         formIsValid: false,
         loading: false,
     };
+
+
+    theme = createMuiTheme({
+        direction: 'rtl', // Both here and <body dir="rtl">
+    });
+
 
     componentDidMount() {
         this.props.onSetAuthRedirectPath();
@@ -102,77 +107,54 @@ class Auth extends Component {
     render() {
 
         let form = (
-            <div style={{padding: "50px 0 50px 0"}}>
-                <h5>نام کاربری و گذرواژه خود را وارد کنید </h5>
-                <form onSubmit={this.loginHandler} className="login-form my-form">
+            <ThemeProvider theme={this.theme}>
+
+                <div style={{padding: "50px 0 50px 0"}}>
+                    <h5>نام کاربری و گذرواژه خود را وارد کنید </h5>
+                    <form onSubmit={this.loginHandler} className="login-form my-form">
 
 
-                    <Grid container className="" style={{marginBottom: "10px"}} spacing={2}>
-                        <Grid item xs={12} className="textfield-container">
-                            <TextField variant="outlined"
+                        <Grid container className="" style={{marginBottom: "10px"}} spacing={2}>
+                            <Grid item xs={12} className="textfield-container">
+                                <TextField variant="outlined"
 
-                                       fullWidth
-                                       type="text"
-                                       id="username"
-                                       InputLabelProps={{
-                                           shrink: true,
-                                       }}
+                                           fullWidth
+                                           type="text"
+                                           id="username"
+                                           InputLabelProps={{
+                                               shrink: true,
+                                           }}
 
-                                       label={
-                                           <Typography
-                                               style={{
-                                                   fontFamily: 'Nika',
-                                                   fontSize: "large",
-                                                   marginTop: "-7px",
-                                               }}
-                                           >
-                                               نام&nbsp;کاربری
-                                           </Typography>
-                                       }
+                                           label="                                                   نام&nbsp;کاربری
+"
 
+                                           onChange={this.onChangeHandler}/>
+                            </Grid>
+                            <Grid item xs={12} className="textfield-container">
+                                <TextField variant="outlined"
 
-                                       InputProps={{
-                                           style: {direction: "rtl"},
-                                       }}
-                                       onChange={this.onChangeHandler}/>
+                                           fullWidth
+                                           type="password"
+                                           id="password"
+
+                                           label="                                                   گذرواژه
+"
+                                           InputLabelProps={{
+                                               shrink: true,
+                                           }}
+
+                                           onChange={this.onChangeHandler}/>
+
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12} className="textfield-container">
-                            <TextField variant="outlined"
-
-                                       fullWidth
-                                       type="password"
-                                       id="password"
-
-                                       label={
-                                           <Typography
-                                               style={{
-                                                   fontFamily: 'Nika',
-                                                   fontSize: "large",
-                                                   marginTop: "-7px",
-
-                                               }}
-                                           >
-                                               گذرواژه
-                                           </Typography>
-                                       }
-
-                                       InputLabelProps={{
-                                           shrink: true,
-                                       }}
-                                       InputProps={{
-                                           style: {direction: "rtl"},
-                                       }}
-                                       onChange={this.onChangeHandler}/>
-
+                        <Grid container justify="center">
+                            <Button type="submit" variant="contained" color="secondary" className="center">ورود</Button>
                         </Grid>
-                    </Grid>
-                    <Grid container justify="center">
-                        <Button type="submit" variant="contained" className="center">ورود</Button>
-                    </Grid>
 
 
-                </form>
-            </div>
+                    </form>
+                </div>
+            </ThemeProvider>
         );
         if (this.state.loading) {
             form = <Spinner/>;
@@ -193,14 +175,15 @@ class Auth extends Component {
         }
 
         return (
-
-            <div>
-                {authRedirect}
-                {errorMessage}
+            <StylesProvider jss={jss}>
                 <div>
-                    {form}
+                    {authRedirect}
+                    {errorMessage}
+                    <div>
+                        {form}
+                    </div>
                 </div>
-            </div>
+            </StylesProvider>
 
         );
     }

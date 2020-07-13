@@ -48,8 +48,7 @@ class App extends Component {
                     <Route path="/" exact component={Auth}/>
                     <Redirect to="/"/>
                 </Switch>
-            );
-        }
+            );}
 
 
         return (
